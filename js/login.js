@@ -15,13 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
       //el Console.log lo usaremos solo para verificar en el F12 que pasó exitosamente el usuario.
       console.log('Usuario loggeado');
     }
-  }, 3000);
-
-
-
-  // NUEVO TRABAJO [REDIRECCION AL LOGIN CON DATOS GUARDADOS EN LOCAL STORAGE]
+  }, 3000); 
 });
-window.onload = function () {
+
+// NUEVO TRABAJO [REDIRECCION AL LOGIN CON DATOS GUARDADOS EN LOCAL STORAGE]
+document.addEventListener('DOMContentLoaded', function () {
   const buttonSave = document.getElementById("button");
 buttonSave.onclick = function () {
   var email = document.getElementById("email").value;
@@ -31,6 +29,7 @@ buttonSave.onclick = function () {
   
   console.log(localStorage.getItem("email"));
   console.log(localStorage.getItem("password"));
+
   window.location.href = '../index.html'
 };
-};
+});
