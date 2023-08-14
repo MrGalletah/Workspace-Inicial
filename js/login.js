@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if(!verificarCampos()){
             evento.preventDefault();
         } else {
-            window.location.href = 'index.html';
+            window.location = 'index.html';
         }
     });
 });
