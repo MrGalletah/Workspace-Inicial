@@ -1,0 +1,10 @@
+body {
+    background-color: aqua;
+}
+
+.divProducto {
+    background-color: rgb(3, 3, 57);
+    color: white;
+    border-color: aqua;
+    border-radius: 2%;
+}
