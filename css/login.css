@@ -122,4 +122,22 @@ max-height: 60%;
     text-decoration: underline;
  }
 
+ #buttonPassword {
+    position: absolute;
+    right: 20px;
+    top: 30%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+ }
  
+ span img {
+    width: 20px;
+    height: auto;
+ }
+ 
+ #hidePassword {
+    display: none;
+ }
