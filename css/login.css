@@ -120,6 +120,7 @@ max-height: 60%;
  }
  .register p a:hover {
     text-decoration: underline;
+<<<<<<< HEAD
  }
 
  #buttonPassword {
@@ -140,4 +141,6 @@ max-height: 60%;
  
  #hidePassword {
     display: none;
+=======
+>>>>>>> fcc4d83eaf6ee6e65efff52d6c0d61c1dafd9fc7
  }
