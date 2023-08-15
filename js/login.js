@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const botonIngresar = document.getElementById('regBtn');
     const emailInput = document.querySelector('.login input[type="email"]');
     const passwordInput = document.querySelector('.login input[type="password"]');
+    const loggeado = localStorage.getItem('loggedIn');
 
     function verificarCampos(){
         //funcion para ver si los campos se completan correctamente, devuelve true or false
@@ -34,13 +35,17 @@ document.addEventListener('DOMContentLoaded', function(){
     //Boton Ingresar por defecto al cargar la pagina.
     botonIngresar.disabled = true;
 
+    if (loggeado) {
+        window.location.href = 'index.html';
+    } else {
+        botonIngresar.addEventListener('click', function(evento){
+            if (verificarCampos()) {
+                localStorage.setItem('loggedIn', 'true');
+            } else {
+                evento.preventDefault();
+            }
+        });
+    }
 
-    botonIngresar.addEventListener('click', function(evento){
-        //si esta todo OK , nos redirecciona a la pagina principal
-        if(!verificarCampos()){
-            evento.preventDefault();
-        } else {
-            window.location.href ='index.html';
-        }
-    });
+
 });
