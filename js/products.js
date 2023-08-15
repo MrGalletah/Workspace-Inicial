@@ -29,10 +29,3 @@ fetch(modifiedURL)
         mostrarProducto(data.products);
     })
     
-    function modificarCatId() {
-        fetch(modifiedURL)
-            .then(response => response.json())
-            .then(data => {
-            })
-    }
-        modificarCatId();
