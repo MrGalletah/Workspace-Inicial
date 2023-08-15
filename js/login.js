@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Verificar si hay información de sesión almacenada en Local Storage después de 3 segundos de carga de la página
   setTimeout(function() {
-    if (!localStorage.getItem('password')) {
+    if (!localStorage.getItem('loggedIn', 'true')) {
       // No hay información de sesión, mostrar el #overlay -> #message del INDEX.html
       var overlay = document.getElementById('overlay');
       overlay.style.display = 'block';
