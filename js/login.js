@@ -1,22 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Verificar si hay información de sesión almacenada en Local Storage después de 3 segundos de carga de la página
-  setTimeout(function() {
-    if (!localStorage.getItem('password')) {
-      // No hay información de sesión, mostrar el #overlay -> #message del INDEX.html
-      var overlay = document.getElementById('overlay');
-      overlay.style.display = 'block';
-  // Redireccionar al usuario a la página de inicio de sesión después de 3 segundos
-  setTimeout(function() {
-    window.location.href = 'login.html';
-  }, 3000);
-  //---------------------------------------------------------------------------------------
-    } else {
-      // Hay información de sesión, considerar al usuario como loggeado y permitirle acceder a la página principal directamente
-      //el Console.log lo usaremos solo para verificar en el F12 que pasó exitosamente el usuario.
-      console.log('Usuario loggeado');
-    }
-  }, 3000); 
-  }, 3000);
+  // NUEVO TRABAJO [REDIRECCION AL LOGIN CON DATOS GUARDADOS EN LOCAL STORAGE]
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+  
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe
+  
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+  
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+  
+      window.location.href = 'index.html'; // Redirecciona al usuario a index.html
+    });
+  });
+  
+  // Debajo tenémos el MOSTRAR Y OCULTAR contraseña:
 
   const passInput = document.getElementById("password");
   const passButton = document.getElementById("buttonPassword");
@@ -35,20 +35,3 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-
-
-// NUEVO TRABAJO [REDIRECCION AL LOGIN CON DATOS GUARDADOS EN LOCAL STORAGE]
-document.addEventListener('DOMContentLoaded', function () {
-  const buttonSave = document.getElementById("button");
-buttonSave.onclick = function () {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  localStorage.setItem("email", email);
-  localStorage.setItem("password", password);
-  
-  console.log(localStorage.getItem("email"));
-  console.log(localStorage.getItem("password"));
-
-  window.location.href = '../index.html'
-};
-});
