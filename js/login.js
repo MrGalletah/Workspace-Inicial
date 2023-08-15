@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
         //funcion para agregar o quitar el atributo disabled en el boton Ingresar
         const formularioValido = verificarCampos();
         botonIngresar.disabled = !formularioValido;
-        if( formularioValido){
+        if(formularioValido){
             botonIngresar.classList.remove('disabled');
         } else {
             botonIngresar.classList.add('disabled');
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
     //Boton Ingresar por defecto al cargar la pagina.
     botonIngresar.disabled = true;
-    botonIngresar.classList.add('disabled');
 
 
     botonIngresar.addEventListener('click', function(evento){
