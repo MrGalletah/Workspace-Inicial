@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Verificar si hay información de sesión almacenada en Local Storage después de 3 segundos de carga de la página
   setTimeout(function() {
-    if (!localStorage.getItem('loggedIn', 'true')) {
+    if (!localStorage.getItem('loggedIn', 'true')) { 
       // No hay información de sesión, mostrar el #overlay -> #message del INDEX.html
       var overlay = document.getElementById('overlay');
       overlay.style.display = 'block';
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, 3000);
 
+  // Funcionalidad del candado de mostrar password
   const passInput = document.getElementById("password");
   const passButton = document.getElementById("buttonPassword");
   const hidePass = document.getElementById("hidePassword");
@@ -34,21 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-  // NUEVO TRABAJO [REDIRECCION AL LOGIN CON DATOS GUARDADOS EN LOCAL STORAGE]
 });
-window.onload = function () {
-  const buttonSave = document.getElementById("button");
-buttonSave.onclick = function () {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  localStorage.setItem("email", email);
-  localStorage.setItem("password", password);
-  
-  console.log(localStorage.getItem("email"));
-  console.log(localStorage.getItem("password"));
-  window.location.href = '../index.html'
-};
-};
+
 
 
 document.addEventListener('DOMContentLoaded', function(){
