@@ -1,4 +1,3 @@
-const autos101 = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 const contenedor = document.getElementById('elContenedor');
 
 function mostrarProducto(dataArray) {
@@ -22,10 +21,18 @@ function mostrarProducto(dataArray) {
         contenedor.appendChild(divDeProducto);
     }
 }
-
-fetch(autos101)
+const idCat = localStorage.catID;
+const modifiedURL = `https://japceibal.github.io/emercado-api/cats_products/${idCat}.json`;
+fetch(modifiedURL)
     .then(response => response.json())
     .then(data => {
         mostrarProducto(data.products);
     })
     
+    function modificarCatId() {
+        fetch(modifiedURL)
+            .then(response => response.json())
+            .then(data => {
+            })
+    }
+        modificarCatId();
