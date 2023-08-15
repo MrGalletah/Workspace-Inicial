@@ -11,4 +11,16 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+
+    const cerrarSesion = document.getElementById('cerrarSesion');
+    cerrarSesion.addEventListener('click', function(evento){
+        localStorage.removeItem('loggedIn')
+        window.location.href = 'index.html';
+    });
+    
+
+
+
+
+
 });

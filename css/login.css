@@ -88,7 +88,7 @@ max-height: 60%;
     text-decoration: underline;
  }
 
- .login .btn {
+ .login #regBtn {
     width: 100%;
     height: 45px;
     background-color: white;
@@ -101,11 +101,7 @@ max-height: 60%;
     transition: 0.5s;
  }
 
- .login .btn:hover{
-    background-color: aqua;
-    transition: 0.5s;
-    transform: scale(1.1);
- }
+
 
  .login .register {
     font-size: 14px;
@@ -121,6 +117,16 @@ max-height: 60%;
  .register p a:hover {
     text-decoration: underline;
  }
+ .login #regBtn:disabled{
+   background-color: lightgray;
+   color: gray;
+   cursor: not-allowed;
+ }
+ .login #regBtn:hover:not(:disabled) {
+   background-color: aqua;
+   transition: 0.5s;
+   transform: scale(1.1);
+}
 
  #buttonPassword {
     position: absolute;
