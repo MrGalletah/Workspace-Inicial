@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const cerrarSesion = document.getElementById('cerrarSesion');
     cerrarSesion.addEventListener('click', function(evento){
         localStorage.removeItem('loggedIn')
-        window.location.href = 'index.html';
+        window.location.reload();
     });
     
 
