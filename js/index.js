@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Verificar si hay información de sesión almacenada en Local Storage después de 3 segundos de carga de la página
   setTimeout(function() {
-    if (!localStorage.getItem('email')) {
+    if (!localStorage.getItem('loggedIn')) {
       // No hay información de sesión, mostrar el #overlay -> #message del INDEX.html
       var overlay = document.getElementById('overlay');
       overlay.style.display = 'block';
@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+    const cerrarSesion = document.getElementById('cerrarSesion');
+    cerrarSesion.addEventListener('click', function(evento){
+        localStorage.removeItem('loggedIn')
+    });
+    
+
     
 });
 
