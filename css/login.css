@@ -119,26 +119,26 @@ max-height: 60%;
     height: 20px;
     cursor: pointer;
     background: none;
-    border: 1px solid;
-    border-color: coral;
-    border-radius: 20%;
-    box-shadow: 0 0 15px rgba(247, 251, 13, 0.945); 
+    border: 1px solid;  
+    border-radius: 40%;
+    }
 
-
- }
+   #buttonPassword:hover{
+      box-shadow: 0 0 15px rgba(5, 213, 255, 0.945); 
+   }
  
  span img {
     width: 20px;
     height: auto;
- }
+    }
  
  #showPassword {
     display: none;
     
  }
  .login #regBtn:disabled{
-   background-color: lightgray;
-   color: gray;
+   background-color: rgb(3, 47, 69);
+   color: rgb(245, 243, 243);
    cursor: not-allowed;
  }
  .login #regBtn:hover:not(:disabled) {

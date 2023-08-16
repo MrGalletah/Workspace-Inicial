@@ -9,7 +9,7 @@ function mostrarProducto(dataArray) {
         <img src="${item.image}" class="img-thumbnail">
     </div>
     <div class="col-6">
-        <h3>${item.name} - $${item.cost}</h3>
+        <h3>${item.name} - ${item.currency} ${item.cost}</h3>
         <p>${item.description}</p>
     </div>
     <div class="col-3 text-muted text-end">
