@@ -19,30 +19,30 @@
     />
   </head>
 
-  <body>
+<body>
     <main class="mt-5">
-      <div class="container">
+    
+    <div class="container">
         <div class="login">
-          <form action="">
-            <!-- <h1>Login <span>[Grupo 4]</span></h1> -->
+          <form id="loginForm" action="">
             <img id="JAP" src="img/login2.png" alt="e-Mercado" />
 
             <div class="input-box">
-              <input type="email" placeholder="Ingresa tu Email" required />
-              <i class="bx bx-envelope"></i>
+              <input id="email" autocomplete="off" type="email" placeholder="Ingresa tu Email" required>
+              <i class='bx bx-envelope'></i>
+              
             </div>
-
             <div class="input-box">
-              <input type="password" placeholder="Contraseña" required />
-              <i class="bx bx-lock-open-alt"></i>
+              <input id="password" type="password" placeholder="Contraseña" required>
+              <i class='bx bx-lock-open-alt'></i>
             </div>
-
+          
             <div class="remember-forgot">
               <label><input type="checkbox" /> Recordarme </label>
               <a href="#"> ¿Olvidó su contraseña? </a>
             </div>
-
-            <button type="submit" class="btn">Ingresar</button>
+            
+            <button type="submit" id="regBtn" class="btn"> Ingresar </button>
 
             <div class="register">
               <p>¿Aún no tienes una cuenta? <a href="#">Regístrate</a></p>
@@ -60,6 +60,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer> -->
-    <script src="js/login.js"></script>
-  </body>
+  <script src="js/login.js"></script>
+</body>
+
 </html>
