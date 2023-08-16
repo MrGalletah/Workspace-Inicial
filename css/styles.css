@@ -17,7 +17,11 @@
   display: none;
   backdrop-filter: blur(5px); /* Agrega el efecto blur */
 }
-
+/*Debajo estilizaré el INDEX con los colores del Login*/
+#albumCategories, body{
+  background-color: #001f39 !important;
+}
+/*-------------------------------------------------------------*/
 #message {
   position: absolute;
   top: 50%;
@@ -60,7 +64,7 @@ nav a {
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background: url('../img/cover_back\ -\ copia.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
