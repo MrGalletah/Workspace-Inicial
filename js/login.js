@@ -69,3 +69,13 @@ document.addEventListener('DOMContentLoaded', function(){
           hidePass.style.display = "inline";
       }
   });
+
+  // Debajo haremos un JS que active Brillo extra al candadito cada vez que el usuario teclea en el INPUT Password
+ // ****************** PROBANDO DESTELLOS DE LUZ AL TECLEAR EL USUARIO ******************
+  passInput.addEventListener("input", function() {
+    passButton.classList.add("active");
+  
+    setTimeout(function() {
+      passButton.classList.remove("active");
+    }, 200);
+  });

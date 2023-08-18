@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Redireccionar al usuario a la página de inicio de sesión después de 3 segundos
   setTimeout(function() {
     window.location.href = 'login.html';
-  }, 3000);
+  }, 6000);
   //---------------------------------------------------------------------------------------
     } else {
       // Hay información de sesión, considerar al usuario como loggeado y permitirle acceder a la página principal directamente

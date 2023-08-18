@@ -21,15 +21,15 @@
     <div class="container">
         <div class="login">
           <form id="loginForm" action="">
-            <img id="JAP" src="/img/login2.png" alt="e-Mercado">
+            <a href="https://jovenesaprogramar.edu.uy/" target="_blank" title="https://jovenesaprogramar.edu.uy/"><img id="JAP" src="/img/login2.png" alt="e-Mercado"></a>
 
             <div class="input-box">
-              <input id="email" autocomplete="off" type="email" placeholder="Ingresa tu Email" required>
+              <input id="email" autocomplete="off" type="email" placeholder="Ingresa tu Email" title="ejemplo@tuEmail.com" required> 
               <i class='bx bx-envelope'></i>
               
             </div>
             <div class="input-box">
-              <input id="password" type="password" placeholder="Contraseña" required > 
+              <input id="password" type="password" placeholder="Contraseña" title="Mínimo 6 Carácteres"required> 
             <button type="button" id="buttonPassword">
               <span id="showPassword"><img title="Ocultar Contraseña" src="icons/showPassAjustado.png"></span>
               <span id="hidePassword"><img title="Ver Contraseña" src="icons/hidePassAjustado.png"></span>
@@ -46,7 +46,7 @@
 
             <div class="register">
               <p>
-                ¿Aún no tienes una cuenta? <a href="#">Regístrate</a>
+                <a href="#">¿Aún no tienes una cuenta? <span id="linkRegistro">Regístrate</span></a>
               </p>
             </div>
           </form>
