@@ -46,26 +46,37 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
+    // Debajo tenémos el MOSTRAR Y OCULTAR contraseña:
+
+    const passButton = document.getElementById("buttonPassword");
+    const hidePass = document.getElementById("hidePassword");
+    const showPass = document.getElementById("showPassword");
+    
+    passButton.addEventListener("click", function() {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            showPass.style.display = "inline";
+            hidePass.style.display = "none";
+        } else {
+            passwordInput.type = "password";
+            showPass.style.display = "none";
+            hidePass.style.display = "inline";
+        }
+    });
+  
+    // Debajo haremos un JS que active Brillo extra al candadito cada vez que el usuario teclea en el INPUT Password
+   // ****************** PROBANDO DESTELLOS DE LUZ AL TECLEAR EL USUARIO ******************
+    passwordInput.addEventListener("input", function() {
+      passButton.classList.add("active");
+    
+      setTimeout(function() {
+        passButton.classList.remove("active");
+      }, 200);
+    });
+
+
+
 
 
 
 });
-
-  // Debajo tenémos el MOSTRAR Y OCULTAR contraseña:
-
-  const passInput = document.getElementById("password");
-  const passButton = document.getElementById("buttonPassword");
-  const hidePass = document.getElementById("hidePassword");
-  const showPass = document.getElementById("showPassword");
-  
-  passButton.addEventListener("click", function() {
-      if (passInput.type === "password") {
-          passInput.type = "text";
-          showPass.style.display = "inline";
-          hidePass.style.display = "none";
-      } else {
-          passInput.type = "password";
-          showPass.style.display = "none";
-          hidePass.style.display = "inline";
-      }
-  });
