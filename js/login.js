@@ -46,11 +46,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-
-
-
-});
-
   // Debajo tenémos el MOSTRAR Y OCULTAR contraseña:
 
   const passInput = document.getElementById("password");
@@ -79,3 +74,7 @@ document.addEventListener('DOMContentLoaded', function(){
       passButton.classList.remove("active");
     }, 200);
   });
+
+
+});
+
