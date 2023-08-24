@@ -7,6 +7,10 @@ let minCount = undefined;
 let maxCount = undefined;
 
 cerrarSesion.innerHTML = localStorage.getItem("email")
+cerrarSesion.addEventListener('click', function(evento){
+    localStorage.removeItem('loggedIn')
+    localStorage.removeItem('email')
+});
 
 function sortCategories(criteria, array){
     let result = [];
