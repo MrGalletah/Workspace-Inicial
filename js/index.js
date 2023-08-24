@@ -35,8 +35,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const cerrarSesion = document.getElementById('cerrarSesion');
+
+    cerrarSesion.innerHTML = localStorage.getItem("email")
+
     cerrarSesion.addEventListener('click', function(evento){
         localStorage.removeItem('loggedIn')
+        localStorage.removeItem('email')
     });
     
 

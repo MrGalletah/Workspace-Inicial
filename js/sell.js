@@ -8,6 +8,7 @@ let DOLLAR_SYMBOL = "USD ";
 let PESO_SYMBOL = "UYU ";
 let PERCENTAGE_SYMBOL = '%';
 let MSG = "FUNCIONALIDAD NO IMPLEMENTADA";
+cerrarSesion.innerHTML = localStorage.getItem("email")
 
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
