@@ -223,3 +223,8 @@ a.custom-card:hover {
 #cerrarSesion {
   cursor: pointer;
 }
+
+
+#coverIndex{
+  width: 100%;
+}

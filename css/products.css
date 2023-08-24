@@ -8,3 +8,8 @@ body {
     border-color: aqua;
     border-radius: 2%;
 }
+
+.imagenProducto{
+    width: 100%;
+    max-width: 275px;
+  }

@@ -5,7 +5,7 @@ function mostrarProducto(dataArray) {
         const divDeProducto = document.createElement('div');
         divDeProducto.classList.add('divProducto','row','list-group-item','d-flex','justify-content-between')
         const productHTML = `
-        <div class="col-3">
+        <div class="col-3 imagenProducto ">
         <img src="${item.image}" class="img-thumbnail">
     </div>
     <div class="col-6">
