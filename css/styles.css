@@ -16,6 +16,7 @@
   z-index: 9999;
   display: none;
   backdrop-filter: blur(5px); /* Agrega el efecto blur */
+  transform: scale(1.8);
 }
 
 #message {
@@ -25,6 +26,9 @@
   transform: translate(-50%, -50%);
   background-color: rgb(3, 3, 57);
   color: white;
+  text-align: center;
+  border: 2px solid rgb(3, 163, 163);
+  border-radius: 15px;
   padding: 20px;
   font-size: 1.6;
   font-weight: 600;
