@@ -28,4 +28,11 @@ fetch(modifiedURL)
     .then(data => {
         mostrarProducto(data.products);
     })
+
+    cerrarSesion.innerHTML = localStorage.getItem("email")
+
+    cerrarSesion.addEventListener('click', function(evento){
+        localStorage.removeItem('loggedIn')
+        localStorage.removeItem('email')
+    });
     
