@@ -1,4 +1,7 @@
 const contenedor = document.getElementById('elContenedor');
+const tituloCat = document.getElementById('tituloCategoria')
+
+// tituloCat.textContent=item.catName;
 
 function mostrarProducto(dataArray) {
     for (const item of dataArray) {
@@ -27,5 +30,6 @@ fetch(modifiedURL)
     .then(response => response.json())
     .then(data => {
         mostrarProducto(data.products);
+        tituloCat.textContent = data.catName;
     })
     
