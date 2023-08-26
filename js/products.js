@@ -8,8 +8,8 @@ function mostrarProducto(dataArray) {
 
 
   if (dataArray.length === 0) {
-    const sinResultados = document.createElement('p');
-    sinResultados.textContent = 'No se encontraron resultados.';
+    const sinResultados = document.createElement('div');
+    sinResultados.innerHTML += '<p id="notFound"> No se encontraron resultados. </p>';
     contenedor.appendChild(sinResultados);
   } else {
     for (const item of dataArray) {
@@ -35,6 +35,7 @@ function mostrarProducto(dataArray) {
 
 
 // ESTE BLOQUE DEBAJO PERMITE MOSTRAR LOS PRODUCTOS DE DIVERSAS CATEGORIAS DE LA API por su ID.
+// AGREGAMOS LA FUNCIÓN DE FILTRADO EN TIEMPO REAL (input)
 const idCat = localStorage.catID;
 const modifiedURL = `https://japceibal.github.io/emercado-api/cats_products/${idCat}.json`;
 fetch(modifiedURL)

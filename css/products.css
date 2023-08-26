@@ -6,12 +6,28 @@ body {
     background-color: rgb(3, 3, 57);
     color: white;
     border-color: aqua;
-    border-radius: 2%;
+    border-radius: 10px;
+}
+/* CARTEL DE "NO SE ENCONTRARON RESULTADOS"  */
+#notFound{
+    background-color:rgb(3, 3, 57);
+    color: white;
+    border-radius: 10px;
+    border: solid rgb(191, 2, 2) 1.8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 120%;
+    margin: 01% 20%;
+    padding: 04%;
 }
 
 /** COMIENZA ESTILO DEL BUSCADOR */
 #formSearch{
     width: 50%;
+}
+#inputSearch:hover{
+    border: solid rgb(3, 3, 57) 1px;
+    background-color:  rgb(231, 251, 251);
 }
 
 #botonSearch{
@@ -19,9 +35,9 @@ body {
     color: aqua;
 }
 #botonSearch:hover{
-    background-color: coral;
-    color:rgb(3, 3, 57);
-    transform: scale(1.1);
+    border: solid rgb(3, 3, 57) 1px;
+    color: rgb(3, 3, 57);
+    background-color: aqua;
+    
 }
-
 /** FINALIZA ESTILO DEL BUSCADOR */
