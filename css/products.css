@@ -41,3 +41,19 @@ body {
     
 }
 /** FINALIZA ESTILO DEL BUSCADOR */
+
+.imagenProducto{
+    width: 100%;
+    max-width: 275px;
+}
+
+  #tituloCategoria {
+    margin-top: -2.5%;
+    margin-bottom: -0.8%;
+    transform: scale(0.8);
+    color: rgb(3, 3, 57);
+    font-weight: 550;
+    -webkit-text-stroke: 1px aqua;
+    text-align: center;
+        text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black;
+}

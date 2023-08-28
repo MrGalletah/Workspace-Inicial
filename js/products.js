@@ -2,6 +2,9 @@ const contenedor = document.getElementById('elContenedor');
 const inputSearch = document.getElementById('inputSearch');
 const formSearch = document.getElementById('formSearch');
 
+const tituloCat = document.getElementById('tituloCategoria')
+
+// tituloCat.textContent=item.catName;
 
 function mostrarProducto(dataArray) {
   contenedor.innerHTML = ''; // Limpiar el contenedor antes de mostrar los resultados
@@ -13,22 +16,23 @@ function mostrarProducto(dataArray) {
     contenedor.appendChild(sinResultados);
   } else {
     for (const item of dataArray) {
-      const divDeProducto = document.createElement('div');
-      divDeProducto.classList.add('divProducto', 'row', 'list-group-item', 'd-flex', 'justify-content-between');
-      const productHTML = `
-        <div class="col-3">
-          <img src="${item.image}" class="img-thumbnail">
-        </div>
-        <div class="col-6">
-          <h3>${item.name} - ${item.currency} ${item.cost}</h3>
-          <p>${item.description}</p>
-        </div>
-        <div class="col-3 text-muted text-end">
-          <small>${item.soldCount} vendidos</small>
-        </div>
-      `;
-      divDeProducto.innerHTML = productHTML;
-      contenedor.appendChild(divDeProducto);
+        const divDeProducto = document.createElement('div');
+        divDeProducto.classList.add('divProducto','row','list-group-item','d-flex','justify-content-between')
+        const productHTML = `
+        <div class="col-3 imagenProducto ">
+        <img src="${item.image}" class="img-thumbnail">
+    </div>
+    <div class="col-6">
+        <h3>${item.name} - ${item.currency} ${item.cost}</h3>
+        <p>${item.description}</p>
+    </div>
+    <div class="col-3 text-muted text-end">
+        <small>${item.soldCount} vendidos</small>
+    </div>
+        `;
+        divDeProducto.innerHTML = productHTML;
+
+        contenedor.appendChild(divDeProducto);
     }
   }
 }
@@ -42,6 +46,7 @@ fetch(modifiedURL)
   .then(response => response.json())
   .then(data => {
     mostrarProducto(data.products); 
+        tituloCat.textContent = data.catName;
     formSearch.addEventListener('input', function (event) {
       const busqueda = inputSearch.value.toLowerCase();
       filtrarProductos(busqueda, data.products); 

@@ -219,3 +219,12 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+#cerrarSesion {
+  cursor: pointer;
+}
+
+
+#coverIndex{
+  width: 100%;
+}
