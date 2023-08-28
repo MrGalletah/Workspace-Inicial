@@ -28,11 +28,22 @@ fetch(modifiedURL)
     .then(data => {
         mostrarProducto(data.products);
     })
+    const userEmail = document.getElementById('user-email');
 
-    cerrarSesion.innerHTML = localStorage.getItem("email")
+    userEmail.innerHTML = localStorage.getItem("email")
 
     cerrarSesion.addEventListener('click', function(evento){
-        localStorage.removeItem('loggedIn')
-        localStorage.removeItem('email')
+
+       localStorage.removeItem('loggedIn')
+      localStorage.removeItem('email')
     });
     
+
+    
+    const sidebar = document.getElementById("sidebar")
+
+    userEmail.addEventListener("click", (e)=>{
+      e.preventDefault()
+      sidebar.classList.toggle("sidebar-on")
+
+    })

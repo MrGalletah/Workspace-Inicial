@@ -6,11 +6,25 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
-cerrarSesion.innerHTML = localStorage.getItem("email")
+const userEmail = document.getElementById('user-email');
+
+userEmail.innerHTML = localStorage.getItem("email")
+
 cerrarSesion.addEventListener('click', function(evento){
-    localStorage.removeItem('loggedIn')
-    localStorage.removeItem('email')
+
+   localStorage.removeItem('loggedIn')
+  localStorage.removeItem('email')
 });
+
+
+
+const sidebar = document.getElementById("sidebar")
+
+userEmail.addEventListener("click", (e)=>{
+  e.preventDefault()
+  sidebar.classList.toggle("sidebar-on")
+
+})
 
 function sortCategories(criteria, array){
     let result = [];

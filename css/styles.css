@@ -219,3 +219,25 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+.sidebar-of {
+  transform: translate(100%);
+  display: none;
+}
+
+.sidebar-on{
+  transform: translate(100%);
+
+  display: flex;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: -webkit-fill-available;
+  width: 300px;
+  background-color: #212529;
+  z-index: 1;
+  flex-direction: column-reverse;
+  transform: translate(16%);
+}
+.sidebar-content{
+  padding: 16px 16px 32px 32px;
+}

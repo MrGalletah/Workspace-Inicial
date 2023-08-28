@@ -34,15 +34,27 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location = "products.html"
     });
 
-    const cerrarSesion = document.getElementById('cerrarSesion');
 
-    cerrarSesion.innerHTML = localStorage.getItem("email")
+    const userEmail = document.getElementById('user-email');
+
+    userEmail.innerHTML = localStorage.getItem("email")
 
     cerrarSesion.addEventListener('click', function(evento){
-        localStorage.removeItem('loggedIn')
-        localStorage.removeItem('email')
+
+       localStorage.removeItem('loggedIn')
+      localStorage.removeItem('email')
     });
     
+
+    
+    const sidebar = document.getElementById("sidebar")
+
+    userEmail.addEventListener("click", (e)=>{
+      e.preventDefault()
+      sidebar.classList.toggle("sidebar-on")
+
+    })
+
 
 
 

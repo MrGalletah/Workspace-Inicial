@@ -8,12 +8,27 @@ let DOLLAR_SYMBOL = "USD ";
 let PESO_SYMBOL = "UYU ";
 let PERCENTAGE_SYMBOL = '%';
 let MSG = "FUNCIONALIDAD NO IMPLEMENTADA";
-cerrarSesion.innerHTML = localStorage.getItem("email")
+
+
+const userEmail = document.getElementById('user-email');
+
+userEmail.innerHTML = localStorage.getItem("email")
+
 cerrarSesion.addEventListener('click', function(evento){
-    localStorage.removeItem('loggedIn')
-    localStorage.removeItem('email')
+
+   localStorage.removeItem('loggedIn')
+  localStorage.removeItem('email')
 });
 
+
+
+const sidebar = document.getElementById("sidebar")
+
+userEmail.addEventListener("click", (e)=>{
+  e.preventDefault()
+  sidebar.classList.toggle("sidebar-on")
+
+})
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
     let unitProductCostHTML = document.getElementById("productCostText");
