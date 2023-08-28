@@ -220,12 +220,12 @@ a.custom-card:hover {
   color: orange;
 }
 .sidebar-of {
-  transform: translate(100%);
+  
   display: none;
 }
 
 .sidebar-on{
-  transform: translate(100%);
+ 
 
   display: flex;
   position: fixed;
