@@ -32,11 +32,14 @@ fetch(modifiedURL)
 
     userEmail.innerHTML = localStorage.getItem("email")
 
-    cerrarSesion.addEventListener('click', function(evento){
-
-       localStorage.removeItem('loggedIn')
-      localStorage.removeItem('email')
-    });
+    cerrarSesion.addEventListener('click', function(e){
+        if (confirm("Estas seguro que quieres borrar tus datos?")) {
+         localStorage.removeItem('loggedIn')
+        localStorage.removeItem('email')
+        } else{
+          e.preventDefault()
+        }
+      });
     
 
     
