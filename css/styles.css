@@ -281,3 +281,16 @@ aside{
     transform: translateX(300px);
   }
 }
+
+.filtros{
+  display: flex;
+}
+
+#cerrarSesion {
+  cursor: pointer;
+}
+
+
+#coverIndex{
+  width: 100%;
+}
