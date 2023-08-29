@@ -219,8 +219,18 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
-.sidebar-of {
-  display: none;
+.sidebar-off {
+  animation: sidebarAnimationOff 0.3s ease-out 0s 1 normal both ;
+  display: flex;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: -webkit-fill-available;
+  width: 300px;
+  background-color: #212529;
+  z-index: 1;
+  flex-direction: column-reverse;
+  
 }
 
 .sidebar-on {
@@ -233,6 +243,7 @@ a.custom-card:hover {
   background-color: #212529;
   z-index: 1;
   flex-direction: column-reverse;
+  animation: sidebarAnimationOn 0.3s ease-out 0s 1 normal both ;
   transform: translate(16%);
 }
 .sidebar-content {
@@ -240,4 +251,24 @@ a.custom-card:hover {
 }
 .navbar {
   z-index: 2;
+}
+
+
+@keyframes sidebarAnimationOn {
+  from{
+   transform: translateX(300px);
+  }
+
+  to{
+    transform: translateX(16%);
+  }
+}
+@keyframes sidebarAnimationOff {
+  from{
+   transform: translateX(16%);
+  }
+
+  to{
+    transform: translateX(300px);
+  }
 }
