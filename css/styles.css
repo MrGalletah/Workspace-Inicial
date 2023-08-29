@@ -252,6 +252,9 @@ a.custom-card:hover {
 .navbar {
   z-index: 2;
 }
+aside{
+  display: none;
+}
 
 
 @keyframes sidebarAnimationOn {

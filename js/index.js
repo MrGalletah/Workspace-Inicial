@@ -51,6 +51,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     userEmail.addEventListener("click", (e)=>{
       e.preventDefault()
+
+      if(sidebar.classList.contains("sidebar-on")){
+        sidebar.classList.add("sidebar-off")
+      }
+
       sidebar.classList.toggle("sidebar-on")
 
     })

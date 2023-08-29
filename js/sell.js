@@ -25,10 +25,15 @@ cerrarSesion.addEventListener('click', function(evento){
 const sidebar = document.getElementById("sidebar")
 
 userEmail.addEventListener("click", (e)=>{
-  e.preventDefault()
-  sidebar.classList.toggle("sidebar-on")
+    e.preventDefault()
 
-})
+    if(sidebar.classList.contains("sidebar-on")){
+      sidebar.classList.add("sidebar-off")
+    }
+
+    sidebar.classList.toggle("sidebar-on")
+
+  })
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
     let unitProductCostHTML = document.getElementById("productCostText");

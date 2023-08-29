@@ -43,7 +43,12 @@ fetch(modifiedURL)
     const sidebar = document.getElementById("sidebar")
 
     userEmail.addEventListener("click", (e)=>{
-      e.preventDefault()
-      sidebar.classList.toggle("sidebar-on")
-
-    })
+        e.preventDefault()
+  
+        if(sidebar.classList.contains("sidebar-on")){
+          sidebar.classList.add("sidebar-off")
+        }
+  
+        sidebar.classList.toggle("sidebar-on")
+  
+      })
