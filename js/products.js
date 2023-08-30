@@ -44,7 +44,7 @@ async function fetchDataAndShow() {
 fetchDataAndShow(productsArray);
 
 // Funcion btn Filtrar
-const btnFilter = document.getElementById("filter");
+const btnFilter = document.getElementById("rangeFilterCount"); // Updated ID
 btnFilter.addEventListener("click", function() {
     filterPrice(priceMin, priceMax);
 });
@@ -52,9 +52,8 @@ btnFilter.addEventListener("click", function() {
 // Funcion para filtrar precio
 let priceMin = "";
 let priceMax = "";
-const minimo = document.getElementById("min");
-const maximo = document.getElementById("max");
-
+const minimo = document.getElementById("rangeFilterCountMin"); // Updated ID
+const maximo = document.getElementById("rangeFilterCountMax"); // Updated ID
 
 function filterPrice(priceMin, priceMax) {
     let productsFiltered = [];
@@ -75,9 +74,8 @@ function filterPrice(priceMin, priceMax) {
     mostrarProducto(productsFiltered);
 }
 
-
 // Funcion btn limpiar
-const btnClean = document.getElementById("clean");
+const btnClean = document.getElementById("clearRangeFilter"); // Updated ID
 btnClean.addEventListener("click", clean);
 
 function clean() {
@@ -101,9 +99,9 @@ function sortBySoldCount(products) {
     return products.slice().sort((a, b) => b.soldCount - a.soldCount);
 }
 
-const btnSortMaxPrice = document.getElementById("orderAS");
-const btnSortMinPrice = document.getElementById("orderDES");
-const btnSortSoldCount = document.getElementById("relevancia")
+const btnSortMaxPrice = document.getElementById("sortDesc"); // Updated ID
+const btnSortMinPrice = document.getElementById("sortAsc"); // Updated ID
+const btnSortSoldCount = document.getElementById("sortByCount"); // Updated ID
 
 btnSortMaxPrice.addEventListener("click", function () {
     const sortedProducts = sortByMaxPrice(productsArray);
@@ -118,58 +116,11 @@ btnSortMinPrice.addEventListener("click", function () {
 btnSortSoldCount.addEventListener("click", function () {
     const sortedProducts = sortBySoldCount(productsArray);
     mostrarProducto(sortedProducts);
-});const contenedor = document.getElementById('elContenedor');
-const tituloCat = document.getElementById('tituloCategoria')
+});
+
+const tituloCat = document.getElementById('tituloCategoria');
 const inputSearch = document.getElementById('inputSearch');
 const formSearch = document.getElementById('formSearch');
-
-// tituloCat.textContent=item.catName;
-
-function mostrarProducto(dataArray) {
-    for (const item of dataArray) {
-        const divDeProducto = document.createElement('div');
-        divDeProducto.classList.add('divProducto','row','list-group-item','d-flex','justify-content-between')
-        const productHTML = `
-        <div class="col-3 imagenProducto ">
-        <img src="${item.image}" class="img-thumbnail">
-    </div>
-    <div class="col-6">
-        <h3>${item.name} - ${item.currency} ${item.cost}</h3>
-        <p>${item.description}</p>
-    </div>
-    <div class="col-3 text-muted text-end">
-        <small>${item.soldCount} vendidos</small>
-    </div>
-        `;
-        divDeProducto.innerHTML = productHTML;
-    }
-
-  if (dataArray.length === 0) {
-    const sinResultados = document.createElement('div');
-    sinResultados.innerHTML += '<p id="notFound"> No se encontraron resultados. </p>';
-    contenedor.appendChild(sinResultados);
-  } else {
-    for (const item of dataArray) {
-      const divDeProducto = document.createElement('div');
-      divDeProducto.classList.add('divProducto', 'row', 'list-group-item', 'd-flex', 'justify-content-between');
-      const productHTML = `
-        <div class="col-3">
-          <img src="${item.image}" class="img-thumbnail">
-        </div>
-        <div class="col-6">
-          <h3>${item.name} - ${item.currency} ${item.cost}</h3>
-          <p>${item.description}</p>
-        </div>
-        <div class="col-3 text-muted text-end">
-          <small>${item.soldCount} vendidos</small>
-        </div>
-      `;
-      divDeProducto.innerHTML = productHTML;
-      contenedor.appendChild(divDeProducto);
-    }
-  }
-}
-
 
 // ESTE BLOQUE DEBAJO PERMITE MOSTRAR LOS PRODUCTOS DE DIVERSAS CATEGORIAS DE LA API por su ID.
 // AGREGAMOS LA FUNCIÓN DE FILTRADO EN TIEMPO REAL (input)
@@ -187,34 +138,32 @@ fetch(modifiedURL)
   });
 });
 
-    const userEmail = document.getElementById('user-email');
+const userEmail = document.getElementById('user-email');
 
-    userEmail.innerHTML = localStorage.getItem("email")
+userEmail.innerHTML = localStorage.getItem("email");
 
-    cerrarSesion.addEventListener('click', function(e){
-        if (confirm("Estas seguro que quieres borrar tus datos?")) {
-         localStorage.removeItem('loggedIn')
-        localStorage.removeItem('email')
-        } else{
-          e.preventDefault()
-        }
-      });
-    
+const cerrarSesion = document.getElementById('cerrarSesion'); // Updated ID
 
-    
-    const sidebar = document.getElementById("sidebar")
+cerrarSesion.addEventListener('click', function(e){
+    if (confirm("Estás seguro que quieres borrar tus datos?")) {
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('email');
+    } else{
+        e.preventDefault();
+    }
+});
 
-    userEmail.addEventListener("click", (e)=>{
-        e.preventDefault()
-  
-        if(sidebar.classList.contains("sidebar-on")){
-          sidebar.classList.add("sidebar-off")
-        }
-  
-        sidebar.classList.toggle("sidebar-on")
-  
-      })
+const sidebar = document.getElementById("sidebar");
 
+userEmail.addEventListener("click", (e)=>{
+    e.preventDefault();
+
+    if(sidebar.classList.contains("sidebar-on")){
+        sidebar.classList.add("sidebar-off");
+    }
+
+    sidebar.classList.toggle("sidebar-on");
+});
 
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
 function filtrarProductos(busqueda, dataArray) {
