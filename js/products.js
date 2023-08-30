@@ -171,11 +171,11 @@ userEmail.addEventListener("click", (e)=>{
 });
 
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
-function filtrarProductos(busqueda) {
-    const resultados = productsArray.filter(item => {
-        const titulo = item.name.toLowerCase();
-        const descripcion = item.description.toLowerCase();
-        return titulo.includes(busqueda) || descripcion.includes(busqueda);
+function filtrarProductos(busqueda, dataArray) {
+    const resultados = dataArray.filter(item => {
+      const titulo = item.name.toLowerCase();
+      const descripcion = item.description.toLowerCase();
+      return titulo.includes(busqueda) || descripcion.includes(busqueda);
     });
     mostrarProducto(resultados);
-}
+  }
