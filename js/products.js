@@ -134,7 +134,11 @@ fetch(modifiedURL)
   tituloCat.textContent = data.catName;
   formSearch.addEventListener('input', function (event) {
     const busqueda = inputSearch.value.toLowerCase();
-    filtrarProductos(busqueda, productsFiltered); 
+    if(productsFiltered.length === 0){
+        filtrarProductos(busqueda,productsArray)
+    }else{
+        filtrarProductos(busqueda,productsFiltered)
+    }
     event.preventDefault(); 
   });
 });
