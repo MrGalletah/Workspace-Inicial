@@ -1,11 +1,11 @@
 body {
-    background-color: rgb(3, 163, 163);
+    background-color:white;
 }
 
 .divProducto {
-    background-color: rgb(3, 3, 57);
+    background-color: #212529;
     color: white;
-    border-color: aqua;
+    border-color: grey;
     border-radius: 10px;
 }
 /* CARTEL DE "NO SE ENCONTRARON RESULTADOS"  */
