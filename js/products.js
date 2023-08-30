@@ -85,6 +85,7 @@ function clean() {
     minimo.value = "";
     maximo.value = "";
     contenedor.innerHTML = '';
+    productsFiltered = [];
     fetchDataAndShow(productsArray);
 }
 
@@ -105,17 +106,17 @@ const btnSortMinPrice = document.getElementById("sortAsc"); // Updated ID
 const btnSortSoldCount = document.getElementById("sortByCount"); // Updated ID
 
 btnSortMaxPrice.addEventListener("click", function () {
-    const sortedProducts = sortByMaxPrice(productsFiltered);
+    const sortedProducts = sortByMaxPrice(productsFiltered.length > 0 ? productsFiltered : productsArray);
     mostrarProducto(sortedProducts);
 });
 
 btnSortMinPrice.addEventListener("click", function () {
-    const sortedProducts = sortByMinPrice(productsFiltered);
+    const sortedProducts = sortByMinPrice(productsFiltered.length > 0 ? productsFiltered : productsArray);
     mostrarProducto(sortedProducts);
 });
 
 btnSortSoldCount.addEventListener("click", function () {
-    const sortedProducts = sortBySoldCount(productsFiltered);
+    const sortedProducts = sortBySoldCount(productsFiltered.length > 0 ? productsFiltered : productsArray);
     mostrarProducto(sortedProducts);
 });
 
