@@ -34,11 +34,35 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location = "products.html"
     });
 
-    const cerrarSesion = document.getElementById('cerrarSesion');
-    cerrarSesion.addEventListener('click', function(evento){
-        localStorage.removeItem('loggedIn')
+
+    const userEmail = document.getElementById('user-email');
+
+    userEmail.innerHTML = localStorage.getItem("email")
+
+    cerrarSesion.addEventListener('click', function(e){
+      if (confirm("Estas seguro que quieres borrar tus datos?")) {
+       localStorage.removeItem('loggedIn')
+      localStorage.removeItem('email')
+      } else{
+        e.preventDefault()
+      }
     });
     
+
+    
+    const sidebar = document.getElementById("sidebar")
+
+    userEmail.addEventListener("click", (e)=>{
+      e.preventDefault()
+
+      if(sidebar.classList.contains("sidebar-on")){
+        sidebar.classList.add("sidebar-off")
+      }
+
+      sidebar.classList.toggle("sidebar-on")
+
+    })
+
 
 
 

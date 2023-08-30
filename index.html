@@ -11,9 +11,16 @@
   <link href="css/styles.css" rel="stylesheet">
   
   
+  
+  
 </head>
 
 <body>
+  <!-- El DIV OVERLAY sirve para dar el mensaje de alerta cuando NO HAY DATOS DE SESION EN LOCAL STORAGE  -->
+  <div id="overlay">
+    <div id="message"><p>Hemos notado que no iniciaste sesion <br> Para mejorar tu experiencia te enviaremos al Login</p></div>
+  </div>
+<!-- --------------------------------------------------------------------------------------------------------- -->
   <!-- El DIV OVERLAY sirve para dar el mensaje de alerta cuando NO HAY DATOS DE SESION EN LOCAL STORAGE  -->
   <div id="overlay">
     <div id="message"><p>Hemos notado que no iniciaste sesion <br> Para mejorar tu experiencia te enviaremos al Login</p></div>
@@ -37,12 +44,15 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
-          </li>
+            <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a> 
+          </li>          
         </ul>
       </div>
     </div>
   </nav>
+  <aside class="" id="sidebar">
+    <a class="sidebar-content" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+  </aside>
   <main>
     <img id="coverIndex" src="/img/cover_back.png" alt="cover de la pagina">
     <div class="album py-5 bg-light">
@@ -95,7 +105,10 @@
   </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/init.js"></script>
   <script src="js/index.js"></script>
+  <!-- <script src="/js/login.js"></script> -->
+  
   <!-- <script src="/js/login.js"></script> -->
   
 </body>
