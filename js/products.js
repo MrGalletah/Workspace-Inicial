@@ -2,26 +2,33 @@ const contenedor = document.getElementById('elContenedor');
 
 function mostrarProducto(dataArray) {
     contenedor.innerHTML = '';
-    for (const item of dataArray) {
+
+    if (dataArray.length === 0) {
+      const sinResultados = document.createElement('div');
+      sinResultados.innerHTML += '<p id="notFound"> No se encontraron resultados. </p>';
+      contenedor.appendChild(sinResultados);
+    } else {
+      for (const item of dataArray) {
         const divDeProducto = document.createElement('div');
         divDeProducto.classList.add('divProducto', 'row', 'list-group-item', 'd-flex', 'justify-content-between');
         const productHTML = `
-            <div class="col-3">
-                <img src="${item.image}" class="img-thumbnail">
-            </div>
-            <div class="col-6">
-                <h3>${item.name} - ${item.currency} ${item.cost}</h3>
-                <p>${item.description}</p>
-            </div>
-            <div class="col-3 text-muted text-end">
-                <small>${item.soldCount} vendidos</small>
-            </div>
+          <div class="col-3">
+            <img src="${item.image}" class="img-thumbnail">
+          </div>
+          <div class="col-6">
+            <h3>${item.name} - ${item.currency} ${item.cost}</h3>
+            <p>${item.description}</p>
+          </div>
+          <div class="col-3 text-muted text-end">
+            <small>${item.soldCount} vendidos</small>
+          </div>
         `;
         divDeProducto.innerHTML = productHTML;
-
         contenedor.appendChild(divDeProducto);
+      }
     }
-}
+  }
+  
 
 let productsArray = [];
 

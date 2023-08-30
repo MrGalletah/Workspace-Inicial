@@ -1,5 +1,5 @@
 body {
-    background-color:white;
+    background-color:rgb(128, 127, 127);
 }
 
 .divProducto {
@@ -10,7 +10,7 @@ body {
 }
 /* CARTEL DE "NO SE ENCONTRARON RESULTADOS"  */
 #notFound{
-    background-color:rgb(3, 3, 57);
+    background-color: #212529;
     color: white;
     border-radius: 10px;
     border: solid rgb(191, 2, 2) 1.8px;
