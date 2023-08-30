@@ -37,10 +37,21 @@
     </div>
   </nav>
   <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <h1 class="text-center">Productos</h1>
+    <h2 class="text-center">Aqui encontraras todos los productos de la categoria </h2>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-light" type="button" id="orderAS">PrecioSup</button>
+      <button class="btn btn-light" type="button" id="orderDES">PrecioInf</button>
+      <button class="btn btn-light" id="relevancia">Relevancia</button>
+  </div>
+  <div class="row">
+  <div class="col">Rango de precio</div>
+  <div class="col"><input type="text" class="form-control-sm" id="min" placeholder="Precio minimo"></div>
+  <div class="col"><input id="max" class="form-control-sm" type="text" placeholder="Precio maximo"></div>
+  <div class="col"><button class="btn btn-light" id="filter">Filtrar</button></div>
+  <div class="col"><button class="btn btn-light" id="clean">Limpiar</button></div>
+ </div>
+    <div id="elContenedor">
     </div>
   </main>
   <footer class="text-muted">

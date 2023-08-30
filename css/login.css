@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-/*Lo de arriba aun no se si sirve de algo*/  
+
 *{
     margin: 0;
     padding: 0;
@@ -23,27 +23,31 @@ body {
     color: aliceblue;  
     border-radius: 15px; 
     padding: 30px 40px;
-    
 }
 
 .login #JAP{
 max-width: 100%;
 max-height: 60%;
+transform: scale(1.2);
+transition: 1s;
 }
-/*
-.login h1 {
-    font-size: 36px;
-    text-align: center;
+.login #JAP:hover{
+   transform: scale(1.3);
+   transition: 1s;
 }
-.login h1 span {
-    font-size: 10px;
-}
-*/
+
 .login .input-box {
     position: relative;
     width: 100%;
     height: 50px;
     margin: 30px 0;
+    transform: scale(1);
+    transition: 1s;
+}
+.login .input-box:hover{
+   transform: scale(1.1);
+   transition: 1s;
+   
 }
 
 .input-box input {
@@ -59,6 +63,10 @@ max-height: 60%;
     padding: 20px 45px 20px 20px;
 }
  .input-box input::placeholder { color: lightblue}
+ .input-box input:hover{
+   border: 2px solid aqua;
+ }
+
 
  .input-box i {
     position: absolute;
@@ -88,7 +96,7 @@ max-height: 60%;
     text-decoration: underline;
  }
 
- .login .btn {
+ .login #regBtn {
     width: 100%;
     height: 45px;
     background-color: white;
@@ -101,12 +109,6 @@ max-height: 60%;
     transition: 0.5s;
  }
 
- .login .btn:hover{
-    background-color: aqua;
-    transition: 0.5s;
-    transform: scale(1.1);
- }
-
  .login .register {
     font-size: 14px;
     text-align: center;
@@ -114,30 +116,59 @@ max-height: 60%;
  }
 
  .register p a {
-    color: aqua;
+    color: white;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
  }
- .register p a:hover {
+ #linkRegistro{
+   color: aqua;
+   text-decoration: none;
+   font-weight: 600;
+ }
+ .register p:hover {
     text-decoration: underline;
  }
 
  #buttonPassword {
-   position: absolute;
-   right: 20px;
-   top: 30%;
-   width: 20px;
-   height: 20px;
-   cursor: pointer;
-   background: none;
-   border: none;
-}
-
-span img {
-   width: 20px;
-   height: auto;
-}
-
-#hidePassword {
-   display: none;
+    
+    position: absolute;
+    right: 20px;
+    top: 30%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;  
+    border-radius: 40%;
+    /****************** PROBANDO DESTELLOS DE LUZ AL TECLEAR EL USUARIO ******************/
+    transition: box-shadow 0.2s ease-in-out;
+    }
+    #buttonPassword.active {
+      box-shadow: 0 0 15px rgba(5, 213, 255, 0.945); 
+    }
+    /**************************************************************************************/
+   #buttonPassword:hover{
+      box-shadow: 0 0 15px rgba(5, 213, 255, 0.945); 
+   }
+   
+ 
+ span img {
+    width: 20px;
+    height: auto;
+    }
+ 
+ #showPassword {
+    display: none;
+    
+ }
+ .login #regBtn:disabled{
+   background-color: rgb(3, 47, 69);
+   color: rgb(245, 243, 243);
+   cursor: not-allowed;
+   transform: scale(0.95);
+ }
+ .login #regBtn:hover:not(:disabled) {
+   background-color: aqua;
+   transition: 0.5s;
+   transform: scale(1.1);
 }
