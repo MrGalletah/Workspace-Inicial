@@ -134,9 +134,9 @@ fetch(modifiedURL)
   tituloCat.textContent = data.catName;
   formSearch.addEventListener('input', function (event) {
     const busqueda = inputSearch.value.toLowerCase();
-    filtrarProductos(busqueda, productsFiltered); 
-    event.preventDefault(); 
-  });
+    filtrarProductos(busqueda); //Cambie esto para que busque en todo el array y no solo el filtrado
+    event.preventDefault();
+});
 });
 
 const userEmail = document.getElementById('user-email');
@@ -167,11 +167,11 @@ userEmail.addEventListener("click", (e)=>{
 });
 
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
-function filtrarProductos(busqueda, dataArray) {
-  const resultados = dataArray.filter(item => {
-    const titulo = item.name.toLowerCase();
-    const descripcion = item.description.toLowerCase();
-    return titulo.includes(busqueda) || descripcion.includes(busqueda);
-  });
-  mostrarProducto(resultados);
-}
+function filtrarProductos(busqueda, dataArray) { //Esto tambien lo cambie para que busque el array entero
+    const resultados = dataArray.filter(item => {
+      const titulo = item.name.toLowerCase();
+      const descripcion = item.description.toLowerCase();
+      return titulo.includes(busqueda) || descripcion.includes(busqueda);
+    });
+    mostrarProducto(resultados);
+  }
