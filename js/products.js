@@ -105,17 +105,17 @@ const btnSortMinPrice = document.getElementById("sortAsc"); // Updated ID
 const btnSortSoldCount = document.getElementById("sortByCount"); // Updated ID
 
 btnSortMaxPrice.addEventListener("click", function () {
-    const sortedProducts = sortByMaxPrice(productsArray);
+    const sortedProducts = sortByMaxPrice(productsFiltered);
     mostrarProducto(sortedProducts);
 });
 
 btnSortMinPrice.addEventListener("click", function () {
-    const sortedProducts = sortByMinPrice(productsArray);
+    const sortedProducts = sortByMinPrice(productsFiltered);
     mostrarProducto(sortedProducts);
 });
 
 btnSortSoldCount.addEventListener("click", function () {
-    const sortedProducts = sortBySoldCount(productsArray);
+    const sortedProducts = sortBySoldCount(productsFiltered);
     mostrarProducto(sortedProducts);
 });
 
