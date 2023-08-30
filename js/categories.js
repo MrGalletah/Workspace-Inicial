@@ -6,6 +6,32 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+const userEmail = document.getElementById('user-email');
+
+userEmail.innerHTML = localStorage.getItem("email")
+
+cerrarSesion.addEventListener('click', function(e){
+    if (confirm("Estas seguro que quieres borrar tus datos?")) {
+     localStorage.removeItem('loggedIn')
+    localStorage.removeItem('email')
+    } else{
+      e.preventDefault()
+    }
+  });
+
+
+const sidebar = document.getElementById("sidebar")
+
+userEmail.addEventListener("click", (e)=>{
+    e.preventDefault()
+
+    if(sidebar.classList.contains("sidebar-on")){
+      sidebar.classList.add("sidebar-off")
+    }
+    sidebar.classList.toggle("sidebar-on")
+    
+  })
+
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)

@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: "Verdana", serif !important;
 }
 
 /*Debajo pondremos los estilos del mensaje de ALERTA PARA EL REDIRECCIONAMIENTO AL LOGIN*/
@@ -63,8 +63,8 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background-color: #53c0fb;
+  background: url("../img/cover_back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -104,12 +104,12 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .site-header a {
   color: white;
-  transition: ease-in-out color .15s;
+  transition: ease-in-out color 0.15s;
 }
 
 .site-header .dropdown-menu a {
@@ -117,7 +117,7 @@ footer p {
 }
 
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #0087f7;
   border-radius: 5px;
   background: white;
 }
@@ -218,6 +218,72 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+/* Estilos y animaciones para la sidebar */
+
+.sidebar-off {
+  animation: sidebarAnimationOff 0.3s ease-out 0s 1 normal both ;
+  display: flex;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: -webkit-fill-available;
+  width: 300px;
+  background-color: #212529;
+  z-index: 1;
+  flex-direction: column-reverse;
+  
+}
+
+.sidebar-on {
+  display: flex;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: -webkit-fill-available;
+  width: 300px;
+  background-color: #212529;
+  z-index: 1;
+  flex-direction: column-reverse;
+  animation: sidebarAnimationOn 0.3s ease-out 0s 1 normal both ;
+  transform: translate(16%);
+}
+.sidebar-content {
+  padding: 16px 16px 32px 32px;
+  color: red;
+ letter-spacing: 1px;
+ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.navbar {
+  z-index: 2;
+}
+aside{
+  display: none;
+}
+
+
+@keyframes sidebarAnimationOn {
+  from{
+   transform: translateX(300px);
+  }
+
+  to{
+    transform: translateX(16%);
+  }
+}
+@keyframes sidebarAnimationOff {
+  from{
+   transform: translateX(16%);
+  }
+
+  to{
+    transform: translateX(300px);
+  }
+}
+
+.filtros{
+  display: flex;
 }
 
 #cerrarSesion {

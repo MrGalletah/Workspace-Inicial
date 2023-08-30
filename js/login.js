@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const botonIngresar = document.getElementById('regBtn');
     const loggeado = localStorage.getItem('loggedIn');
     botonIngresar.disabled = true;
+    const email = document.getElementById("email");
 
     if (loggeado) {
         window.location.href = 'index.html';
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
         botonIngresar.addEventListener('click', function(evento){
             if (verificarCampos()) {
                 localStorage.setItem('loggedIn', 'true');
+                localStorage.setItem('email', email.value);
             } else {
                 evento.preventDefault();
             }

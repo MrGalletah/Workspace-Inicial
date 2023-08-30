@@ -43,16 +43,44 @@ function mostrarProducto(dataArray) {
 const idCat = localStorage.catID;
 const modifiedURL = `https://japceibal.github.io/emercado-api/cats_products/${idCat}.json`;
 fetch(modifiedURL)
-  .then(response => response.json())
-  .then(data => {
-    mostrarProducto(data.products); 
-        tituloCat.textContent = data.catName;
-    formSearch.addEventListener('input', function (event) {
-      const busqueda = inputSearch.value.toLowerCase();
-      filtrarProductos(busqueda, data.products); 
-      event.preventDefault(); 
-    });
+.then(response => response.json())
+.then(data => {
+  mostrarProducto(data.products); 
+  tituloCat.textContent = data.catName;
+  formSearch.addEventListener('input', function (event) {
+    const busqueda = inputSearch.value.toLowerCase();
+    filtrarProductos(busqueda, data.products); 
+    event.preventDefault(); 
   });
+});
+
+    const userEmail = document.getElementById('user-email');
+
+    userEmail.innerHTML = localStorage.getItem("email")
+
+    cerrarSesion.addEventListener('click', function(e){
+        if (confirm("Estas seguro que quieres borrar tus datos?")) {
+         localStorage.removeItem('loggedIn')
+        localStorage.removeItem('email')
+        } else{
+          e.preventDefault()
+        }
+      });
+    
+
+    
+    const sidebar = document.getElementById("sidebar")
+
+    userEmail.addEventListener("click", (e)=>{
+        e.preventDefault()
+  
+        if(sidebar.classList.contains("sidebar-on")){
+          sidebar.classList.add("sidebar-off")
+        }
+  
+        sidebar.classList.toggle("sidebar-on")
+  
+      })
 
 
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
