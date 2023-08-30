@@ -46,7 +46,7 @@ fetchDataAndShow(productsArray);
 // Funcion btn Filtrar
 const btnFilter = document.getElementById("rangeFilterCount"); // Updated ID
 btnFilter.addEventListener("click", function() {
-    filterPrice(priceMin, priceMax);
+  filterPrice(priceMin, priceMax);
 });
 
 // Funcion para filtrar precio
@@ -55,8 +55,9 @@ let priceMax = "";
 const minimo = document.getElementById("rangeFilterCountMin"); // Updated ID
 const maximo = document.getElementById("rangeFilterCountMax"); // Updated ID
 
+let productsFiltered = [];
+
 function filterPrice(priceMin, priceMax) {
-    let productsFiltered = [];
     const minValue = parseFloat(minimo.value);
     const maxValue = parseFloat(maximo.value);
 
@@ -133,7 +134,7 @@ fetch(modifiedURL)
   tituloCat.textContent = data.catName;
   formSearch.addEventListener('input', function (event) {
     const busqueda = inputSearch.value.toLowerCase();
-    filtrarProductos(busqueda, data.products); 
+    filtrarProductos(busqueda, productsFiltered); 
     event.preventDefault(); 
   });
 });
