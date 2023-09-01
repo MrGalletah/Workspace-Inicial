@@ -1,5 +1,11 @@
 const contenedor = document.getElementById('elContenedor');
+const idCat = localStorage.catID;
+const tituloCat = document.getElementById('tituloCategoria');
+const inputSearch = document.getElementById('inputSearch');
+const formSearch = document.getElementById('formSearch');
 
+
+//Funcion que le da estructura a cada div del producto
 function mostrarProducto(dataArray) {
     contenedor.innerHTML = '';
     for (const item of dataArray) {
@@ -37,14 +43,18 @@ async function fetchDataAndShow() {
 
     const data = await response.json();
     productsArray = data.products;
-
+    
+    //Mostrar el array inicial y el titulo de cada categoria
     mostrarProducto(productsArray);
+    tituloCat.textContent = data.catName;
+
 }
 
 fetchDataAndShow(productsArray);
 
+
 // Funcion btn Filtrar
-const btnFilter = document.getElementById("rangeFilterCount"); // Updated ID
+const btnFilter = document.getElementById("rangeFilterCount"); 
 btnFilter.addEventListener("click", function() {
   filterPrice(priceMin, priceMax);
 });
@@ -52,8 +62,8 @@ btnFilter.addEventListener("click", function() {
 // Funcion para filtrar precio
 let priceMin = "";
 let priceMax = "";
-const minimo = document.getElementById("rangeFilterCountMin"); // Updated ID
-const maximo = document.getElementById("rangeFilterCountMax"); // Updated ID
+const minimo = document.getElementById("rangeFilterCountMin"); 
+const maximo = document.getElementById("rangeFilterCountMax"); 
 
 let productsFiltered = [];
 
@@ -76,7 +86,7 @@ function filterPrice(priceMin, priceMax) {
 }
 
 // Funcion btn limpiar
-const btnClean = document.getElementById("clearRangeFilter"); // Updated ID
+const btnClean = document.getElementById("clearRangeFilter"); 
 btnClean.addEventListener("click", clean);
 
 function clean() {
@@ -85,9 +95,11 @@ function clean() {
     minimo.value = "";
     maximo.value = "";
     contenedor.innerHTML = '';
+    productsFiltered = [];
     fetchDataAndShow(productsArray);
 }
 
+//Botones de orden
 function sortByMaxPrice(products) {
     return products.slice().sort((a, b) => b.cost - a.cost);
 }
@@ -100,55 +112,30 @@ function sortBySoldCount(products) {
     return products.slice().sort((a, b) => b.soldCount - a.soldCount);
 }
 
-const btnSortMaxPrice = document.getElementById("sortDesc"); // Updated ID
-const btnSortMinPrice = document.getElementById("sortAsc"); // Updated ID
-const btnSortSoldCount = document.getElementById("sortByCount"); // Updated ID
+const btnSortMaxPrice = document.getElementById("sortDesc"); 
+const btnSortMinPrice = document.getElementById("sortAsc"); 
+const btnSortSoldCount = document.getElementById("sortByCount"); 
 
 btnSortMaxPrice.addEventListener("click", function () {
-    const sortedProducts = sortByMaxPrice(productsFiltered);
+    const sortedProducts = sortByMaxPrice(productsFiltered.length > 0 ? productsFiltered : productsArray);
     mostrarProducto(sortedProducts);
 });
 
 btnSortMinPrice.addEventListener("click", function () {
-    const sortedProducts = sortByMinPrice(productsFiltered);
+    const sortedProducts = sortByMinPrice(productsFiltered.length > 0 ? productsFiltered : productsArray);
     mostrarProducto(sortedProducts);
 });
 
 btnSortSoldCount.addEventListener("click", function () {
-    const sortedProducts = sortBySoldCount(productsFiltered);
+    const sortedProducts = sortBySoldCount(productsFiltered.length > 0 ? productsFiltered : productsArray);
     mostrarProducto(sortedProducts);
 });
 
-const tituloCat = document.getElementById('tituloCategoria');
-const inputSearch = document.getElementById('inputSearch');
-const formSearch = document.getElementById('formSearch');
 
-// ESTE BLOQUE DEBAJO PERMITE MOSTRAR LOS PRODUCTOS DE DIVERSAS CATEGORIAS DE LA API por su ID.
-// AGREGAMOS LA FUNCIÓN DE FILTRADO EN TIEMPO REAL (input)
-const idCat = localStorage.catID;
-const modifiedURL = `https://japceibal.github.io/emercado-api/cats_products/${idCat}.json`;
-fetch(modifiedURL)
-.then(response => response.json())
-.then(data => {
-  mostrarProducto(data.products); 
-  tituloCat.textContent = data.catName;
-  formSearch.addEventListener('input', function (event) {
-    const busqueda = inputSearch.value.toLowerCase();
-    if(productsFiltered.length === 0){
-        filtrarProductos(busqueda,productsArray)
-    }else{
-        filtrarProductos(busqueda,productsFiltered)
-    }
-    event.preventDefault(); 
-  });
-});
-
+//Funcion mostrar Mail y sidebar
 const userEmail = document.getElementById('user-email');
-
 userEmail.innerHTML = localStorage.getItem("email");
-
-const cerrarSesion = document.getElementById('cerrarSesion'); // Updated ID
-
+const cerrarSesion = document.getElementById('cerrarSesion');
 cerrarSesion.addEventListener('click', function(e){
     if (confirm("Estás seguro que quieres borrar tus datos?")) {
         localStorage.removeItem('loggedIn');
@@ -172,10 +159,20 @@ userEmail.addEventListener("click", (e)=>{
 
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
 function filtrarProductos(busqueda, dataArray) {
-    const resultados = dataArray.filter(item => {
-      const titulo = item.name.toLowerCase();
-      const descripcion = item.description.toLowerCase();
-      return titulo.includes(busqueda) || descripcion.includes(busqueda);
-    });
-    mostrarProducto(resultados);
-  }
+  const resultados = dataArray.filter(item => {
+    const titulo = item.name.toLowerCase();
+    const descripcion = item.description.toLowerCase();
+    return titulo.includes(busqueda) || descripcion.includes(busqueda);
+  });
+  mostrarProducto(resultados);
+}
+
+formSearch.addEventListener('input', function (event) {
+    const busqueda = inputSearch.value.toLowerCase();
+    if(productsFiltered.length === 0){
+        filtrarProductos(busqueda,productsArray)
+    }else{
+        filtrarProductos(busqueda,productsFiltered)
+    }
+    event.preventDefault(); 
+  });
