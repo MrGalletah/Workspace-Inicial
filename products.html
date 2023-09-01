@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/products.css">
 </head>
 
-<body>
+<body class="dark-theme">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,12 +34,19 @@
                     <li class="nav-item">
                         <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
+                  
+                  </li>
                 </ul>
+                <div class="form-check form-switch pt-1">
+                  <input class="form-check-input" type="checkbox" role="switch" id="theme-selector">
+                </div>
             </div>
         </div>
     </nav>
     <aside class="" id="sidebar">
-        <a class="sidebar-content" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+        <a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
     </aside>
 
     <h1 id="tituloCategoria" class="display-1"></h1>
@@ -51,11 +58,11 @@
         <div class="container-fluid">
             <form id="formSearch" class="d-flex mx-auto" role="search">
               <input id="inputSearch" autocomplete="off" class="form-control me-2 text-center" type="search" placeholder="Buscar artículo" aria-label="Search">
-              <button id="botonSearch" class="btn btn-outline-success text-center" type="submit">
+              <!-- <button id="botonSearch" class="btn btn-outline-success text-center" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
-              </button>
+              </button> -->
             </form>
 
             <!-- Botones de sorting -->
