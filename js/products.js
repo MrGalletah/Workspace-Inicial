@@ -1,34 +1,33 @@
 const contenedor = document.getElementById('elContenedor');
+const idCat = localStorage.catID;
+const tituloCat = document.getElementById('tituloCategoria');
+const inputSearch = document.getElementById('inputSearch');
+const formSearch = document.getElementById('formSearch');
 
+
+//Funcion que le da estructura a cada div del producto
 function mostrarProducto(dataArray) {
     contenedor.innerHTML = '';
-
-    if (dataArray.length === 0) {
-      const sinResultados = document.createElement('div');
-      sinResultados.innerHTML += '<p id="notFound"> No se encontraron resultados. </p>';
-      contenedor.appendChild(sinResultados);
-    } else {
-      for (const item of dataArray) {
+    for (const item of dataArray) {
         const divDeProducto = document.createElement('div');
         divDeProducto.classList.add('divProducto', 'row', 'list-group-item', 'd-flex', 'justify-content-between');
         const productHTML = `
-          <div class="col-3">
-            <img src="${item.image}" class="img-thumbnail">
-          </div>
-          <div class="col-6">
-            <h3>${item.name} - ${item.currency} ${item.cost}</h3>
-            <p>${item.description}</p>
-          </div>
-          <div class="col-3 text-muted text-end">
-            <small>${item.soldCount} vendidos</small>
-          </div>
+            <div class="col-3">
+                <img src="${item.image}" class="img-thumbnail">
+            </div>
+            <div class="col-6">
+                <h3>${item.name} - ${item.currency} ${item.cost}</h3>
+                <p>${item.description}</p>
+            </div>
+            <div class="col-3 text-muted text-end">
+                <small>${item.soldCount} vendidos</small>
+            </div>
         `;
         divDeProducto.innerHTML = productHTML;
+
         contenedor.appendChild(divDeProducto);
-      }
     }
-  }
-  
+}
 
 let productsArray = [];
 
@@ -44,11 +43,15 @@ async function fetchDataAndShow() {
 
     const data = await response.json();
     productsArray = data.products;
-
+    
+    //Mostrar el array inicial y el titulo de cada categoria
     mostrarProducto(productsArray);
+    tituloCat.textContent = data.catName;
+
 }
 
 fetchDataAndShow(productsArray);
+
 
 // Funcion btn Filtrar
 const btnFilter = document.getElementById("rangeFilterCount"); // Updated ID
@@ -96,6 +99,7 @@ function clean() {
     fetchDataAndShow(productsArray);
 }
 
+//Botones de orden
 function sortByMaxPrice(products) {
     return products.slice().sort((a, b) => b.cost - a.cost);
 }
@@ -127,36 +131,11 @@ btnSortSoldCount.addEventListener("click", function () {
     mostrarProducto(sortedProducts);
 });
 
-const tituloCat = document.getElementById('tituloCategoria');
-const inputSearch = document.getElementById('inputSearch');
-const formSearch = document.getElementById('formSearch');
 
-// ESTE BLOQUE DEBAJO PERMITE MOSTRAR LOS PRODUCTOS DE DIVERSAS CATEGORIAS DE LA API por su ID.
-// AGREGAMOS LA FUNCIÓN DE FILTRADO EN TIEMPO REAL (input)
-const idCat = localStorage.catID;
-const modifiedURL = `https://japceibal.github.io/emercado-api/cats_products/${idCat}.json`;
-fetch(modifiedURL)
-.then(response => response.json())
-.then(data => {
-  mostrarProducto(data.products); 
-  tituloCat.textContent = data.catName;
-  formSearch.addEventListener('input', function (event) {
-    const busqueda = inputSearch.value.toLowerCase();
-    if(productsFiltered.length === 0){
-        filtrarProductos(busqueda,productsArray)
-    }else{
-        filtrarProductos(busqueda,productsFiltered)
-    }
-    event.preventDefault(); 
-  });
-});
-
+//Funcion mostrar Mail y sidebar
 const userEmail = document.getElementById('user-email');
-
 userEmail.innerHTML = localStorage.getItem("email");
-
-const cerrarSesion = document.getElementById('cerrarSesion'); // Updated ID
-
+const cerrarSesion = document.getElementById('cerrarSesion');
 cerrarSesion.addEventListener('click', function(e){
     if (confirm("Estás seguro que quieres borrar tus datos?")) {
         localStorage.removeItem('loggedIn');
@@ -187,3 +166,13 @@ function filtrarProductos(busqueda, dataArray) {
   });
   mostrarProducto(resultados);
 }
+
+formSearch.addEventListener('input', function (event) {
+    const busqueda = inputSearch.value.toLowerCase();
+    if(productsFiltered.length === 0){
+        filtrarProductos(busqueda,productsArray)
+    }else{
+        filtrarProductos(busqueda,productsFiltered)
+    }
+    event.preventDefault(); 
+  });
