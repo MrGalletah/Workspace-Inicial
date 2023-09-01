@@ -54,7 +54,7 @@ fetchDataAndShow(productsArray);
 
 
 // Funcion btn Filtrar
-const btnFilter = document.getElementById("rangeFilterCount"); // Updated ID
+const btnFilter = document.getElementById("rangeFilterCount"); 
 btnFilter.addEventListener("click", function() {
   filterPrice(priceMin, priceMax);
 });
@@ -62,8 +62,8 @@ btnFilter.addEventListener("click", function() {
 // Funcion para filtrar precio
 let priceMin = "";
 let priceMax = "";
-const minimo = document.getElementById("rangeFilterCountMin"); // Updated ID
-const maximo = document.getElementById("rangeFilterCountMax"); // Updated ID
+const minimo = document.getElementById("rangeFilterCountMin"); 
+const maximo = document.getElementById("rangeFilterCountMax"); 
 
 let productsFiltered = [];
 
@@ -86,7 +86,7 @@ function filterPrice(priceMin, priceMax) {
 }
 
 // Funcion btn limpiar
-const btnClean = document.getElementById("clearRangeFilter"); // Updated ID
+const btnClean = document.getElementById("clearRangeFilter"); 
 btnClean.addEventListener("click", clean);
 
 function clean() {
@@ -112,9 +112,9 @@ function sortBySoldCount(products) {
     return products.slice().sort((a, b) => b.soldCount - a.soldCount);
 }
 
-const btnSortMaxPrice = document.getElementById("sortDesc"); // Updated ID
-const btnSortMinPrice = document.getElementById("sortAsc"); // Updated ID
-const btnSortSoldCount = document.getElementById("sortByCount"); // Updated ID
+const btnSortMaxPrice = document.getElementById("sortDesc"); 
+const btnSortMinPrice = document.getElementById("sortAsc"); 
+const btnSortSoldCount = document.getElementById("sortByCount"); 
 
 btnSortMaxPrice.addEventListener("click", function () {
     const sortedProducts = sortByMaxPrice(productsFiltered.length > 0 ? productsFiltered : productsArray);
