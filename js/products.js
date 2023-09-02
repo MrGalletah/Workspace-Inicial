@@ -15,7 +15,7 @@ function mostrarProducto(dataArray) {
     } else {
     for (const item of dataArray) {
         const divDeProducto = document.createElement('div');
-        divDeProducto.classList.add('divProducto', 'row', 'list-group-item', 'd-flex', 'justify-content-between');
+        divDeProducto.classList.add('divProducto', 'row','border', 'list-group-item','rounded', 'd-flex', 'justify-content-between', 'mt-2');
         const productHTML = `
             <div class="col-3">
                 <img src="${item.image}" class="img-thumbnail">
@@ -182,3 +182,12 @@ formSearch.addEventListener('input', function (event) {
     }
     event.preventDefault(); 
   });
+
+// FUNCION PARA CAMBIAR EL TEMA DE LA PAGINA 
+
+const themeButton = document.getElementById("theme-selector");
+
+themeButton.addEventListener("click", (e)=>{
+    
+    document.body.classList.toggle("dark-theme")
+})
