@@ -8,6 +8,11 @@ const formSearch = document.getElementById('formSearch');
 //Funcion que le da estructura a cada div del producto
 function mostrarProducto(dataArray) {
     contenedor.innerHTML = '';
+    if (dataArray.length === 0) {
+      const sinResultados = document.createElement('div');
+      sinResultados.innerHTML += '<p id="notFound"> No se encontraron resultados. </p>';
+      contenedor.appendChild(sinResultados);
+    } else {
     for (const item of dataArray) {
         const divDeProducto = document.createElement('div');
         divDeProducto.classList.add('divProducto', 'row', 'list-group-item', 'd-flex', 'justify-content-between');
@@ -27,6 +32,7 @@ function mostrarProducto(dataArray) {
 
         contenedor.appendChild(divDeProducto);
     }
+  }
 }
 
 let productsArray = [];
