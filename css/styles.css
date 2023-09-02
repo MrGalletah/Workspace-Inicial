@@ -229,7 +229,7 @@ a.custom-card:hover {
   right: 0;
   top: 0;
   height: -webkit-fill-available;
-  width: 300px;
+  width: 13%;
   background-color: #212529;
   z-index: 1;
   flex-direction: column-reverse;
@@ -242,7 +242,7 @@ a.custom-card:hover {
   right: 0;
   top: 0;
   height: -webkit-fill-available;
-  width: 300px;
+  width: 13%;
   background-color: #212529;
   z-index: 1;
   flex-direction: column-reverse;
