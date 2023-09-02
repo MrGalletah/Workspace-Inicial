@@ -39,8 +39,8 @@ body {
     text-align: center;
     font-weight: 600;
     font-size: 120%;
-    margin: 01% 20%;
-    padding: 04%;
+    margin: 1% 20%;
+    padding: 4%;
 }
 
 /** COMIENZA ESTILO DEL BUSCADOR */
@@ -50,11 +50,11 @@ body {
     margin-bottom: 1%;
     margin-top: 1%;
 }
+/* 
 #inputSearch:hover{
     border: solid var(--main-card-background-clear);
     background-color:  var(--main-background-color-clear);
 }
-/* 
 #botonSearch{
     background-color: rgb(3, 3, 57);
     color: aqua;
@@ -97,9 +97,11 @@ body {
     background-color: var(--main-button-color-clear);
     color: var(--main-background-color-clear);
 }
+p{
+    color:var(--main-text-color-clear)
+}
 
 :root:has(.dark-theme){
-
     --main-background-color-clear : #0f0e17;
     --main-button-color-clear : #ff8906;
     --main-card-background-clear :#fffffe;
