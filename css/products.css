@@ -30,6 +30,12 @@ body {
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
 }
+
+.divProducto:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 /* CARTEL DE "NO SE ENCONTRARON RESULTADOS"  */
 #notFound{
     background-color: #212529;

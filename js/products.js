@@ -4,6 +4,11 @@ const tituloCat = document.getElementById('tituloCategoria');
 const inputSearch = document.getElementById('inputSearch');
 const formSearch = document.getElementById('formSearch');
 
+//Redireccionar a products-info
+function redirectToProductInfo(productId) {
+    localStorage.setItem('productID', productId);
+    window.open('product-info.html');
+}
 
 //Funcion que le da estructura a cada div del producto
 function mostrarProducto(dataArray) {
@@ -31,6 +36,10 @@ function mostrarProducto(dataArray) {
         divDeProducto.innerHTML = productHTML;
 
         contenedor.appendChild(divDeProducto);
+
+        divDeProducto.addEventListener('click', function () {
+            redirectToProductInfo(item.id);
+        });
     }
   }
 }
