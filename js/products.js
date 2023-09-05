@@ -4,10 +4,20 @@ const tituloCat = document.getElementById('tituloCategoria');
 const inputSearch = document.getElementById('inputSearch');
 const formSearch = document.getElementById('formSearch');
 
+//Redireccionar a products-info
+function redirectToProductInfo(productId) {
+    localStorage.setItem('productID', productId);
+    window.open('product-info.html');
+}
 
 //Funcion que le da estructura a cada div del producto
 function mostrarProducto(dataArray) {
     contenedor.innerHTML = '';
+    if (dataArray.length === 0) {
+      const sinResultados = document.createElement('div');
+      sinResultados.innerHTML += '<p id="notFound"> No se encontraron resultados. </p>';
+      contenedor.appendChild(sinResultados);
+    } else {
     for (const item of dataArray) {
         const divDeProducto = document.createElement('div');
         divDeProducto.classList.add('divProducto', 'row','border', 'list-group-item','rounded', 'd-flex', 'justify-content-between', 'mt-2');
@@ -26,7 +36,12 @@ function mostrarProducto(dataArray) {
         divDeProducto.innerHTML = productHTML;
 
         contenedor.appendChild(divDeProducto);
+
+        divDeProducto.addEventListener('click', function () {
+            redirectToProductInfo(item.id);
+        });
     }
+  }
 }
 
 let productsArray = [];
