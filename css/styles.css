@@ -1,3 +1,27 @@
+:root{
+  
+  /*  variables modo oscuro */
+  
+  --main-background-color-dark : #0f0e17;
+  --main-button-color-dark : #ff8906;
+  --main-card-background-dark :#fffffe;
+  --main-header-dark :#fffffe;
+  --main-text-color-dark : #a7a9be;
+  --main-secondary-color-dark : #f25f4c;
+  --main-tertiary-color-dark : #e53170;
+  
+  /* variables  modo claro */
+  
+  --main-background-color-clear : #fffffe;
+  --main-button-color-clear : #6246ea;
+  --main-card-background-clear :#fffffe;
+  --main-header-clear :#2b2c34;
+  --main-text-color-clear : #2b2c34;
+  --main-secondary-color-clear : #d1d1e9;
+  --main-tertiary-color-clear : #e45858;
+  
+}
+
 .jumbotron,
 .card-body,
 .container,
@@ -229,7 +253,7 @@ a.custom-card:hover {
   right: 0;
   top: 0;
   height: -webkit-fill-available;
-  width: 300px;
+  width: 13%;
   background-color: #212529;
   z-index: 1;
   flex-direction: column-reverse;
@@ -242,7 +266,7 @@ a.custom-card:hover {
   right: 0;
   top: 0;
   height: -webkit-fill-available;
-  width: 300px;
+  width: 13%;
   background-color: #212529;
   z-index: 1;
   flex-direction: column-reverse;
@@ -254,6 +278,9 @@ a.custom-card:hover {
   color: red;
  letter-spacing: 1px;
  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.sidebar-content:hover{
+  color: red;
 }
 .navbar {
   z-index: 2;
@@ -293,4 +320,8 @@ aside{
 
 #coverIndex{
   width: 100%;
+}
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
 }
