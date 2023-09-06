@@ -26,6 +26,14 @@ body {
     background-color:var(--main-background-color-clear);
 }
 
+.cajaDeBotones{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.form-control{
+    width: 120px;
+}
+
 .divProducto {
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
@@ -45,13 +53,20 @@ body {
 
 /** COMIENZA ESTILO DEL BUSCADOR */
 #formSearch{
-    width: 50%;
+    
     margin-left: 7%;
     margin-bottom: 1%;
     margin-top: 1%;
 }
+#inputSearch{
+    width: 100%;
+    margin-top: -10px;
+    height: 40px;
+    border-radius: 8px;
+    
+}
 #inputSearch:hover{
-    border: solid var(--main-card-background-clear);
+    border: solid 2px var(--main-card-background-clear);
     background-color:  var(--main-background-color-clear);
 }
 /* 
