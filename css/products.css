@@ -42,10 +42,11 @@ body {
 .divProducto {
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
+    transition: 800ms;
 }
 
 .divProducto:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     cursor: pointer;
 }
 

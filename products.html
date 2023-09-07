@@ -71,8 +71,8 @@
             <!-- Botones de sorting -->
 
             <div id="cajaDeBotones" class="row p-0 d-flex justify-content-between cajaDeBotones">
-              <div class="col-11 text-end">Ordenar: </div>
-              <div class="col-1">
+              <div class="col-sm-11"></div>
+              <div class="col-sm-1">Ordenar:
                   <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
                     <input type="radio" class="btn-check" name="options" id="sortAsc">
                     <label class="btn btn-light" title="Menor a mayor precio" for="sortAsc">$-</label>
@@ -88,22 +88,22 @@
         <!-- Filtros -->
 
    <div  class="row d-flex justify-content-between cajaDeBotones">
-          <div class="col-8">
+          <div class="col-sm-8">
             <form id="formSearch" class="d-flex mx-auto" role="search">
               <input id="inputSearch" title="Haz click para buscar" autocomplete="off" class="me-2 text-center" type="search" placeholder="Buscar artículo" aria-label="Search" >
               <span class="search-icon">  <i class='bx bx-search'></i> </span>
             </form>
           </div>
               <!--  <p class="col-7 font-weight-normal text-end my-2">Precio: </p>-->
-          <div class="col-1 text-end">
+          <div class="col-sm-1 text-end">
             <input class="form-control" type="number" title="Precio Mínimo" placeholder="min." id="rangeFilterCountMin" max="999999" min="0">
           </div>
 
-          <div class="col-1 text-end">
+          <div class="col-sm-1 text-end">
             <input class="form-control" type="number" title="Precio Máximo" placeholder="máx." id="rangeFilterCountMax" max="999999" min="0">
           </div>
 
-          <div class="col-1 text-end">
+          <div class="col-sm-1">
                     <div class="btn-group" role="group">
                       <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
                       <button class="btn btn-light btn-sm" id="clearRangeFilter">Limpiar</button>
