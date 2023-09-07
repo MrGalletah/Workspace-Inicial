@@ -2,13 +2,13 @@
 
     /* variables modo oscuro  */
   
-    --main-background-color-dark : #0f0e17;
-    --main-button-color-dark : #ff8906;
-    --main-card-background-dark :#fffffe;
-    --main-header-dark :#fffffe;
-    --main-text-color-dark : #a7a9be;
-    --main-secondary-color-dark : #f25f4c;
-    --main-tertiary-color-dark : #e53170;
+    --main-background-color-clear : #242629;
+    --main-button-color-clear : #7f5af0;
+    --main-card-background-clear :#16161a;
+    --main-header-clear :#fffffe;
+    --main-text-color-clear : #a7a9be;
+    --main-secondary-color-clear : #2cb67d;
+    --main-tertiary-color-clear : #2cb67d;
   
     /* variables modo claro  */
   
@@ -43,6 +43,12 @@ body {
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
 }
+
+.divProducto:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 /* CARTEL DE "NO SE ENCONTRARON RESULTADOS"  */
 #notFound{
     background-color: #212529;
@@ -115,11 +121,11 @@ p{
 }
 
 :root:has(.dark-theme){
-    --main-background-color-clear : #0f0e17;
-    --main-button-color-clear : #ff8906;
-    --main-card-background-clear :#fffffe;
+    --main-background-color-clear : #242629;
+    --main-button-color-clear : #7f5af0;
+    --main-card-background-clear :#16161a;
     --main-header-clear :#fffffe;
     --main-text-color-clear : #a7a9be;
-    --main-secondary-color-clear : #f25f4c;
-    --main-tertiary-color-clear : #e53170;
+    --main-secondary-color-clear : #2cb67d;
+    --main-tertiary-color-clear : #2cb67d;
 }
