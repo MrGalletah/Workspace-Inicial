@@ -7,7 +7,7 @@ const formSearch = document.getElementById('formSearch');
 //Redireccionar a products-info
 function redirectToProductInfo(productId) {
     localStorage.setItem('productID', productId);
-    window.open('product-info.html');
+    window.location.assign('product-info.html');
 }
 
 //Funcion que le da estructura a cada div del producto
@@ -20,7 +20,7 @@ function mostrarProducto(dataArray) {
     } else {
     for (const item of dataArray) {
         const divDeProducto = document.createElement('div');
-        divDeProducto.classList.add('divProducto', 'row','border', 'list-group-item','rounded', 'd-flex', 'justify-content-between', 'mt-2');
+        divDeProducto.classList.add('divProducto', 'row','border', 'list-group-item','rounded', 'd-flex', 'justify-content-between', 'mt-3');
         const productHTML = `
             <div class="col-3">
                 <img src="${item.image}" class="img-thumbnail">
