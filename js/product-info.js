@@ -1,4 +1,11 @@
 const container = document.getElementById("container");
+const commentsSection = document.getElementById("commentsSection")
+//import {userEmail, sidebar} from "helpers.js";
+
+
+sidebarFunction()
+userEmailFunction()
+themeFunction()
 
 function showProduct(array) {
     const divProduct = document.createElement('div');
@@ -46,7 +53,8 @@ function showProduct(array) {
         `;
 
     divProduct.innerHTML = product;
-    container.appendChild(divProduct);
+  //  container.appendChild(divProduct);
+    container.insertBefore(divProduct, container.firstChild)
 }
 
 
@@ -64,4 +72,33 @@ async function fetchDataAndShow() {
 }
 
 fetchDataAndShow()
+
+const createCommentComponent = (user, score, desc, date)=>{
+ const commentElement = document.createElement("div")
+
+  commentElement.innerHTML = `        
+<div  class="commentContainer">
+<p  class="commentUser">${user}</p>
+<p  class="commentScore">${score}</p>
+<p  class="commentDesc">${desc}</p>
+<p  class="commentDate">${date}</p>
+</div>
+`
+return commentElement
+}
+const getAndRenderComments = async () => {
+  const productID = localStorage.productID;
+  try {
+    const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
+    const response = await request.json();
+    console.log(response);
+    response.forEach((comment)=>{
+      commentsSection.appendChild(createCommentComponent(comment.user, comment.score, comment.description,comment.dateTime))
+    })
+    console.log(commentsSection)
+  } catch (error) {
+    console.log(error);
+  }
+};
+getAndRenderComments()
 
