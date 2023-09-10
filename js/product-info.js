@@ -137,8 +137,9 @@ commentForm.addEventListener('submit', function (e){
     const description = document.getElementById('description');
     const starSelector = document.getElementById('starSelector');
     const scoreUser = starRating(starSelector.selectedIndex + 1);
-    const date = new Date();
+    const date = new Date().toLocaleString();
     const commentStars = starRating(scoreUser);
     const newComment = createCommentComponent(nameUserComment.value,commentStars,description.value,date);
     commentsSection.appendChild(newComment);
+
 });
