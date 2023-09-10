@@ -73,6 +73,34 @@ async function fetchDataAndShow() {
 
 fetchDataAndShow()
 
+
+const starRating = (userScore) =>{
+  switch (userScore) {
+    case 0:
+      return ""
+      break;
+    case 1:
+      return "⭐"
+      break;
+    case 2:
+      return "⭐⭐"
+      break;  
+    case 3:
+      return "⭐⭐⭐"
+    break;
+    case 4:
+      return "⭐⭐⭐⭐"
+    break;
+    case 5:
+      return "⭐⭐⭐⭐⭐"
+    break;
+    default:
+      return userScore
+      break;
+
+  }
+}
+
 const createCommentComponent = (user, score, desc, date)=>{
  const commentElement = document.createElement("div")
 
@@ -93,7 +121,7 @@ const getAndRenderComments = async () => {
     const response = await request.json();
     console.log(response);
     response.forEach((comment)=>{
-      commentsSection.appendChild(createCommentComponent(comment.user, comment.score, comment.description,comment.dateTime))
+      commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
     })
     console.log(commentsSection)
   } catch (error) {
