@@ -53,14 +53,14 @@
     <div id="container" class="container">
       <div id="commentsSection" class="commentsContainer">
       </div>
-      <form>
+      <form id="commentForm">
         <fieldset>
-          <label for="name">Nombre<input type="text" required></label>
+          <label for="name">Nombre<input type="text" id="nameCommentUser"></label>
           <br>
           <br>
-          <label for="description">Descripción<textarea rows="10" cols="50" type="texta" required> </textarea></label>
+          <label for="description">Descripción<textarea rows="10" cols="50" type="texta" id="description" required> </textarea></label>
           <label for="starSelector">Puntuación
-          <select>
+          <select id="starSelector">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
