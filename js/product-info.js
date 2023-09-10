@@ -130,3 +130,16 @@ const getAndRenderComments = async () => {
 };
 getAndRenderComments()
 
+const commentForm = document.getElementById('commentForm');
+commentForm.addEventListener('submit', function (e){
+    e.preventDefault();
+    const nameUserComment = document.getElementById('nameCommentUser');
+    const description = document.getElementById('description');
+    const starSelector = document.getElementById('starSelector');
+    const scoreUser = starSelector.selectedIndex;
+    const date = new Date();
+    const commentStars = starRating(scoreUser);
+    const newComment = createCommentComponent(nameUserComment,commentStars,description,date);
+    commentsSection.appendChild(newComment);
+
+});
