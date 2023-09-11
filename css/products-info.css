@@ -53,9 +53,7 @@ label, h2{
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
 }
-label{
-    margin-right: 0.5%;
-}
+
 fieldset{
     display: flex;
     align-items: center;
