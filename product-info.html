@@ -55,19 +55,20 @@
       </div>
       <form id="commentForm">
         <fieldset>
-          <label for="name">Nombre<input type="text" id="nameCommentUser"></label>
+          <label for="name">Nombre:</label><input type="text" id="nameCommentUser">
+          <label for="starSelector">Puntuación:</label>
+            <select id="starSelector">
+              <option value="1">⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+          
+        
           <br>
+          <label for="description">Descripción:</label><textarea rows="10" cols="50" type="texta" id="description" required> </textarea>
           <br>
-          <label for="description">Descripción<textarea rows="10" cols="50" type="texta" id="description" required> </textarea></label>
-          <label for="starSelector">Puntuación
-          <select id="starSelector">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </label>
           <input type="submit">
         </fieldset>
       </form>

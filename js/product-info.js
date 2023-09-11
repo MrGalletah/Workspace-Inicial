@@ -16,10 +16,10 @@ function showProduct(array) {
   <div class="row">
     <div class="col-6">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>Precio</b><br>${array.currency} ${array.cost}</li>
-        <li class="list-group-item"><b>Descripción</b><br>${array.description}</li>
-        <li class="list-group-item"><b>Categoría</b><br>${array.category}</li>
-        <li class="list-group-item"><b>Cantidad de vendidos</b><br>${array.soldCount}</li>
+        <li class="list-group-item list-color rounded"><b>Precio</b><br>${array.currency} ${array.cost}</li>
+        <li class="list-group-item list-color rounded"><b>Descripción</b><br>${array.description}</li>
+        <li class="list-group-item list-color rounded"><b>Categoría</b><br>${array.category}</li>
+        <li class="list-group-item list-color rounded"><b>Cantidad de vendidos</b><br>${array.soldCount}</li>
       </ul>
     </div>
     <div class="col-6">
