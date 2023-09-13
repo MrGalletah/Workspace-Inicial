@@ -131,8 +131,7 @@ const getAndRenderComments = async () => {
   } catch (error) {
     console.log(error);
   }
-};
-getAndRenderComments()
+}
 
 // new comments
 const commentForm = document.getElementById('commentForm');
