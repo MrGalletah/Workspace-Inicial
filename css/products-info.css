@@ -1,0 +1,49 @@
+
+.commentsContainer {
+  background-color: var(--main-background-color-clear);
+  padding: 32px;
+}
+
+.commentContainer {
+  background-color: var(--main-card-background-clear);
+  color: var(--main-text-color-clear);
+  border-radius: 2%;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 3rem;
+  margin-bottom: 1%;
+}
+.commentUser {
+  margin: 1%;  
+  width: 10%;
+  color: var(--main-header-clear)
+}
+.commentDate {
+  margin: 1%; 
+}
+.commentScore{
+    margin: 1%;   
+}
+.commentDesc{
+    margin: 1%;
+}
+label, h2{
+    color: var(--main-text-color-clear);
+}
+.list-color{
+    background-color: var(--main-card-background-clear);
+    color: var(--main-text-color-clear);
+}
+
+fieldset{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+b, h2, label{
+  color:var(--main-header-clear)
+}
+#btnSubmit{
+  background-color: var(--main-button-color-clear);
+}
