@@ -155,10 +155,17 @@ commentForm.addEventListener('submit', function (e){
     let userComment = JSON.parse(localStorage.getItem('comment')) || [];
     userComment.push(newCommentObject);
     localStorage.setItem('comment', JSON.stringify(userComment));
-
     nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
 });
-
-
+document.addEventListener('DOMContentLoaded', function () {
+  getAndRenderComments();
+  const userComments = JSON.parse(localStorage.getItem('comment')) || [];
+  if (userComments.length > 0) {
+      userComments.forEach(comment => {
+          const newCommentElement = createCommentComponent(comment.name, comment.rate, comment.description, comment.date);
+          commentsSection.appendChild(newCommentElement);
+      });
+  }
+});
