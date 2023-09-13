@@ -85,3 +85,6 @@ p{
     color:var(--main-text-color-clear)
 }
 
+h3{
+    color: var(--main-header-clear);
+}
