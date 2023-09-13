@@ -14,6 +14,7 @@ cerrarSesion.addEventListener('click', function(e){
     }
 });}
 
+// function sidebar
  function sidebarFunction() {
     const sidebar = document.getElementById("sidebar");
     const userEmail = document.getElementById('user-email');
@@ -28,11 +29,36 @@ userEmail.addEventListener("click", (e)=>{
 });
 }
 
+//function theme
 function themeFunction() {
     const themeButton = document.getElementById("theme-selector");
 
-themeButton.addEventListener("click", (e)=>{
+    themeButton.addEventListener("click", (e)=>{
+        
+        document.body.classList.toggle("dark-theme")
+        if(document.body.classList.contains("dark-theme")){
+            saveTheme()
+        } else if(!document.body.classList.contains("dark-theme")){
+            deleteTheme()
+        }
+    })
     
-    document.body.classList.toggle("dark-theme")
-})
+    const saveTheme = ()=>{
+        localStorage.setItem("Theme", "Dark")
+    }
+    const retrieveTheme = ()=>{
+       let theme = localStorage.getItem("Theme", "Dark")
+        if (theme){
+            document.body.classList.add("dark-theme")
+        themeButton.checked = true;
+    }
+    }
+    const deleteTheme = ()=>{
+        localStorage.removeItem("Theme", "Dark")
+    }
+    const themeOnLoadFunction = ()=>{
+    
+        window.onload = retrieveTheme() 
+    }
+    themeOnLoadFunction()
 }

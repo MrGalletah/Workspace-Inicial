@@ -15,11 +15,11 @@ function showProduct(array) {
   </div>
   <div class="row">
     <div class="col-6">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>Precio</b><br>${array.currency} ${array.cost}</li>
-        <li class="list-group-item"><b>Descripción</b><br>${array.description}</li>
-        <li class="list-group-item"><b>Categoría</b><br>${array.category}</li>
-        <li class="list-group-item"><b>Cantidad de vendidos</b><br>${array.soldCount}</li>
+      <ul class="list-group list-group-flush border rounded">
+        <li class="list-group-item list-color"><b>Precio</b><br>${array.currency} ${array.cost}</li>
+        <li class="list-group-item list-color"><b>Descripción</b><br>${array.description}</li>
+        <li class="list-group-item list-color"><b>Categoría</b><br>${array.category}</li>
+        <li class="list-group-item list-color"><b>Cantidad de vendidos</b><br>${array.soldCount}</li>
       </ul>
     </div>
     <div class="col-6">
@@ -74,8 +74,10 @@ async function fetchDataAndShow() {
 fetchDataAndShow()
 
 
+// Star rating based in UserScore
+
 const starRating = (userScore) =>{
-  switch (userScore) {
+  switch (Math.round(userScore)) {
     case 0:
       return ""
       break;
@@ -100,7 +102,7 @@ const starRating = (userScore) =>{
 
   }
 }
-
+// create html comment elemment
 const createCommentComponent = (user, score, desc, date)=>{
  const commentElement = document.createElement("div")
 
@@ -114,6 +116,8 @@ const createCommentComponent = (user, score, desc, date)=>{
 `
 return commentElement
 }
+
+// Fetch comments
 const getAndRenderComments = async () => {
   const productID = localStorage.productID;
   try {
@@ -130,6 +134,7 @@ const getAndRenderComments = async () => {
 };
 getAndRenderComments()
 
+// new comments
 const commentForm = document.getElementById('commentForm');
 commentForm.addEventListener('submit', function (e){
     e.preventDefault();
@@ -141,5 +146,20 @@ commentForm.addEventListener('submit', function (e){
     const commentStars = starRating(scoreUser);
     const newComment = createCommentComponent(nameUserComment.value,commentStars,description.value,date);
     commentsSection.appendChild(newComment);
+    const newCommentObject = {
+      name:nameUserComment.value,
+      description:description.value,
+      rate:commentStars,
+      date:date,
+    };
+    let userComment = localStorage.setItem('comment',newCommentObject);
+    
+    
+    console.log(userComment);
 
+
+    nameUserComment.value = '';
+    description.value = '';
+    starSelector.selectedIndex = 0;
 });
+
