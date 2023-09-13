@@ -1,24 +1,4 @@
-:root {
-  /* variables modo oscuro  */
 
-  --main-background-color-clear: #242629;
-  --main-button-color-clear: #7f5af0;
-  --main-card-background-clear: #16161a;
-  --main-header-clear: #fffffe;
-  --main-text-color-clear: #a7a9be;
-  --main-secondary-color-clear: #2cb67d;
-  --main-tertiary-color-clear: #2cb67d;
-
-  /* variables modo claro  */
-
-  --main-background-color-clear: #fffffe;
-  --main-button-color-clear: #6246ea;
-  --main-card-background-clear: #d1d1e9;
-  --main-header-clear: #2b2c34;
-  --main-text-color-clear: #2b2c34;
-  --main-secondary-color-clear: #d1d1e9;
-  --main-tertiary-color-clear: #e45858;
-}
 .commentsContainer {
   background-color: var(--main-background-color-clear);
   padding: 32px;
@@ -58,4 +38,7 @@ fieldset{
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+b{
+  color:var(--main-header-clear)
 }

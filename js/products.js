@@ -4,6 +4,11 @@ const tituloCat = document.getElementById('tituloCategoria');
 const inputSearch = document.getElementById('inputSearch');
 const formSearch = document.getElementById('formSearch');
 
+
+themeFunction()
+sidebarFunction()
+userEmailFunction()
+
 //Redireccionar a products-info
 function redirectToProductInfo(productId) {
     localStorage.setItem('productID', productId);
@@ -147,31 +152,6 @@ btnSortSoldCount.addEventListener("click", function () {
 });
 
 
-//Funcion mostrar Mail y sidebar
-const userEmail = document.getElementById('user-email');
-userEmail.innerHTML = localStorage.getItem("email");
-const cerrarSesion = document.getElementById('cerrarSesion');
-cerrarSesion.addEventListener('click', function(e){
-    if (confirm("Estás seguro que quieres borrar tus datos?")) {
-        localStorage.removeItem('loggedIn');
-        localStorage.removeItem('email');
-    } else{
-        e.preventDefault();
-    }
-});
-
-const sidebar = document.getElementById("sidebar");
-
-userEmail.addEventListener("click", (e)=>{
-    e.preventDefault();
-
-    if(sidebar.classList.contains("sidebar-on")){
-        sidebar.classList.add("sidebar-off");
-    }
-
-    sidebar.classList.toggle("sidebar-on");
-});
-
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
 function filtrarProductos(busqueda, dataArray) {
   const resultados = dataArray.filter(item => {
@@ -191,36 +171,3 @@ formSearch.addEventListener('input', function (event) {
     }
     event.preventDefault(); 
   });
-
-// FUNCION PARA CAMBIAR EL TEMA DE LA PAGINA 
-
-const themeButton = document.getElementById("theme-selector");
-
-themeButton.addEventListener("click", (e)=>{
-    
-    document.body.classList.toggle("dark-theme")
-    if(document.body.classList.contains("dark-theme")){
-        saveTheme()
-    } else if(!document.body.classList.contains("dark-theme")){
-        deleteTheme()
-    }
-})
-
-const saveTheme = ()=>{
-    localStorage.setItem("Theme", "Dark")
-}
-const retrieveTheme = ()=>{
-   let theme = localStorage.getItem("Theme", "Dark")
-    if (theme){
-        document.body.classList.add("dark-theme")
-    themeButton.checked = true;
-}
-}
-const deleteTheme = ()=>{
-    localStorage.removeItem("Theme", "Dark")
-}
-const themeOnLoadFunction = ()=>{
-
-    window.onload = retrieveTheme() 
-}
-themeOnLoadFunction()
