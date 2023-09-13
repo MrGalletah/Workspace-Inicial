@@ -152,14 +152,13 @@ commentForm.addEventListener('submit', function (e){
       rate:commentStars,
       date:date,
     };
-    let userComment = localStorage.setItem('comment',newCommentObject);
-    
-    
-    console.log(userComment);
-
+    let userComment = JSON.parse(localStorage.getItem('comment')) || [];
+    userComment.push(newCommentObject);
+    localStorage.setItem('comment', JSON.stringify(userComment));
 
     nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
 });
+
 
