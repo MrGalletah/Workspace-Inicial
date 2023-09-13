@@ -142,8 +142,24 @@ commentForm.addEventListener('submit', function (e){
     const description = document.getElementById('description');
     const starSelector = document.getElementById('starSelector');
     const scoreUser = starRating(starSelector.selectedIndex + 1);
-    const date = new Date();
+    const date = new Date().toLocaleString();
     const commentStars = starRating(scoreUser);
     const newComment = createCommentComponent(nameUserComment.value,commentStars,description.value,date);
     commentsSection.appendChild(newComment);
+    const newCommentObject = {
+      name:nameUserComment.value,
+      description:description.value,
+      rate:commentStars,
+      date:date,
+    };
+    let userComment = localStorage.setItem('comment',newCommentObject);
+    
+    
+    console.log(userComment);
+
+
+    nameUserComment.value = '';
+    description.value = '';
+    starSelector.selectedIndex = 0;
 });
+
