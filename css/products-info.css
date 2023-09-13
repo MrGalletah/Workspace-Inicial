@@ -16,6 +16,8 @@
 }
 .commentUser {
   margin: 1%;  
+  width: 10%;
+  color: var(--main-header-clear)
 }
 .commentDate {
   margin: 1%; 
@@ -39,6 +41,9 @@ fieldset{
     align-items: center;
     flex-direction: column;
 }
-b{
+b, h2, label{
   color:var(--main-header-clear)
+}
+#btnSubmit{
+  background-color: var(--main-button-color-clear);
 }
