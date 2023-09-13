@@ -146,16 +146,17 @@ commentForm.addEventListener('submit', function (e){
     const commentStars = starRating(scoreUser);
     const newComment = createCommentComponent(nameUserComment.value,commentStars,description.value,date);
     commentsSection.appendChild(newComment);
-    const newCommentObject = {
+    const newCommentObject = [{
       name:nameUserComment.value,
       description:description.value,
       rate:commentStars,
       date:date,
-    };
-    let userComment = localStorage.setItem('comment',newCommentObject);
+    }];
+    let userComment = localStorage.setItem('comment',JSON.stringify(newCommentObject));
+    let getComment = localStorage.getItem("comment")
     
     
-    console.log(userComment);
+    console.log(getComment);
 
 
     nameUserComment.value = '';
