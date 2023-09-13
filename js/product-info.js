@@ -144,21 +144,22 @@ commentForm.addEventListener('submit', function (e){
     const scoreUser = starRating(starSelector.selectedIndex + 1);
     const date = new Date().toLocaleString();
     const commentStars = starRating(scoreUser);
-    const newComment = createCommentComponent(nameUserComment.value,commentStars,description.value,date);
+    const newComment = createCommentComponent(nameUserComment.value, commentStars, description.value, date);
     commentsSection.appendChild(newComment);
     const newCommentObject = {
-      name:nameUserComment.value,
-      description:description.value,
-      rate:commentStars,
-      date:date,
+        name: nameUserComment.value,
+        description: description.value,
+        rate: commentStars,
+        date: date,
     };
-    let userComment = JSON.parse(localStorage.getItem('comment')) || [];
-    userComment.push(newCommentObject);
-    localStorage.setItem('comment', JSON.stringify(userComment));
+    let userComments = JSON.parse(localStorage.getItem('comment')) || [];
+    userComments.push(newCommentObject);
+    localStorage.setItem('comment', JSON.stringify(userComments));
     nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
 });
+
 document.addEventListener('DOMContentLoaded', function () {
   getAndRenderComments();
   const userComments = JSON.parse(localStorage.getItem('comment')) || [];
