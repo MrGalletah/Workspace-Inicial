@@ -1,52 +1,16 @@
-:root{
 
-    /* variables modo oscuro  */
-  
-    --main-background-color-clear : #242629;
-    --main-button-color-clear : #7f5af0;
-    --main-card-background-clear :#16161a;
-    --main-header-clear :#fffffe;
-    --main-text-color-clear : #a7a9be;
-    --main-secondary-color-clear : #2cb67d;
-    --main-tertiary-color-clear : #2cb67d;
-  
-    /* variables modo claro  */
-  
-    --main-background-color-clear : #fffffe;
-    --main-button-color-clear : #6246ea;
-    --main-card-background-clear :#d1d1e9;
-    --main-header-clear :#2b2c34;
-    --main-text-color-clear : #2b2c34;
-    --main-secondary-color-clear : #d1d1e9;
-    --main-tertiary-color-clear : #e45858;
-  
-  }
   
 body {
     background-color:var(--main-background-color-clear);
 }
 
-.cajaDeBotones{
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.form-control{
-    width: 120px;
-}
-#inputSearch{
-    width: 800px;
-    height: 40px;
-    margin-top: -10px;
-}
-
 .divProducto {
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
-    transition: 800ms;
 }
 
 .divProducto:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
     cursor: pointer;
 }
 
@@ -65,14 +29,14 @@ body {
 
 /** COMIENZA ESTILO DEL BUSCADOR */
 #formSearch{
-    
+    width: 50%;
     margin-left: 7%;
     margin-bottom: 1%;
     margin-top: 1%;
 }
 /* 
 #inputSearch:hover{
-    border: solid 2px var(--main-card-background-clear);
+    border: solid var(--main-card-background-clear);
     background-color:  var(--main-background-color-clear);
 }
 #botonSearch{
@@ -121,12 +85,6 @@ p{
     color:var(--main-text-color-clear)
 }
 
-:root:has(.dark-theme){
-    --main-background-color-clear : #242629;
-    --main-button-color-clear : #7f5af0;
-    --main-card-background-clear :#16161a;
-    --main-header-clear :#fffffe;
-    --main-text-color-clear : #a7a9be;
-    --main-secondary-color-clear : #2cb67d;
-    --main-tertiary-color-clear : #2cb67d;
+h3{
+    color: var(--main-header-clear);
 }
