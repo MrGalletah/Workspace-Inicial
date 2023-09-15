@@ -12,7 +12,7 @@ function showProduct(array) {
     const product = `
     <div class="text-center">
     <h2 class="display2 my-4">${array.name}</h2>
-  </div>
+  </div> 
   <div class="row">
     <div class="col-6">
       <ul class="list-group list-group-flush border rounded">
@@ -65,14 +65,14 @@ function showProduct(array) {
 async function fetchDataAndShow() {
     const productID = localStorage.productID;
     urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`
-
-    const response = await fetch(urlProduct);
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    showProduct(data);
+try {
+   const response = await fetch(urlProduct);
+   const data = await response.json();
+   showProduct(data);
+}
+catch(error) {
+  throw new Error(`HTTP error! Status: ${error}`);
+}   
 }
 
 fetchDataAndShow()
