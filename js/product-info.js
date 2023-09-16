@@ -139,15 +139,17 @@ const getAndRenderComments = async () => {
   }
 }
 getAndRenderComments();
-const userComments = JSON.parse(localStorage.getItem('comment')) || [];
+let userComments = JSON.parse(localStorage.getItem('comment')) || [];
 if (userComments.length > 0) {
-    userComments.forEach(comment => {
+    
+    userComments.forEach((comment) => {
         const newCommentElement = createCommentComponent(comment.name, comment.rate, comment.description, comment.date);
         commentsSection.appendChild(newCommentElement);
     });
 }
 
 // new comments
+
 const commentForm = document.getElementById('commentForm');
 commentForm.addEventListener('submit', function (e){
     e.preventDefault();
@@ -166,14 +168,13 @@ commentForm.addEventListener('submit', function (e){
         rate: commentStars,
         date: date,
     };
-    let userComments = JSON.parse(localStorage.getItem('comment')) || [];  
-    userComments.push(newCommentObject);
-    //magia
-    userComments.sort(function(a, b) {
-      return new Date(a.date) - new Date(b.date);
-    });
+    
+    userComments.unshift(newCommentObject); // Agregar el nuevo comentario al inicio del array
     localStorage.setItem('comment', JSON.stringify(userComments));
     nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
 });
+
+
+
