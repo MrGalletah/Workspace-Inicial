@@ -1,5 +1,6 @@
 const container = document.getElementById("container");
 const commentsSection = document.getElementById("commentsSection")
+const userCommentSection = document.getElementById("userCommentsSection")
 //import {userEmail, sidebar} from "helpers.js";
 
 
@@ -127,12 +128,12 @@ const getAndRenderComments = async () => {
     response.forEach((comment)=>{
       commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
     })
+    renderCommentsLocalStorage()
     console.log(commentsSection)
   } catch (error) {
     console.log(error);
   }
-};
-getAndRenderComments()
+}
 
 // new comments
 const commentForm = document.getElementById('commentForm');
@@ -144,23 +145,34 @@ commentForm.addEventListener('submit', function (e){
     const scoreUser = starRating(starSelector.selectedIndex + 1);
     const date = new Date().toLocaleString();
     const commentStars = starRating(scoreUser);
-    const newComment = createCommentComponent(nameUserComment.value,commentStars,description.value,date);
+    const newComment = createCommentComponent(nameUserComment.value, commentStars, description.value, date);
     commentsSection.appendChild(newComment);
-    const newCommentObject = [{
-      name:nameUserComment.value,
-      description:description.value,
-      rate:commentStars,
-      date:date,
-    }];
-    let userComment = localStorage.setItem('comment',JSON.stringify(newCommentObject));
-    let getComment = localStorage.getItem("comment")
-    
-    
-    console.log(getComment);
-
-
+    const newCommentObject = {
+        name: nameUserComment.value,
+        description: description.value,
+        rate: commentStars,
+        date: date,
+    };
+    let userComments = JSON.parse(localStorage.getItem('comment')) || [];
+    userComments.push(newCommentObject);
+    localStorage.setItem('comment', JSON.stringify(userComments));
     nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
 });
 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  getAndRenderComments();
+
+});
+
+const renderCommentsLocalStorage = ()=>{
+  const userComments = JSON.parse(localStorage.getItem('comment')) || [];
+  if (userComments.length > 0) {
+      userComments.forEach(comment => {
+          commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
+      });
+  }
+}

@@ -11,22 +11,32 @@
   display: flex;
   align-items: center;
   width: auto;
-  height: 3rem;
   margin-bottom: 1%;
+  padding: 12px 24px;
 }
 .commentUser {
-  margin: 1%;  
-  width: 10%;
-  color: var(--main-header-clear)
+  /* margin: 1%;   */
+  width: 130px;
+  color: var(--main-header-clear);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .commentDate {
-  margin: 1%; 
+  /* margin: 1%;  */
+  flex: 1;
 }
 .commentScore{
-    margin: 1%;   
+    /* margin: 1%;    */
+    flex: 1;
+
 }
 .commentDesc{
-    margin: 1%;
+    /* margin: 1%; */
+    width: 20px;
+    flex: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 label, h2{
     color: var(--main-text-color-clear);
