@@ -44,22 +44,29 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a> 
-          </li>          
-        </ul>
-      </div>
+            <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
+      
+      </li>
+    </ul>
+    <div class="form-check form-switch pt-1">
+      <input class="form-check-input" type="checkbox" role="switch" id="theme-selector">
     </div>
-  </nav>
-  <aside class="" id="sidebar">
-    <a class="sidebar-content" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
-  </aside>
+</div>
+</div>
+</nav>
+<aside class="" id="sidebar">
+<a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+</aside>
   <main>
     <img id="coverIndex" src="img/cover_back.png" alt="cover de la pagina">
-    <div class="album py-5 bg-light">
+    <div class="album py-5 cardContainer">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="autos">
+            <div class="card mb-4 shadow-sm custom-card cursor-active border" id="autos">
               <img class="bd-placeholder-img card-img-top" src="img/cars_index.jpg"
                 alt="Imgagen representativa de la categoría 'Autos'">
               <h3 class="m-3">Autos</h3>
@@ -69,7 +76,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="juguetes">
+            <div class="card mb-4 shadow-sm custom-card cursor-active border" id="juguetes">
               <img class="bd-placeholder-img card-img-top" src="img/toys_index.jpg"
                 alt="Imgagen representativa de la categoría 'Juguetes'">
               <h3 class="m-3">Juguetes</h3>
@@ -79,7 +86,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm custom-card cursor-active" id="muebles">
+            <div class="card mb-4 shadow-sm custom-card cursor-active border" id="muebles">
               <img class="bd-placeholder-img card-img-top" src="img/furniture_index.jpg"
                 alt="Imgagen representativa de la categoría 'Muebles'">
               <h3 class="m-3">Muebles</h3>
@@ -89,8 +96,8 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <a class="btn btn-light btn-lg btn-block" href="categories.html">Y mucho más!</a>
+        <div class="row btnPlace">
+          <a class="btn btn-lg btn-block" href="categories.html">Y mucho más!</a>
         </div>
       </div>
     </div>
@@ -103,6 +110,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+  <script src="js/helpers.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/init.js"></script>
