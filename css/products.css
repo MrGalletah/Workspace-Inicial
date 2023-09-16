@@ -7,12 +7,14 @@ body {
 .divProducto {
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
+    transition: 800ms;
 }
 
 .divProducto:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
+
 
 /* CARTEL DE "NO SE ENCONTRARON RESULTADOS"  */
 #notFound{
