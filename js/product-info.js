@@ -1,6 +1,7 @@
 const container = document.getElementById("container");
 const commentsSection = document.getElementById("commentsSection")
 const userCommentSection = document.getElementById("userCommentsSection")
+const productID = localStorage.productID;
 //import {userEmail, sidebar} from "helpers.js";
 
 
@@ -153,9 +154,9 @@ commentForm.addEventListener('submit', function (e){
         rate: commentStars,
         date: date,
     };
-    let userComments = JSON.parse(localStorage.getItem('comment')) || [];
+    let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
     userComments.push(newCommentObject);
-    localStorage.setItem('comment', JSON.stringify(userComments));
+    localStorage.setItem(`${productID}`, JSON.stringify(userComments));
     nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
@@ -169,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const renderCommentsLocalStorage = ()=>{
-  const userComments = JSON.parse(localStorage.getItem('comment')) || [];
+  const userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
   if (userComments.length > 0) {
       userComments.forEach(comment => {
           commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
