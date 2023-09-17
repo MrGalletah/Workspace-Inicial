@@ -125,6 +125,11 @@ const getAndRenderComments = async () => {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
     const response = await request.json();
     console.log(response);
+      // make a SORT for Dates of API-Comments, NEW comments go TOP, -------------------------- <-----------
+  response.sort(function(a, b) { 
+    return new Date(b.dateTime) - new Date(a.dateTime); 
+  }); // en SORT
+
     response.forEach((comment)=>{
       commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
     })
@@ -146,7 +151,7 @@ commentForm.addEventListener('submit', function (e){
     const date = new Date().toLocaleString();
     const commentStars = starRating(scoreUser);
     const newComment = createCommentComponent(nameUserComment.value, commentStars, description.value, date);
-    commentsSection.appendChild(newComment);
+    commentsSection.prepend(newComment); //prepend es como appendChild pero lo pone al comienzo y no al final.
     const newCommentObject = {
         name: nameUserComment.value,
         description: description.value,
@@ -171,8 +176,12 @@ document.addEventListener('DOMContentLoaded', function () {
 const renderCommentsLocalStorage = ()=>{
   const userComments = JSON.parse(localStorage.getItem('comment')) || [];
   if (userComments.length > 0) {
-      userComments.forEach(comment => {
-          commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
+      userComments.forEach(comment => { //En la siguiente linea "prepend" sirve para que publique el 1er item del array(el mas viejo) y luego los mas nuevos
+          commentsSection.prepend(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
       });
   }
 }
+
+// Cambios en la linea 128, para que al cargar el fetch con los comentarios de la API los ordene con un SORT por la fecha(date) antes de presentarlos.
+// Cambios en la linea 154, para que al publicar un comentario éste quede Primero(arriba del todo) del "commentsSection".. siendo así siempre el comentario más nuevo el de más arriba.
+// Cambios en la linea 179, para que la funcion "RendercommentsLocalStorage" en su forEach publique en 1er lugar el 1er item del array que será el más viejo y luego los más nuevos,
