@@ -31,6 +31,7 @@ userEmail.addEventListener("click", (e)=>{
 
 //function theme
 function themeFunction() {
+    let indexImg = document.getElementById("coverIndex")
     const themeButton = document.getElementById("theme-selector");
 
     themeButton.addEventListener("click", (e)=>{
@@ -38,8 +39,17 @@ function themeFunction() {
         document.body.classList.toggle("dark-theme")
         if(document.body.classList.contains("dark-theme")){
             saveTheme()
+            try{
+                indexImg.src = "img/cover_back_DARK.png"
+            }
+            catch (e){console.log(e)}
         } else if(!document.body.classList.contains("dark-theme")){
             deleteTheme()
+            try{
+                indexImg.src = "img/cover_back.png"
+
+            }
+            catch (e){console.log(e)}
         }
     })
     
@@ -51,7 +61,15 @@ function themeFunction() {
         if (theme){
             document.body.classList.add("dark-theme")
         themeButton.checked = true;
-    }
+        try{
+
+            indexImg.src = "img/cover_back_DARK.png"
+        }
+        catch (e){console.log(e)}
+    } else {
+        try{indexImg.src = "img/cover_back.png"}
+        catch (e){console.log(e)}
+    } 
     }
     const deleteTheme = ()=>{
         localStorage.removeItem("Theme", "Dark")

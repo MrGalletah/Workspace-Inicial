@@ -2,6 +2,7 @@ sidebarFunction()
 userEmailFunction()
 themeFunction()
 
+
 document.addEventListener('DOMContentLoaded', function() {
   // Verificar si hay información de sesión almacenada en Local Storage después de 3 segundos de carga de la página
   setTimeout(function() {
