@@ -1,5 +1,6 @@
 const container = document.getElementById("container");
 const commentsSection = document.getElementById("commentsSection")
+const userCommentSection = document.getElementById("userCommentsSection")
 //import {userEmail, sidebar} from "helpers.js";
 
 
@@ -111,7 +112,7 @@ const createCommentComponent = (user, score, desc, date)=>{
 <p  class="commentUser">${user}</p>
 <p  class="commentScore">${score}</p>
 <p  class="commentDesc">${desc}</p>
-<p  class="commentDate text-muted">${date}</p>
+<p  class="commentDate">${date}</p>
 </div>
 `
 return commentElement
@@ -124,32 +125,17 @@ const getAndRenderComments = async () => {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
     const response = await request.json();
     console.log(response);
-
-  // make a SORT for Dates of API-Comments, NEW comments go TOP, -------------------------- <-----------
-  response.sort(function(a, b) { 
-    return new Date(b.dateTime) - new Date(a.dateTime); 
-  }); // en SORT
-
     response.forEach((comment)=>{
       commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
     })
+    renderCommentsLocalStorage()
     console.log(commentsSection)
   } catch (error) {
     console.log(error);
   }
 }
-getAndRenderComments();
-let userComments = JSON.parse(localStorage.getItem('comment')) || [];
-if (userComments.length > 0) {
-    
-    userComments.forEach((comment) => {
-        const newCommentElement = createCommentComponent(comment.name, comment.rate, comment.description, comment.date);
-        commentsSection.appendChild(newCommentElement);
-    });
-}
 
 // new comments
-
 const commentForm = document.getElementById('commentForm');
 commentForm.addEventListener('submit', function (e){
     e.preventDefault();
@@ -161,15 +147,14 @@ commentForm.addEventListener('submit', function (e){
     const commentStars = starRating(scoreUser);
     const newComment = createCommentComponent(nameUserComment.value, commentStars, description.value, date);
     commentsSection.appendChild(newComment);
-    
     const newCommentObject = {
         name: nameUserComment.value,
         description: description.value,
         rate: commentStars,
         date: date,
     };
-    
-    userComments.unshift(newCommentObject); // Agregar el nuevo comentario al inicio del array
+    let userComments = JSON.parse(localStorage.getItem('comment')) || [];
+    userComments.push(newCommentObject);
     localStorage.setItem('comment', JSON.stringify(userComments));
     nameUserComment.value = '';
     description.value = '';
@@ -178,3 +163,16 @@ commentForm.addEventListener('submit', function (e){
 
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  getAndRenderComments();
+
+});
+
+const renderCommentsLocalStorage = ()=>{
+  const userComments = JSON.parse(localStorage.getItem('comment')) || [];
+  if (userComments.length > 0) {
+      userComments.forEach(comment => {
+          commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
+      });
+  }
+}

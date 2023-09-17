@@ -28,6 +28,7 @@
 .container,
 .site-header {
   font-family: "Verdana", serif !important;
+  color: var(--main-text-color-clear);
 }
 
 /*Debajo pondremos los estilos del mensaje de ALERTA PARA EL REDIRECCIONAMIENTO AL LOGIN*/
@@ -126,10 +127,12 @@ nav a {
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
+  background-color: var(--main-background-color-clear)
 }
 
 footer p {
   margin-bottom: 0.25rem;
+  color:var(--main-text-color-clear)
 }
 
 .site-header a {
@@ -325,6 +328,33 @@ aside{
 .inactiveLink {
   pointer-events: none;
   cursor: default;
+}
+.cardContainer{
+  background-color: var(--main-background-color-clear)
+}
+.card{
+  background-color: var(--main-card-background-clear);
+}
+.card:hover{
+  transform: scale(1.1);
+  transition: 800ms;
+}
+h3{
+  color: var(--main-header-clear);
+}
+.btn{
+  background-color: var(--main-button-color-clear);
+   color: var(--main-header-clear);
+}
+.btn:hover{
+  background-color: var(--main-button-color-clear);
+   color: var(--main-header-clear);
+}
+.btnPlace{
+  display:flex;
+  flex-wrap: nowrap;
+  width: 20%;
+  margin-left: 40%;
 }
 :root:has(.dark-theme){
   --main-background-color-clear : #242629;
