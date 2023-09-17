@@ -126,6 +126,9 @@ const getAndRenderComments = async () => {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
     const response = await request.json();
     console.log(response);
+    response.sort(function(a, b) { 
+      return new Date(a.dateTime) - new Date(b.dateTime); 
+    }); 
     response.forEach((comment)=>{
       commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
     })
