@@ -1,6 +1,7 @@
 const container = document.getElementById("container");
 const commentsSection = document.getElementById("commentsSection")
 const userCommentSection = document.getElementById("userCommentsSection")
+const productID = localStorage.productID;
 //import {userEmail, sidebar} from "helpers.js";
 
 
@@ -125,11 +126,9 @@ const getAndRenderComments = async () => {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
     const response = await request.json();
     console.log(response);
-      // make a SORT for Dates of API-Comments, NEW comments go TOP, -------------------------- <-----------
-  response.sort(function(a, b) { 
-    return new Date(b.dateTime) - new Date(a.dateTime); 
-  }); // en SORT
-
+    response.sort(function(a, b) { 
+      return new Date(a.dateTime) - new Date(b.dateTime); 
+    }); 
     response.forEach((comment)=>{
       commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
     })
@@ -149,18 +148,17 @@ commentForm.addEventListener('submit', function (e){
     const starSelector = document.getElementById('starSelector');
     const scoreUser = starRating(starSelector.selectedIndex + 1);
     const date = new Date().toLocaleString();
-    const commentStars = starRating(scoreUser);
-    const newComment = createCommentComponent(nameUserComment.value, commentStars, description.value, date);
-    commentsSection.prepend(newComment); //prepend es como appendChild pero lo pone al comienzo y no al final.
+    const newComment = createCommentComponent(nameUserComment.value, scoreUser, description.value, date);
+    commentsSection.appendChild(newComment);
     const newCommentObject = {
         name: nameUserComment.value,
         description: description.value,
-        rate: commentStars,
+        rate: scoreUser,
         date: date,
     };
-    let userComments = JSON.parse(localStorage.getItem('comment')) || [];
+    let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
     userComments.push(newCommentObject);
-    localStorage.setItem('comment', JSON.stringify(userComments));
+    localStorage.setItem(`${productID}`, JSON.stringify(userComments));
     nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
@@ -174,14 +172,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const renderCommentsLocalStorage = ()=>{
-  const userComments = JSON.parse(localStorage.getItem('comment')) || [];
+  const userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
   if (userComments.length > 0) {
-      userComments.forEach(comment => { //En la siguiente linea "prepend" sirve para que publique el 1er item del array(el mas viejo) y luego los mas nuevos
-          commentsSection.prepend(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
+      userComments.forEach(comment => {
+          commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
       });
   }
 }
-
-// Cambios en la linea 128, para que al cargar el fetch con los comentarios de la API los ordene con un SORT por la fecha(date) antes de presentarlos.
-// Cambios en la linea 154, para que al publicar un comentario éste quede Primero(arriba del todo) del "commentsSection".. siendo así siempre el comentario más nuevo el de más arriba.
-// Cambios en la linea 179, para que la funcion "RendercommentsLocalStorage" en su forEach publique en 1er lugar el 1er item del array que será el más viejo y luego los más nuevos,
