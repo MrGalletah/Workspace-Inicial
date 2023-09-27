@@ -1,7 +1,8 @@
 const container = document.getElementById("container");
-const commentsSection = document.getElementById("commentsSection")
-const userCommentSection = document.getElementById("userCommentsSection")
+const commentsSection = document.getElementById("commentsSection");
+const userCommentSection = document.getElementById("userCommentsSection");
 const productID = localStorage.productID;
+
 //import {userEmail, sidebar} from "helpers.js";
 
 
@@ -181,5 +182,24 @@ const renderCommentsLocalStorage = ()=>{
       userComments.forEach(comment => {
           commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
       });
+  }
+}
+
+// Related Products:    **** EN DESARROLLO ****
+const relatedProducts = document.getElementById("relatedProducts");
+const getAndRenderRelatedProducts = async () => {
+  const catID = JSON.parse(localStorage.getItem(`${catID}`))
+  console.log(catID)
+  try {
+    const request = await fetch(`${PRODUCTS_URL}${catID}`);  // SIN TERMINAR ¿ESTARÁ BIEN O MAL ?
+    const array = await request.json();
+    console.log(array);
+    const arrayProducts = response.products;
+    arrayProducts.forEach()   
+    relatedProducts.innerHTML
+
+  }
+  catch (error) {
+    console.log(error);
   }
 }
