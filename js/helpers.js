@@ -80,3 +80,11 @@ function themeFunction() {
     }
     themeOnLoadFunction()
 }
+
+
+function loginTheme() {
+    let theme = localStorage.getItem("Theme", "Dark")
+if (theme){
+    document.body.classList.add("dark-theme")
+themeButton.checked = true;}
+}
