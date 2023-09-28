@@ -11,8 +11,8 @@ userEmailFunction()
 themeFunction()
 
 function showProduct(array) {
-    const divProduct = document.createElement('div');
-    const product = `
+  const divProduct = document.createElement('div');
+  const product = `
     <div class="text-center">
     <h2 class="display2 my-4">${array.name}</h2>
   </div> 
@@ -59,23 +59,23 @@ function showProduct(array) {
     </div>
         `;
 
-    divProduct.innerHTML = product;
+  divProduct.innerHTML = product;
   //  container.appendChild(divProduct);
-    container.insertBefore(divProduct, container.firstChild)
+  container.insertBefore(divProduct, container.firstChild)
 }
 
 
 async function fetchDataAndShow() {
-    const productID = localStorage.productID;
-    urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`
-try {
-   const response = await fetch(urlProduct);
-   const data = await response.json();
-   showProduct(data);
-}
-catch(error) {
-  throw new Error(`HTTP error! Status: ${error}`);
-}   
+  const productID = localStorage.productID;
+  urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`
+  try {
+    const response = await fetch(urlProduct);
+    const data = await response.json();
+    showProduct(data);
+  }
+  catch (error) {
+    throw new Error(`HTTP error! Status: ${error}`);
+  }
 }
 
 fetchDataAndShow()
@@ -83,7 +83,7 @@ fetchDataAndShow()
 
 // Star rating based in UserScore
 
-const starRating = (userScore) =>{
+const starRating = (userScore) => {
   switch (Math.round(userScore)) {
     case 0:
       return ""
@@ -93,16 +93,16 @@ const starRating = (userScore) =>{
       break;
     case 2:
       return "⭐⭐"
-      break;  
+      break;
     case 3:
       return "⭐⭐⭐"
-    break;
+      break;
     case 4:
       return "⭐⭐⭐⭐"
-    break;
+      break;
     case 5:
       return "⭐⭐⭐⭐⭐"
-    break;
+      break;
     default:
       return userScore
       break;
@@ -110,8 +110,8 @@ const starRating = (userScore) =>{
   }
 }
 // create html comment elemment
-const createCommentComponent = (user, score, desc, date)=>{
- const commentElement = document.createElement("div")
+const createCommentComponent = (user, score, desc, date) => {
+  const commentElement = document.createElement("div")
 
   commentElement.innerHTML = `        
 <div  class="commentContainer">
@@ -121,7 +121,7 @@ const createCommentComponent = (user, score, desc, date)=>{
 <p  class="commentDate">${date}</p>
 </div>
 `
-return commentElement
+  return commentElement
 }
 
 // Fetch comments
@@ -131,11 +131,11 @@ const getAndRenderComments = async () => {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
     const response = await request.json();
     console.log(response);
-    response.sort(function(a, b) { 
-      return new Date(a.dateTime) - new Date(b.dateTime); 
-    }); 
-    response.forEach((comment)=>{
-      commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
+    response.sort(function (a, b) {
+      return new Date(a.dateTime) - new Date(b.dateTime);
+    });
+    response.forEach((comment) => {
+      commentsSection.appendChild(createCommentComponent(comment.user, starRating(comment.score), comment.description, comment.dateTime))
     })
     renderCommentsLocalStorage()
     console.log(commentsSection)
@@ -146,27 +146,27 @@ const getAndRenderComments = async () => {
 
 // new comments
 const commentForm = document.getElementById('commentForm');
-commentForm.addEventListener('submit', function (e){
-    e.preventDefault();
-    const nameUserComment = document.getElementById('nameCommentUser');
-    const description = document.getElementById('description');
-    const starSelector = document.getElementById('starSelector');
-    const scoreUser = starRating(starSelector.selectedIndex + 1);
-    const date = new Date().toLocaleString();
-    const newComment = createCommentComponent(nameUserComment.value, scoreUser, description.value, date);
-    commentsSection.appendChild(newComment);
-    const newCommentObject = {
-        name: nameUserComment.value,
-        description: description.value,
-        rate: scoreUser,
-        date: date,
-    };
-    let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
-    userComments.push(newCommentObject);
-    localStorage.setItem(`${productID}`, JSON.stringify(userComments));
-    nameUserComment.value = '';
-    description.value = '';
-    starSelector.selectedIndex = 0;
+commentForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const nameUserComment = document.getElementById('nameCommentUser');
+  const description = document.getElementById('description');
+  const starSelector = document.getElementById('starSelector');
+  const scoreUser = starRating(starSelector.selectedIndex + 1);
+  const date = new Date().toLocaleString();
+  const newComment = createCommentComponent(nameUserComment.value, scoreUser, description.value, date);
+  commentsSection.appendChild(newComment);
+  const newCommentObject = {
+    name: nameUserComment.value,
+    description: description.value,
+    rate: scoreUser,
+    date: date,
+  };
+  let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
+  userComments.push(newCommentObject);
+  localStorage.setItem(`${productID}`, JSON.stringify(userComments));
+  nameUserComment.value = '';
+  description.value = '';
+  starSelector.selectedIndex = 0;
 });
 
 
@@ -176,30 +176,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-const renderCommentsLocalStorage = ()=>{
+const renderCommentsLocalStorage = () => {
   const userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
   if (userComments.length > 0) {
-      userComments.forEach(comment => {
-          commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
-      });
+    userComments.forEach(comment => {
+      commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
+    });
   }
 }
 
+function shortenName(string) {
+  if (string.length >= 16) {
+    let newstring = string.substring(0, 14);
+    return newstring + "..";
+  } else {
+    return string;
+  }
+};
+
+function redirectToNewProduct(productId) {
+  localStorage.setItem('productID', productId);
+  window.open('product-info.html');
+}
+
+
 // Related Products:    **** EN DESARROLLO ****
 const relatedProducts = document.getElementById("relatedProducts");
-const getAndRenderRelatedProducts = async () => {
-  const catID = JSON.parse(localStorage.getItem(`${catID}`))
-  console.log(catID)
+async function getAndRenderRelatedProducts() {
+  const catID = localStorage.catID;
+  console.log(catID);
+  let relatedUrl = `${PRODUCTS_URL}/${catID}.json`;
   try {
-    const request = await fetch(`${PRODUCTS_URL}${catID}`);  // SIN TERMINAR ¿ESTARÁ BIEN O MAL ?
+    const request = await fetch(relatedUrl);
     const array = await request.json();
     console.log(array);
-    const arrayProducts = response.products;
-    arrayProducts.forEach()   
-    relatedProducts.innerHTML
+    const arrayProducts = array.products;
+    arrayProducts.forEach(element => {
+      const name = element.name;
+      const image = element.image;
+      const currency = element.currency;
+      const cost = element.cost;
+      const id = element.id;
 
+      const relatedProduct = document.createElement('div');
+      relatedProduct.classList.add('col');
+      const productCard = `
+      <div id="${id}">
+      <div class="card" style="width: auto;">
+      <img src="${image}" class="card-img-top" alt="...">
+      <div class="card-body">
+      <h5 class="card-title lead">${shorterName(name)}</h5>
+      <p class="card-text">${currency} ${cost}</p>
+      </div>
+      </div>
+      </div>
+      `;
+      relatedProduct.innerHTML += productCard;
+      relatedProducts.appendChild(relatedProduct);
+
+      const redirect = document.getElementById(`${id}`);
+      redirect.addEventListener('click', () => {
+        redirectToNewProduct(id);
+      })
+
+    });
   }
   catch (error) {
     console.log(error);
   }
-}
+};
+
+getAndRenderRelatedProducts();
