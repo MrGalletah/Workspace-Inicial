@@ -1,8 +1,34 @@
+:root{
+
+  /* variables modo oscuro  */
+
+  --main-background-color-clear : #242629;
+  --main-button-color-clear : #7f5af0;
+  --main-card-background-clear :#16161a;
+  --main-header-clear :#fffffe;
+  --main-text-color-clear : #a7a9be;
+  --main-secondary-color-clear : #2cb67d;
+  --main-tertiary-color-clear : #2cb67d;
+
+  /* variables modo claro  */
+
+  --main-background-color-clear : #fffffe;
+  --main-button-color-clear : #6246ea;
+  --main-card-background-clear :#d1d1e9;
+  --main-header-clear :#2b2c34;
+  --main-text-color-clear : #2b2c34;
+  --main-secondary-color-clear : #d1d1e9;
+  --main-tertiary-color-clear : #e45858;
+  --sidebar-background-clear: #16161a;
+
+}
+
 .jumbotron,
 .card-body,
 .container,
 .site-header {
   font-family: "Verdana", serif !important;
+  color: var(--main-text-color-clear);
 }
 
 /*Debajo pondremos los estilos del mensaje de ALERTA PARA EL REDIRECCIONAMIENTO AL LOGIN*/
@@ -101,10 +127,12 @@ nav a {
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
+  background-color: var(--main-background-color-clear)
 }
 
 footer p {
   margin-bottom: 0.25rem;
+  color:var(--main-text-color-clear)
 }
 
 .site-header a {
@@ -230,7 +258,7 @@ a.custom-card:hover {
   top: 0;
   height: -webkit-fill-available;
   width: 13%;
-  background-color: #212529;
+  background-color: var(--sidebar-background-clear);
   z-index: 1;
   flex-direction: column-reverse;
   
@@ -243,7 +271,7 @@ a.custom-card:hover {
   top: 0;
   height: -webkit-fill-available;
   width: 13%;
-  background-color: #212529;
+  background-color: var(--sidebar-background-clear);
   z-index: 1;
   flex-direction: column-reverse;
   animation: sidebarAnimationOn 0.3s ease-out 0s 1 normal both ;
@@ -254,6 +282,9 @@ a.custom-card:hover {
   color: red;
  letter-spacing: 1px;
  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.sidebar-content:hover{
+  color: red;
 }
 .navbar {
   z-index: 2;
@@ -293,4 +324,45 @@ aside{
 
 #coverIndex{
   width: 100%;
+}
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+}
+.cardContainer{
+  background-color: var(--main-background-color-clear)
+}
+.card{
+  background-color: var(--main-card-background-clear);
+}
+.card:hover{
+  transform: scale(1.1);
+  transition: 800ms;
+}
+h3{
+  color: var(--main-header-clear);
+}
+.btn{
+  background-color: var(--main-button-color-clear);
+   color: var(--main-header-clear);
+}
+.btn:hover{
+  background-color: var(--main-button-color-clear);
+   color: var(--main-header-clear);
+}
+.btnPlace{
+  display:flex;
+  flex-wrap: nowrap;
+  width: 20%;
+  margin-left: 40%;
+}
+:root:has(.dark-theme){
+  --main-background-color-clear : #242629;
+  --main-button-color-clear : #7f5af0;
+  --main-card-background-clear :#16161a;
+  --main-header-clear :#fffffe;
+  --main-text-color-clear : #a7a9be;
+  --main-secondary-color-clear : #2cb67d;
+  --main-tertiary-color-clear : #2cb67d;
+  --sidebar-background-clear: #16161a;
 }

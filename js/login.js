@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function(){
     const loggeado = localStorage.getItem('loggedIn');
     botonIngresar.disabled = true;
     const email = document.getElementById("email");
-
     if (loggeado) {
         window.location.href = 'index.html';
     } else {
@@ -82,3 +81,4 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 });
+loginTheme()

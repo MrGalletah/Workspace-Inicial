@@ -10,6 +10,8 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/products.css" rel="stylesheet">
+  <link href="css/categories.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,7 +36,13 @@
         <li class="nav-item">
           <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a> 
         </li>          
-      </ul>
+      <li class="nav-item">
+        <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
+    </li>
+  </ul>
+  <div class="form-check form-switch pt-1">
+    <input class="form-check-input" type="checkbox" role="switch" id="theme-selector">
+  </div>
     </div>
   </div>
 </nav>
@@ -75,7 +83,7 @@
             <div class="col-3 p-0">
               <div class="btn-group" role="group">
                 <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                <button class="btn btn-link btn-sm border" id="clearRangeFilter">Limpiar</button>
               </div>
             </div>
           </div>
@@ -103,6 +111,7 @@
       <div></div>
     </div>
   </div>
+  <script src="js/helpers.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/categories.js"></script>

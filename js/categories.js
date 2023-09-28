@@ -6,31 +6,10 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
-const userEmail = document.getElementById('user-email');
+themeFunction()
+sidebarFunction()
+userEmailFunction()
 
-userEmail.innerHTML = localStorage.getItem("email")
-
-cerrarSesion.addEventListener('click', function(e){
-    if (confirm("Estas seguro que quieres borrar tus datos?")) {
-     localStorage.removeItem('loggedIn')
-    localStorage.removeItem('email')
-    } else{
-      e.preventDefault()
-    }
-  });
-
-
-const sidebar = document.getElementById("sidebar")
-
-userEmail.addEventListener("click", (e)=>{
-    e.preventDefault()
-
-    if(sidebar.classList.contains("sidebar-on")){
-      sidebar.classList.add("sidebar-off")
-    }
-    sidebar.classList.toggle("sidebar-on")
-    
-  })
 
 function sortCategories(criteria, array){
     let result = [];
@@ -76,7 +55,7 @@ function showCategoriesList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
 
             htmlContentToAppend += `
-            <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active card mt-3 border">
                 <div class="row">
                     <div class="col-3">
                         <img src="${category.imgSrc}" alt="${category.description}" class="img-thumbnail">

@@ -13,14 +13,14 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: rgb(3, 163, 163);
+    background-color: var(--main-background-color-clear);
 
 }
 
 .login {
     width: 420px;
-    background: rgb(3, 3, 57);
-    color: aliceblue;  
+    background-color: var(--main-card-background-clear);
+    color: var(--main-header-clear);  
     border-radius: 15px; 
     padding: 30px 40px;
 }
@@ -62,7 +62,7 @@ transition: 1s;
     color:white;
     padding: 20px 45px 20px 20px;
 }
- .input-box input::placeholder { color: lightblue}
+ .input-box input::placeholder { color: var(--main-header-clear)}
  .input-box input:hover{
    border: 2px solid aqua;
  }
@@ -116,12 +116,12 @@ transition: 1s;
  }
 
  .register p a {
-    color: white;
+    color: var(--main-header-clear);
     text-decoration: none;
     font-weight: 400;
  }
  #linkRegistro{
-   color: aqua;
+   color: coral;
    text-decoration: none;
    font-weight: 600;
  }
@@ -168,7 +168,7 @@ transition: 1s;
    transform: scale(0.95);
  }
  .login #regBtn:hover:not(:disabled) {
-   background-color: aqua;
+   background-color: var(--main-tertiary-color-clear);
    transition: 0.5s;
    transform: scale(1.1);
 }

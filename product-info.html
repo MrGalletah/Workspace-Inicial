@@ -10,6 +10,8 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/products-info.css" rel="stylesheet">
+  <link href="css/products.css" rel="stylesheet">
 </head>
 
 <body>
@@ -31,16 +33,47 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-          </li>
-        </ul>
-      </div>
+            <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
+      
+      </li>
+    </ul>
+    <div class="form-check form-switch pt-1">
+      <input class="form-check-input" type="checkbox" role="switch" id="theme-selector">
     </div>
-  </nav>
+</div>
+</div>
+</nav>
+<aside class="" id="sidebar">
+<a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+</aside>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div id="container" class="container">
+      <div id="commentsSection" class="commentsContainer">
       </div>
+      <div id="userCommentsSection" class="commentsContainer">
+      </div>
+      <form id="commentForm">
+        <fieldset>
+          <label for="name">Nombre:</label><input type="text" id="nameCommentUser" required>
+          <label for="starSelector">Puntuación:</label>
+            <select id="starSelector">
+              <option value="1">⭐</option>
+              <option value="2">⭐⭐</option>
+              <option value="3">⭐⭐⭐</option>
+              <option value="4">⭐⭐⭐⭐</option>
+              <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+          
+        
+          <br>
+          <label for="description">Descripción:</label><textarea rows="10" cols="50" type="texta" id="description" required> </textarea>
+          <br>
+          <input type="submit" id="btnSubmit" class="rounded border">
+        </fieldset>
+      </form>
     </div>
   </main>
   <footer class="text-muted">
@@ -59,6 +92,7 @@
       <div></div>
     </div>
   </div>
+  <script src="js/helpers.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>

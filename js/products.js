@@ -5,6 +5,16 @@ const inputSearch = document.getElementById('inputSearch');
 const formSearch = document.getElementById('formSearch');
 
 
+themeFunction()
+sidebarFunction()
+userEmailFunction()
+
+//Redireccionar a products-info
+function redirectToProductInfo(productId) {
+    localStorage.setItem('productID', productId);
+    window.location.assign('product-info.html');
+}
+
 //Funcion que le da estructura a cada div del producto
 function mostrarProducto(dataArray) {
     contenedor.innerHTML = '';
@@ -15,7 +25,7 @@ function mostrarProducto(dataArray) {
     } else {
     for (const item of dataArray) {
         const divDeProducto = document.createElement('div');
-        divDeProducto.classList.add('divProducto', 'row', 'list-group-item', 'd-flex', 'justify-content-between');
+        divDeProducto.classList.add('divProducto', 'row','border', 'list-group-item','rounded', 'd-flex', 'justify-content-between', 'mt-3');
         const productHTML = `
             <div class="col-3">
                 <img src="${item.image}" class="img-thumbnail">
@@ -31,6 +41,10 @@ function mostrarProducto(dataArray) {
         divDeProducto.innerHTML = productHTML;
 
         contenedor.appendChild(divDeProducto);
+
+        divDeProducto.addEventListener('click', function () {
+            redirectToProductInfo(item.id);
+        });
     }
   }
 }
@@ -137,31 +151,6 @@ btnSortSoldCount.addEventListener("click", function () {
     mostrarProducto(sortedProducts);
 });
 
-
-//Funcion mostrar Mail y sidebar
-const userEmail = document.getElementById('user-email');
-userEmail.innerHTML = localStorage.getItem("email");
-const cerrarSesion = document.getElementById('cerrarSesion');
-cerrarSesion.addEventListener('click', function(e){
-    if (confirm("Estás seguro que quieres borrar tus datos?")) {
-        localStorage.removeItem('loggedIn');
-        localStorage.removeItem('email');
-    } else{
-        e.preventDefault();
-    }
-});
-
-const sidebar = document.getElementById("sidebar");
-
-userEmail.addEventListener("click", (e)=>{
-    e.preventDefault();
-
-    if(sidebar.classList.contains("sidebar-on")){
-        sidebar.classList.add("sidebar-off");
-    }
-
-    sidebar.classList.toggle("sidebar-on");
-});
 
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
 function filtrarProductos(busqueda, dataArray) {
