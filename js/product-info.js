@@ -225,7 +225,7 @@ async function getAndRenderRelatedProducts() {
       <div class="card" style="width: auto;">
       <img src="${image}" class="card-img-top" alt="...">
       <div class="card-body">
-      <h5 class="card-title lead">${shorterName(name)}</h5>
+      <h5 class="card-title lead">${shortenName(name)}</h5>
       <p class="card-text">${currency} ${cost}</p>
       </div>
       </div>
