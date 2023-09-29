@@ -206,8 +206,12 @@ fetch(url)
 // RENDERIZAR los productos relacionados *************
 function renderRelatedProducts() {
   let html = '';
-  arrayRelated.forEach(product => {
-    if (product.id !== productID) {      // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
+  const productID_numerico = JSON.parse(localStorage.getItem('productID'));
+console.log(productID_numerico);
+  const filteredArray = arrayRelated.filter(product => product.id !== productID_numerico);
+console.log(filteredArray);
+  filteredArray.forEach(product => {
+       // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
       html += `
         <div class="col-3 divProducto list-group-item mt-4">
           <h5 class="text-center fw-bold">${product.name}</h5>
@@ -215,7 +219,7 @@ function renderRelatedProducts() {
           <h4 class="text-center text-muted mt-2">${product.currency} $${product.cost}</h4>
         </div>
       `;
-    }
+    
   });
   related_Products.innerHTML = html;
   related_Products.classList.add('d-flex', 'justify-content-evenly');
@@ -223,13 +227,17 @@ function renderRelatedProducts() {
   const images = related_Products.querySelectorAll('img');
   images.forEach((image, index) => {
     image.addEventListener('click', () => {
-      redirectToProductInfo(arrayRelated[index].id);
+      redirectToProductInfo(filteredArray[index].id);
     });
   });
   // Redireccionar a products-info
   function redirectToProductInfo(productId) {
-    localStorage.setItem('productID', productId);
-    window.location.assign('product-info.html');
+    try {
+      localStorage.setItem('productID', productId);
+      window.location.assign('product-info.html');
+    } catch (error) {
+      console.error('Error al redireccionar a la página de información del producto:', error);
+    }
   }
 }
 
