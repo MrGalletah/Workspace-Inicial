@@ -173,7 +173,8 @@ commentForm.addEventListener('submit', function (e){
 
 document.addEventListener('DOMContentLoaded', function () {
   getAndRenderComments();
-  // Agregado al cargar la página que cargue el dato guardado del EMAIL del LocalStorage para el input NAME de los comments.
+  // Agregado al cargar la página que cargue el dato guardado del EMAIL del LocalStorage 
+  //                                                 para el input NAME de los comments.
   const nameInput = document.getElementById("nameCommentUser");
   const getLocalName = localStorage.getItem("email");
   
@@ -214,7 +215,6 @@ async function fetchData(url) {
     console.error(error);
   }
 }
-
 fetchData(url)
 
 // RENDERIZAR los productos relacionados *************
@@ -233,7 +233,6 @@ console.log(filteredArray);
           <h4 class="text-center text-muted mt-2">${product.currency} $${product.cost}</h4>
         </div>
       `;
-    
   });
   related_Products.innerHTML = html;
   related_Products.classList.add('d-flex', 'justify-content-evenly');
