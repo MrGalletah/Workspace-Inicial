@@ -227,7 +227,7 @@ console.log(filteredArray);
   filteredArray.forEach(product => {
        // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
       html += `
-        <div class="col-3 divProducto list-group-item mt-4">
+        <div class="col-3 divProducto list-group-item mt-4 mx-3">
           <h5 class="text-center fw-bold">${product.name}</h5>
           <img src="${product.image}" class="img-thumbnail mt-2" alt="${product.name}">
           <h4 class="text-center text-muted mt-2">${product.currency} $${product.cost}</h4>
