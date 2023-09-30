@@ -195,22 +195,27 @@ const renderCommentsLocalStorage = ()=>{
 }
 
 // ******************************************************************************************************************************************
-// OBTENER Productos Relacionados ***    PROBANDO COMPLEJIZAR TRAYENDO EL ARRAY DE TODOS LOS PRODUCTOS DE LA MISMA CATEGORIA
+// OBTENER Productos Relacionados ***    PROBANDO COMPLEJIZAR TRAYENDO EL ARRAY DE TODOS LOS PRODUCTOS
+//                                                                               DE LA MISMA CATEGORIA
 
 const related_Products = document.getElementById('relatedProducts');
 const catID = localStorage.getItem('catID');
 const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 const arrayRelated = [];
 
-
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
     arrayRelated.push(...data.products);
     console.log(arrayRelated);
     renderRelatedProducts();
-  })
-  .catch(error => console.error(error));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+fetchData(url)
 
 // RENDERIZAR los productos relacionados *************
 function renderRelatedProducts() {
