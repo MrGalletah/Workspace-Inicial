@@ -164,7 +164,7 @@ commentForm.addEventListener('submit', function (e){
     let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
     userComments.push(newCommentObject);
     localStorage.setItem(`${productID}`, JSON.stringify(userComments));
-    nameUserComment.value = '';
+    //nameUserComment.value = '';
     description.value = '';
     starSelector.selectedIndex = 0;
 });
@@ -173,6 +173,15 @@ commentForm.addEventListener('submit', function (e){
 
 document.addEventListener('DOMContentLoaded', function () {
   getAndRenderComments();
+  // Agregado al cargar la página que cargue el dato guardado del EMAIL del LocalStorage para el input NAME de los comments.
+  const nameInput = document.getElementById("nameCommentUser");
+  const getLocalName = localStorage.getItem("email");
+  
+  if (getLocalName) {
+    nameInput.value = getLocalName;
+    nameInput.classList.add('text-center')
+    nameInput.disabled = true;
+  }
 
 });
 
