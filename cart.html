@@ -5,10 +5,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  
 </head>
 
 <body>
@@ -30,18 +32,51 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-          </li>
-        </ul>
-      </div>
+            <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
+      
+      </li>
+    </ul>
+    <div class="form-check form-switch pt-1">
+      <input class="form-check-input" type="checkbox" role="switch" id="theme-selector">
     </div>
-  </nav>
+</div>
+</div>
+</nav>
+<aside class="" id="sidebar">
+  <div class="sidebar-links">
+    <ul class="sidebar-list">
+      <li>
+        <a class="sidebar-list" id="" href="my-profile.html"><img class="sidebar-icon" src="/icons/profile-round-1342.png" alt=""> Mi perfil</a>
+      </li>
+      <li>
+        <a class="sidebar-list" id="" href="cart.html"><img class="sidebar-icon" id="cartIcon" src="/icons/shopping-cart.png" alt="">Carrito</a>
+      </li>
+    </ul>
+
+</div>
+<a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+</aside>
+
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <h1 class="text-center fw-bold mt-3">Tu Carrito de Compras 🛒</h1>
+    
+      <div class="container">
+        <h4 class="text-muted">Artículos a comprar:</h4>
+        <div class="row border list-group-item rounded d-flex justify-content-between mt-3 fw-bold">
+          <div class="col-2 text-center"></div>
+          <div class="col-3 text-center">Nombre</div>
+          <div class="col-3 text-center">Costo</div>
+          <div class="col-2 text-center">Cantidad</div>
+          <div class="col-2 text-center">Subtotal</div>
+        </div>
+        <div id="cartProducts" class="row border list-group-item rounded d-flex align-items-center justify-content-between mt-3"></div>
+        
       </div>
-    </div>
   </main>
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -49,6 +84,7 @@
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
+  
   </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
@@ -58,9 +94,11 @@
       <div></div>
     </div>
   </div>
+  <script src="js/helpers.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
 </body>
 
 </html>
