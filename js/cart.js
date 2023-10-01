@@ -1,5 +1,5 @@
-themeFunction();
-sidebarFunction();
+
+
 userEmailFunction();
 
 const arrayCartStandar = [];
