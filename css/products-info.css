@@ -1,7 +1,8 @@
 
 .commentsContainer {
   background-color: var(--main-background-color-clear);
-  padding: 32px;
+  padding-top: 5%;
+  padding-left: 0;
 }
 
 .commentContainer {
@@ -56,4 +57,5 @@ b, h2, label{
 }
 #btnSubmit{
   background-color: var(--main-button-color-clear);
+  color: white;
 }
