@@ -2,6 +2,8 @@ const container = document.getElementById("container");
 const commentsSection = document.getElementById("commentsSection");
 const userCommentSection = document.getElementById("userCommentsSection");
 const productID = localStorage.productID;
+const sortByDateBtn = document.getElementById("sortByDate");
+const sortByStarsBtn = document.getElementById("sortByStars");
 
 //import {userEmail, sidebar} from "helpers.js";
 
@@ -110,6 +112,37 @@ const starRating = (userScore) =>{
 
   }
 }
+
+function showComments(array){
+  array.forEach((comment)=>{
+        commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
+      })
+}
+
+function sortDateASC(array) {
+   array.sort(function(a, b) { 
+        return new Date(a.dateTime) - new Date(b.dateTime); 
+      });
+}
+
+function sortDateDES(array) {
+  array.sort(function(a, b) { 
+        return new Date(b.dateTime) - new Date(a.dateTime); 
+      });
+}
+
+function sortStarsASC(array) {
+  array.sort(function(a, b) { 
+    return (a.score) - (b.score); 
+  });
+}
+
+function sortByStarsDES(array){
+  array.sort(function(a, b) { 
+    return (b.score) - (a.score); 
+  });
+} 
+
 // create html comment elemment
 const createCommentComponent = (user, score, desc, date)=>{
  const commentElement = document.createElement("div")
@@ -125,25 +158,59 @@ const createCommentComponent = (user, score, desc, date)=>{
 return commentElement
 }
 
+let clickSortDate = true;
+let clickSortStars = true;
+let response;
+const sortIconDate = document.getElementById('sortIconDate');
+const sortIconStars = document.getElementById('sortIconStars');
+
 // Fetch comments
 const getAndRenderComments = async () => {
   const productID = localStorage.productID;
   try {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
-    const response = await request.json();
+    response = await request.json();
     console.log(response);
-    response.sort(function(a, b) { 
-      return new Date(a.dateTime) - new Date(b.dateTime); 
-    }); 
-    response.forEach((comment)=>{
-      commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
-    })
+    showComments(response);
     renderCommentsLocalStorage()
     console.log(commentsSection)
   } catch (error) {
     console.log(error);
   }
 }
+
+sortByDateBtn.addEventListener("click", ()=> {
+  if(clickSortDate) {
+    commentsSection.innerHTML = '';
+    sortDateASC(response)
+    showComments(response)
+    clickSortDate = false;
+    sortIconDate.src = "icons/sort-up-date.png"
+
+  } else {
+    commentsSection.innerHTML = '';
+    sortDateDES(response)
+    showComments(response)
+    clickSortDate = true;
+   sortIconDate.src = "icons/sort-down-date.png"
+  }
+  })
+
+sortByStarsBtn.addEventListener("click", ()=> {
+  if(clickSortStars) {
+    commentsSection.innerHTML = '';
+    sortStarsASC(response);
+    showComments(response);
+    clickSortStars = false;
+    sortIconStars.src = "icons/sort-up-stars.png"
+  } else {
+    commentsSection.innerHTML = '';
+    sortByStarsDES(response);
+    showComments(response);
+    clickSortStars = true;
+    sortIconStars.src = "icons/sort-down-stars.png"
+  }
+})
 
 // new comments
 const commentForm = document.getElementById('commentForm');
@@ -153,16 +220,19 @@ commentForm.addEventListener('submit', function (e){
     const description = document.getElementById('description');
     const starSelector = document.getElementById('starSelector');
     const scoreUser = starRating(starSelector.selectedIndex + 1);
-    const date = new Date().toLocaleString();
+    const date = new Date().toLocaleString('sv-SE');
     const newComment = createCommentComponent(nameUserComment.value, scoreUser, description.value, date);
+    
     commentsSection.appendChild(newComment);
     const newCommentObject = {
-        name: nameUserComment.value,
+        user: nameUserComment.value,
         description: description.value,
-        rate: scoreUser,
-        date: date,
+        score: starSelector.value,
+        dateTime: date,
     };
     let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
+    response.push(newCommentObject);
+    console.log(response)
     userComments.push(newCommentObject);
     localStorage.setItem(`${productID}`, JSON.stringify(userComments));
     //nameUserComment.value = '';
@@ -221,12 +291,10 @@ fetchData(url)
 // RENDERIZAR los productos relacionados *************
 function renderRelatedProducts() {
   let html = '';
-  const productID_numerico = JSON.parse(localStorage.getItem('productID'));
-console.log(productID_numerico);
-  const filteredArray = arrayRelated.filter(product => product.id !== productID_numerico);
-console.log(filteredArray);
-  filteredArray.forEach(product => {
-       // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
+  arrayRelated.forEach(product => {
+    if (product.id == productID) {      // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
+      const productRepeat = product;
+    } else {
       html += `
         <div class="col-3 divProducto list-group-item mt-4 mx-3">
           <h5 class="text-center fw-bold">${product.name}</h5>

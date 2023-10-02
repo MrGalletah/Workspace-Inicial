@@ -150,7 +150,7 @@ btnSortSoldCount.addEventListener("click", function () {
     const sortedProducts = sortBySoldCount(productsFiltered.length > 0 ? productsFiltered : productsArray);
     mostrarProducto(sortedProducts);
 });
-
+ 
 
 // DEBAJO IMPLEMENTACION DE CÓDIGO PARA EL MOTOR DE BÚSQUEDA
 function filtrarProductos(busqueda, dataArray) {

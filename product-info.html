@@ -62,8 +62,12 @@
 </aside>
   <main>
     <div id="container" class="container">
+      <br>
       <div>
-        <button type="button" id="addToCart" class="btn btn-dark">Agregar al carrito</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button id="sortByDate" class="btn btn-primary me-md-2" type="button"><div class="d-flex"><img id="sortIconDate" src="icons/sort-down-date.png"></div></button>
+          <button id="sortByStars" class="btn btn-primary" type="button"><img id="sortIconStars" src="icons/sort-down-stars.png"></button>
+        </div>
       </div>
       <div id="commentsSection" class="commentsContainer">
       </div>
@@ -88,10 +92,9 @@
           <input type="submit" id="btnSubmit" class="rounded border btn-lg">
         </fieldset>
       </form>
-      <div class="text-center text-muted  mt-3"><br><h1>⬇ <span class="text-decoration-underline">Productos Relacionados</span> ⬇</h1></div>
-      <div id="relatedProducts" class="container"> </div>
+
     </div>
-      
+      <div id="relatedProducts" class="container"> </div>
   </main>
   <footer class="text-muted">
     <div class="container">
