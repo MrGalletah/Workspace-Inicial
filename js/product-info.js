@@ -2,6 +2,8 @@ const container = document.getElementById("container");
 const commentsSection = document.getElementById("commentsSection");
 const userCommentSection = document.getElementById("userCommentsSection");
 const productID = localStorage.productID;
+const sortByDateBtn = document.getElementById("sortByDate");
+const sortByStarsBtn = document.getElementById("sortByStars");
 
 //import {userEmail, sidebar} from "helpers.js";
 
@@ -11,8 +13,8 @@ userEmailFunction()
 themeFunction()
 
 function showProduct(array) {
-  const divProduct = document.createElement('div');
-  const product = `
+    const divProduct = document.createElement('div');
+    const product = `
     <div class="text-center">
     <h2 class="display2 my-4">${array.name}</h2>
   </div> 
@@ -59,23 +61,23 @@ function showProduct(array) {
     </div>
         `;
 
-  divProduct.innerHTML = product;
+    divProduct.innerHTML = product;
   //  container.appendChild(divProduct);
-  container.insertBefore(divProduct, container.firstChild)
+    container.insertBefore(divProduct, container.firstChild)
 }
 
 
 async function fetchDataAndShow() {
-  const productID = localStorage.productID;
-  urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`
-  try {
-    const response = await fetch(urlProduct);
-    const data = await response.json();
-    showProduct(data);
-  }
-  catch (error) {
-    throw new Error(`HTTP error! Status: ${error}`);
-  }
+    const productID = localStorage.productID;
+    urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`
+try {
+   const response = await fetch(urlProduct);
+   const data = await response.json();
+   showProduct(data);
+}
+catch(error) {
+  throw new Error(`HTTP error! Status: ${error}`);
+}   
 }
 
 fetchDataAndShow()
@@ -83,7 +85,7 @@ fetchDataAndShow()
 
 // Star rating based in UserScore
 
-const starRating = (userScore) => {
+const starRating = (userScore) =>{
   switch (Math.round(userScore)) {
     case 0:
       return ""
@@ -93,25 +95,56 @@ const starRating = (userScore) => {
       break;
     case 2:
       return "⭐⭐"
-      break;
+      break;  
     case 3:
       return "⭐⭐⭐"
-      break;
+    break;
     case 4:
       return "⭐⭐⭐⭐"
-      break;
+    break;
     case 5:
       return "⭐⭐⭐⭐⭐"
-      break;
+    break;
     default:
       return userScore
       break;
 
   }
 }
+
+function showComments(array){
+  array.forEach((comment)=>{
+        commentsSection.appendChild(createCommentComponent(comment.user,starRating(comment.score), comment.description,comment.dateTime))
+      })
+}
+
+function sortDateASC(array) {
+   array.sort(function(a, b) { 
+        return new Date(a.dateTime) - new Date(b.dateTime); 
+      });
+}
+
+function sortDateDES(array) {
+  array.sort(function(a, b) { 
+        return new Date(b.dateTime) - new Date(a.dateTime); 
+      });
+}
+
+function sortStarsASC(array) {
+  array.sort(function(a, b) { 
+    return (a.score) - (b.score); 
+  });
+}
+
+function sortByStarsDES(array){
+  array.sort(function(a, b) { 
+    return (b.score) - (a.score); 
+  });
+} 
+
 // create html comment elemment
-const createCommentComponent = (user, score, desc, date) => {
-  const commentElement = document.createElement("div")
+const createCommentComponent = (user, score, desc, date)=>{
+ const commentElement = document.createElement("div")
 
   commentElement.innerHTML = `        
 <div  class="commentContainer">
@@ -121,22 +154,23 @@ const createCommentComponent = (user, score, desc, date) => {
 <p  class="commentDate">${date}</p>
 </div>
 `
-  return commentElement
+return commentElement
 }
+
+let clickSortDate = true;
+let clickSortStars = true;
+let response;
+const sortIconDate = document.getElementById('sortIconDate');
+const sortIconStars = document.getElementById('sortIconStars');
 
 // Fetch comments
 const getAndRenderComments = async () => {
   const productID = localStorage.productID;
   try {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
-    const response = await request.json();
+    response = await request.json();
     console.log(response);
-    response.sort(function (a, b) {
-      return new Date(a.dateTime) - new Date(b.dateTime);
-    });
-    response.forEach((comment) => {
-      commentsSection.appendChild(createCommentComponent(comment.user, starRating(comment.score), comment.description, comment.dateTime))
-    })
+    showComments(response);
     renderCommentsLocalStorage()
     console.log(commentsSection)
   } catch (error) {
@@ -144,29 +178,65 @@ const getAndRenderComments = async () => {
   }
 }
 
+sortByDateBtn.addEventListener("click", ()=> {
+  if(clickSortDate) {
+    commentsSection.innerHTML = '';
+    sortDateASC(response)
+    showComments(response)
+    clickSortDate = false;
+    sortIconDate.src = "icons/sort-up-date.png"
+
+  } else {
+    commentsSection.innerHTML = '';
+    sortDateDES(response)
+    showComments(response)
+    clickSortDate = true;
+   sortIconDate.src = "icons/sort-down-date.png"
+  }
+  })
+
+sortByStarsBtn.addEventListener("click", ()=> {
+  if(clickSortStars) {
+    commentsSection.innerHTML = '';
+    sortStarsASC(response);
+    showComments(response);
+    clickSortStars = false;
+    sortIconStars.src = "icons/sort-up-stars.png"
+  } else {
+    commentsSection.innerHTML = '';
+    sortByStarsDES(response);
+    showComments(response);
+    clickSortStars = true;
+    sortIconStars.src = "icons/sort-down-stars.png"
+  }
+})
+
 // new comments
 const commentForm = document.getElementById('commentForm');
-commentForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const nameUserComment = document.getElementById('nameCommentUser');
-  const description = document.getElementById('description');
-  const starSelector = document.getElementById('starSelector');
-  const scoreUser = starRating(starSelector.selectedIndex + 1);
-  const date = new Date().toLocaleString();
-  const newComment = createCommentComponent(nameUserComment.value, scoreUser, description.value, date);
-  commentsSection.appendChild(newComment);
-  const newCommentObject = {
-    name: nameUserComment.value,
-    description: description.value,
-    rate: scoreUser,
-    date: date,
-  };
-  let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
-  userComments.push(newCommentObject);
-  localStorage.setItem(`${productID}`, JSON.stringify(userComments));
-  nameUserComment.value = '';
-  description.value = '';
-  starSelector.selectedIndex = 0;
+commentForm.addEventListener('submit', function (e){
+    e.preventDefault();
+    const nameUserComment = document.getElementById('nameCommentUser');
+    const description = document.getElementById('description');
+    const starSelector = document.getElementById('starSelector');
+    const scoreUser = starRating(starSelector.selectedIndex + 1);
+    const date = new Date().toLocaleString('sv-SE');
+    const newComment = createCommentComponent(nameUserComment.value, scoreUser, description.value, date);
+    
+    commentsSection.appendChild(newComment);
+    const newCommentObject = {
+        user: nameUserComment.value,
+        description: description.value,
+        score: starSelector.value,
+        dateTime: date,
+    };
+    let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
+    response.push(newCommentObject);
+    console.log(response)
+    userComments.push(newCommentObject);
+    localStorage.setItem(`${productID}`, JSON.stringify(userComments));
+    nameUserComment.value = '';
+    description.value = '';
+    starSelector.selectedIndex = 0;
 });
 
 
@@ -176,72 +246,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-const renderCommentsLocalStorage = () => {
+const renderCommentsLocalStorage = ()=>{
   const userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
   if (userComments.length > 0) {
-    userComments.forEach(comment => {
-      commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
-    });
+      userComments.forEach(comment => {
+          commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
+      });
   }
 }
 
-<<<<<<< HEAD
-function shortenName(string) {
-  if (string.length >= 16) {
-    let newstring = string.substring(0, 14);
-    return newstring + "..";
-  } else {
-    return string;
-  }
-};
-
-function redirectToNewProduct(productId) {
-  localStorage.setItem('productID', productId);
-  window.open('product-info.html');
-}
-
-
-// Related Products:    **** EN DESARROLLO ****
-const relatedProducts = document.getElementById("relatedProducts");
-async function getAndRenderRelatedProducts() {
-  const catID = localStorage.catID;
-  console.log(catID);
-  let relatedUrl = `${PRODUCTS_URL}/${catID}.json`;
-  try {
-    const request = await fetch(relatedUrl);
-    const array = await request.json();
-    console.log(array);
-    const arrayProducts = array.products;
-    arrayProducts.forEach(element => {
-      const name = element.name;
-      const image = element.image;
-      const currency = element.currency;
-      const cost = element.cost;
-      const id = element.id;
-
-      const relatedProduct = document.createElement('div');
-      relatedProduct.classList.add('col');
-      const productCard = `
-      <div id="${id}">
-      <div class="card" style="width: auto;">
-      <img src="${image}" class="card-img-top" alt="...">
-      <div class="card-body">
-      <h5 class="card-title lead">${shortenName(name)}</h5>
-      <p class="card-text">${currency} ${cost}</p>
-      </div>
-      </div>
-      </div>
-      `;
-      relatedProduct.innerHTML += productCard;
-      relatedProducts.appendChild(relatedProduct);
-
-      const redirect = document.getElementById(`${id}`);
-      redirect.addEventListener('click', () => {
-        redirectToNewProduct(id);
-      })
-
-    });
-=======
 // ******************************************************************************************************************************************
 // OBTENER Productos Relacionados ***    PROBANDO COMPLEJIZAR TRAYENDO EL ARRAY DE TODOS LOS PRODUCTOS DE LA MISMA CATEGORIA
 
@@ -264,7 +277,9 @@ fetch(url)
 function renderRelatedProducts() {
   let html = '';
   arrayRelated.forEach(product => {
-    if (product.id !== productID) {      // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
+    if (product.id == productID) {      // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
+      const productRepeat = product;
+    } else {
       html += `
         <div class="col-3 divProducto list-group-item mt-4">
           <h5 class="text-center fw-bold">${product.name}</h5>
@@ -287,7 +302,6 @@ function renderRelatedProducts() {
   function redirectToProductInfo(productId) {
     localStorage.setItem('productID', productId);
     window.location.assign('product-info.html');
->>>>>>> mauro
   }
 }
 
@@ -335,12 +349,8 @@ function renderRelatedProducts() {
   localStorage.setItem('productID', productId);
   window.location.assign('product-info.html');
   }
-<<<<<<< HEAD
-};
-
-getAndRenderRelatedProducts();
-=======
 }
 
 */
->>>>>>> mauro
+
+

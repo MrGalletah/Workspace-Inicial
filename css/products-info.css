@@ -58,3 +58,7 @@ b, h2, label{
 #btnSubmit{
   background-color: var(--main-button-color-clear);
 }
+
+#sortIconDate, #sortIconStars {
+  width: 2.5rem;
+}
