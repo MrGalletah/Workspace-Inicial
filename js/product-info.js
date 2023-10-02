@@ -23,7 +23,6 @@ function showProduct(array) {
         <li class="list-group-item list-color"><b>Descripción</b><br>${array.description}</li>
         <li class="list-group-item list-color"><b>Categoría</b><br>${array.category}</li>
         <li class="list-group-item list-color"><b>Cantidad de vendidos</b><br>${array.soldCount}</li>
-        <li class="list-group-item list-color"><button type="button" id="addToCart" class="btn btn-dark">Agregar al carrito</button>
         </li>
       </ul>
     </div>
@@ -304,11 +303,11 @@ function renderRelatedProducts() {
 */
 
 //funcionalidad agregar al carrito
-const mainSection = document.getElementsByTagName('main')[0];
+const addToCartBtn = document.getElementById('addToCart');
 
 let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
 
-mainSection.addEventListener("click", function(e) {
+addToCartBtn.addEventListener("click", function(e) {
  e.target.closest("#addToCart");
     if (!cartProducts.includes(productID)) {
       cartProducts.push(productID);
