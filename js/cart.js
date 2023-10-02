@@ -47,7 +47,7 @@ async function fetchCartData() {
 async function fetchDataAndShow() {
   const productIDs = JSON.parse(localStorage.getItem('cartProducts'));
   if (!productIDs || !Array.isArray(productIDs)) {
-    console.error('Invalid product IDs in localStorage.');
+    console.error('Invalid product IDs in localStorage, impossible to fetch.');
     return;
   }
 
@@ -89,7 +89,7 @@ function appendProductToCart(productData, cartProducts) {
     selectedQuantity = parseInt(quantityInput.value);
     const subtotalElement = productItem.querySelector('.subtotal');
     const subtotal = calculateSubtotal(productData.cost, selectedQuantity);
-    subtotalElement.textContent = `${productData.currency} ${subtotal}`;
+    subtotalElement.textContent = ` ${subtotal}`;
   });
 }
 

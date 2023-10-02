@@ -309,7 +309,7 @@ const mainSection = document.getElementsByTagName('main')[0];
 let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
 
 mainSection.addEventListener("click", function(e) {
-  const target = e.target.closest("#addToCart");
+ e.target.closest("#addToCart");
     if (!cartProducts.includes(productID)) {
       cartProducts.push(productID);
 
