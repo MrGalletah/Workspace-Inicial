@@ -302,7 +302,7 @@ function renderRelatedProducts() {
           <h4 class="text-center text-muted mt-2">${product.currency} $${product.cost}</h4>
         </div>
       `;
-  });
+  }});
   related_Products.innerHTML = html;
   related_Products.classList.add('d-flex', 'justify-content-evenly');
   // AGREGADO UN addEventListener al hacerle click a las imágenes de nuestros RelatedProducts.
