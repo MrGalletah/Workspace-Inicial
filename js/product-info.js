@@ -173,6 +173,7 @@ const getAndRenderComments = async () => {
     console.log(response);
     commentsUpdated = commentsUpdated.concat(response);
     renderCommentsLocalStorage();
+    sortDateASC(commentsUpdated);
     showComments(commentsUpdated);
     console.log(commentsSection)
   } catch (error) {
@@ -265,11 +266,7 @@ const renderCommentsLocalStorage = ()=>{
       });
   }
 }
-
-// ******************************************************************************************************************************************
-// OBTENER Productos Relacionados ***    PROBANDO COMPLEJIZAR TRAYENDO EL ARRAY DE TODOS LOS PRODUCTOS
-//                                                                               DE LA MISMA CATEGORIA
-
+                                                          
 const related_Products = document.getElementById('relatedProducts');
 const catID = localStorage.getItem('catID');
 const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
@@ -292,7 +289,7 @@ fetchData(url)
 function renderRelatedProducts() {
   let html = '';
   arrayRelated.forEach(product => {
-    if (product.id == productID) {      // AUN NO FUNCIONA LA CONDICION PARA QUE NO MUESTRE EL PRODUCTO ACTUAL !!!!!!!!
+    if (product.id == productID) {    
       const productRepeat = product;
     } else {
       html += `
@@ -322,53 +319,6 @@ function renderRelatedProducts() {
     }
   }
 }
-
-/*   EL CODIGO DE ABAJO FUNCIONA BIEN CON 2 RELATED PRODUCTS SOLAMENTE LOS QUE NOS BRINDA LA API, UNA PROPIEDAD DEL MISMO PRODUCTO ****************************
-
-// OBTENER Productos Relacionados **********************
-const related_Products = document.getElementById('relatedProducts');
-const url = `https://japceibal.github.io/emercado-api/products/${productID}.json`;
-const arrayRelated = [];
-fetch(url)
-  .then(response => response.json())
-  .then(data => {
-    arrayRelated.push(...data.relatedProducts); //Se utiliza el operador spread (...) para agregar los objetos individuales de "data.relatedProducts" al array "arrayRelated".
-    console.log(arrayRelated);
-    renderRelatedProducts(); // Llamada a la función de renderizado que está debajo.
-  })
-  .catch(error => console.error(error));
-
-// RENDERIZAR los productos relacionados *************
-function renderRelatedProducts() {
-  let html = '';
-  arrayRelated.forEach(product => {
-    html += `
-      <div class="col-5 divProducto list-group-item mt-4">
-        <h3 class="text-center">${product.name}</h3>
-        <img src="${product.image}"  class="img-thumbnail" alt="${product.name}">
-        <h3> </h3>
-      </div>
-    `;
-  });
-  related_Products.innerHTML = html;
-  related_Products.classList.add('d-flex' , 'justify-content-evenly');
- 
- 
-  // AGREGADO UN addEventListener al hacerle click a las imágenes de nuestros RelatedProducts.
-  const images = related_Products.querySelectorAll('img');
-  images.forEach((image, index) => {
-    image.addEventListener('click', () => {
-      redirectToProductInfo(arrayRelated[index].id);
-    });
-  });
-
-  // Redireccionar a products-info
-  function redirectToProductInfo(productId) {
-  localStorage.setItem('productID', productId);
-  window.location.assign('product-info.html');
-  }
-}
-*/
 
 //funcionalidad agregar al carrito
 const addToCartBtn = document.getElementById('addToCart');
