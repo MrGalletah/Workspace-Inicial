@@ -23,6 +23,8 @@ function showProduct(array) {
         <li class="list-group-item list-color"><b>Descripción</b><br>${array.description}</li>
         <li class="list-group-item list-color"><b>Categoría</b><br>${array.category}</li>
         <li class="list-group-item list-color"><b>Cantidad de vendidos</b><br>${array.soldCount}</li>
+        <li class="list-group-item list-color"><button type="button" id="addToCart" class="btn btn-dark">Agregar al carrito</button>
+        </li>
       </ul>
     </div>
     <div class="col-6">
@@ -299,5 +301,21 @@ function renderRelatedProducts() {
   window.location.assign('product-info.html');
   }
 }
-
 */
+
+//funcionalidad agregar al carrito
+const mainSection = document.getElementsByTagName('main')[0];
+
+let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+
+mainSection.addEventListener("click", function(e) {
+  const target = e.target.closest("#addToCart");
+    if (!cartProducts.includes(productID)) {
+      cartProducts.push(productID);
+
+      localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+      alert('Agregado al carrito!')
+    }
+  }
+);
+
