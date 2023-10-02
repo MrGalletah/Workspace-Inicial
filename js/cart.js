@@ -69,7 +69,7 @@ async function fetchDataAndShow() {
 // Funcion carrito del usuario
 function appendProductToCart(productData, cartProducts) {
   const productItem = document.createElement("div");
-  productItem.className = "cart-item row";
+  productItem.className = "cart-item row d-flex";
 
   const productHTML = `
     <div class="col-2 text-center"><img src="${productData.images[0]}" class="img-thumbnail mt-2" alt="${productData.name}"></div>
@@ -77,6 +77,7 @@ function appendProductToCart(productData, cartProducts) {
     <div class="col-3 text-center">${productData.currency} ${productData.cost}</div>
     <div class="col-2 text-center">
       <input class="cart-quantity" type="number" value="${selectedQuantity}" max="999" min="1" class="text-center">
+      <button type="button" class="btn btn-danger removeItem">X</button>
     </div>
     <div class="col-2 text-center fw-bold">${productData.currency} <span class="subtotal">${calculateSubtotal(productData.cost, selectedQuantity)}</span></div>
   `;
@@ -84,12 +85,22 @@ function appendProductToCart(productData, cartProducts) {
   productItem.innerHTML = productHTML;
   cartProducts.appendChild(productItem);
 
+  //calculo del subtotal para productos del usuario
   const quantityInput = productItem.querySelector('.cart-quantity');
   quantityInput.addEventListener('input', function () {
     selectedQuantity = parseInt(quantityInput.value);
     const subtotalElement = productItem.querySelector('.subtotal');
     const subtotal = calculateSubtotal(productData.cost, selectedQuantity);
     subtotalElement.textContent = ` ${subtotal}`;
+  });
+
+  //funcion para borrar items del carrito, falta que borre la id del localstorage
+  const removeButton = productItem.querySelector('.removeItem');
+  removeButton.addEventListener('click', function () {
+    const cartItem = removeButton.closest('.cart-item');
+    if (cartItem) {
+      cartItem.remove();
+    }
   });
 }
 

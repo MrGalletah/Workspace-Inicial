@@ -315,6 +315,8 @@ mainSection.addEventListener("click", function(e) {
 
       localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
       alert('Agregado al carrito!')
+    } else {
+      alert('Este item ya esta en su carro de compras!')
     }
   }
 );
