@@ -160,7 +160,7 @@ return commentElement
 
 let clickSortDate = true;
 let clickSortStars = true;
-let response;
+let commentsUpdated = [];
 const sortIconDate = document.getElementById('sortIconDate');
 const sortIconStars = document.getElementById('sortIconStars');
 
@@ -171,8 +171,9 @@ const getAndRenderComments = async () => {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
     response = await request.json();
     console.log(response);
-    showComments(response);
-    renderCommentsLocalStorage()
+    commentsUpdated = commentsUpdated.concat(response);
+    renderCommentsLocalStorage();
+    showComments(commentsUpdated);
     console.log(commentsSection)
   } catch (error) {
     console.log(error);
@@ -182,15 +183,15 @@ const getAndRenderComments = async () => {
 sortByDateBtn.addEventListener("click", ()=> {
   if(clickSortDate) {
     commentsSection.innerHTML = '';
-    sortDateASC(response)
-    showComments(response)
+    sortDateASC(commentsUpdated);
+    showComments(commentsUpdated);
     clickSortDate = false;
     sortIconDate.src = "icons/sort-up-date.png"
 
   } else {
     commentsSection.innerHTML = '';
-    sortDateDES(response)
-    showComments(response)
+    sortDateDES(commentsUpdated);
+    showComments(commentsUpdated);
     clickSortDate = true;
    sortIconDate.src = "icons/sort-down-date.png"
   }
@@ -199,14 +200,14 @@ sortByDateBtn.addEventListener("click", ()=> {
 sortByStarsBtn.addEventListener("click", ()=> {
   if(clickSortStars) {
     commentsSection.innerHTML = '';
-    sortStarsASC(response);
-    showComments(response);
+    sortStarsASC(commentsUpdated);
+    showComments(commentsUpdated);
     clickSortStars = false;
     sortIconStars.src = "icons/sort-up-stars.png"
   } else {
     commentsSection.innerHTML = '';
-    sortByStarsDES(response);
-    showComments(response);
+    sortByStarsDES(commentsUpdated);
+    showComments(commentsUpdated);
     clickSortStars = true;
     sortIconStars.src = "icons/sort-down-stars.png"
   }
@@ -231,7 +232,6 @@ commentForm.addEventListener('submit', function (e){
         dateTime: date,
     };
     let userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
-    response.push(newCommentObject);
     console.log(response)
     userComments.push(newCommentObject);
     localStorage.setItem(`${productID}`, JSON.stringify(userComments));
@@ -261,7 +261,7 @@ const renderCommentsLocalStorage = ()=>{
   const userComments = JSON.parse(localStorage.getItem(`${productID}`)) || [];
   if (userComments.length > 0) {
       userComments.forEach(comment => {
-          commentsSection.append(createCommentComponent(comment.name, comment.rate, comment.description, comment.date));
+          commentsUpdated.push(comment);
       });
   }
 }
