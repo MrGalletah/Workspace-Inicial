@@ -401,3 +401,11 @@ h3{
   --main-tertiary-color-clear : #2cb67d;
   --sidebar-background-clear: #16161a;
 }
+
+
+/* esconde las flechas de los input text en los nav. Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
