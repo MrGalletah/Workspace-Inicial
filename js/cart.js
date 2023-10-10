@@ -1,5 +1,9 @@
 // Calculo del subtotal
 function calculateSubtotal(unitCost, quantity) {
+  if (isNaN(quantity)) {
+    quantity = 1;
+  }
+
   return unitCost * quantity;
 }
 
@@ -22,9 +26,13 @@ function updateCartUI(item) {
   const quantityInput = document.querySelector('.cart-quantity');
   quantityInput.addEventListener('input', function () {
     selectedQuantity = parseInt(quantityInput.value);
+    if (isNaN(selectedQuantity)) {
+      selectedQuantity = 1;
+      quantityInput.value = 1;
+    }
     const subtotalElement = document.querySelector('.subtotal');
     const subtotal = calculateSubtotal(item.unitCost, selectedQuantity);
-    subtotalElement.textContent = `${item.currency} ${subtotal}`;
+    subtotalElement.textContent = `${subtotal}`;
   });
 }
 
@@ -89,6 +97,10 @@ function appendProductToCart(productData, cartProducts) {
   const quantityInput = productItem.querySelector('.cart-quantity');
   quantityInput.addEventListener('input', function () {
     selectedQuantity = parseInt(quantityInput.value);
+    if (isNaN(selectedQuantity)) {
+      selectedQuantity = 1;
+      quantityInput.value = 1;
+    }
     const subtotalElement = productItem.querySelector('.subtotal');
     const subtotal = calculateSubtotal(productData.cost, selectedQuantity);
     subtotalElement.textContent = ` ${subtotal}`;
