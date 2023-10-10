@@ -1,12 +1,3 @@
-// Calculo del subtotal
-function calculateSubtotal(unitCost, quantity) {
-  if (isNaN(quantity)) {
-    quantity = 1;
-  }
-
-  return unitCost * quantity;
-}
-
 // Item de carrito de muestra
 function updateCartUI(item) {
   const cartProducts = document.getElementById('cartProducts');
