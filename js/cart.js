@@ -83,13 +83,13 @@ function appendProductToCart(productData, productID) {
 
   const productHTML = `
     <div class="col-2 text-center"><img src="${productData.images[0]}" class="img-thumbnail mt-2" alt="${productData.name}"></div>
-    <div class="col-3 text-center">${productData.name}</div>
-    <div class="col-3 text-center">${productData.currency} ${productData.cost}</div>
-    <div class="col-2 text-center">
+    <div class="col-3 text-center ps-3">${productData.name}</div>
+    <div class="col-3 text-center ps-4">${productData.currency} ${productData.cost}</div>
+    <div class="col-2 text-center ps-5">
       <input class="cart-quantity" type="number" value="1" max="999" min="1" class="text-center">
     </div>
-    <div class="col-1 text-center fw-bold">${productData.currency} <span class="subtotal">${productData.cost}</span></div>
-    <div class="col-1"><button type="button" class="btn btn-danger removeItem" id="removeBtn" data-productID="${productID}">X</button></div>
+    <div class="col-1 text-center fw-bold ps-5">${productData.currency} <span class="subtotal">${productData.cost}</span></div>
+    <div class="col-1"><button type="button" class="ms-5 btn btn-danger removeItem" id="removeBtn" data-productID="${productID}">X</button></div>
 
   `;
 
