@@ -53,8 +53,8 @@ async function fetchCartData() {
 
 // Fetch productos de localStorage
 async function fetchDataAndShow() {
-  const productIDs = JSON.parse(localStorage.getItem('cartProducts'));
-  if (!productIDs || !Array.isArray(productIDs)) {
+  const productIDs = JSON.parse(localStorage.getItem('cartProducts')) || [];
+  if (!Array.isArray(productIDs)) {
     console.error('Invalid product IDs in localStorage, impossible to fetch.');
     return;
   }
@@ -67,7 +67,7 @@ async function fetchDataAndShow() {
     try {
       const response = await fetch(urlProduct);
       const data = await response.json();
-      appendProductToCart(data, cartProducts);
+      appendProductToCart(data, productID, cartProducts);
     } catch (error) {
       console.error(`Error fetching product with ID ${productID}: ${error}`);
     }
@@ -75,45 +75,47 @@ async function fetchDataAndShow() {
 }
 
 // Funcion carrito del usuario
-function appendProductToCart(productData, cartProducts) {
+function appendProductToCart(productData, productID) {
+  const cartProducts = document.getElementById('cartProducts');
+  
   const productItem = document.createElement("div");
-  productItem.className = "cart-item row d-flex";
+  productItem.className = "cart-item row d-flex align-items-center"; 
 
   const productHTML = `
     <div class="col-2 text-center"><img src="${productData.images[0]}" class="img-thumbnail mt-2" alt="${productData.name}"></div>
-    <div class="col-3 text-center">${productData.name}</div>
-    <div class="col-3 text-center">${productData.currency} ${productData.cost}</div>
-    <div class="col-2 text-center">
-      <input class="cart-quantity" type="number" value="${selectedQuantity}" max="999" min="1" class="text-center">
-      <button type="button" class="btn btn-danger removeItem">X</button>
+    <div class="col-3 text-center ps-3">${productData.name}</div>
+    <div class="col-3 text-center ps-4">${productData.currency} ${productData.cost}</div>
+    <div class="col-2 text-center ps-5">
+      <input class="cart-quantity" type="number" value="1" max="999" min="1" class="text-center">
     </div>
-    <div class="col-2 text-center fw-bold">${productData.currency} <span class="subtotal">${calculateSubtotal(productData.cost, selectedQuantity)}</span></div>
+    <div class="col-1 text-center fw-bold ps-5">${productData.currency} <span class="subtotal">${productData.cost}</span></div>
+    <div class="col-1"><button type="button" class="ms-5 btn btn-danger removeItem" id="removeBtn" data-productID="${productID}">X</button></div>
+
   `;
 
   productItem.innerHTML = productHTML;
   cartProducts.appendChild(productItem);
 
-  //calculo del subtotal para productos del usuario
   const quantityInput = productItem.querySelector('.cart-quantity');
   quantityInput.addEventListener('input', function () {
-    selectedQuantity = parseInt(quantityInput.value);
-    if (isNaN(selectedQuantity)) {
-      selectedQuantity = 1;
-      quantityInput.value = 1;
-    }
+    const selectedQuantity = parseInt(quantityInput.value);
     const subtotalElement = productItem.querySelector('.subtotal');
     const subtotal = calculateSubtotal(productData.cost, selectedQuantity);
     subtotalElement.textContent = ` ${subtotal}`;
   });
-
-  //funcion para borrar items del carrito, falta que borre la id del localstorage
+  //funcionalidad para remover el producto del carrito
   const removeButton = productItem.querySelector('.removeItem');
   removeButton.addEventListener('click', function () {
-    const cartItem = removeButton.closest('.cart-item');
-    if (cartItem) {
-      cartItem.remove();
-    }
+    const productIDToRemove = removeButton.getAttribute("data-productID");
+    cartProducts.removeChild(productItem);
+    removeProductFromCart(productIDToRemove);
   });
+}
+//Funcion para remover el producto del carrito en el localStorage
+function removeProductFromCart(productID) {
+  const productIDs = JSON.parse(localStorage.getItem('cartProducts')) || [];
+  const updatedProductIDs = productIDs.filter(id => id !== productID);
+  localStorage.setItem('cartProducts', JSON.stringify(updatedProductIDs));
 }
 
 

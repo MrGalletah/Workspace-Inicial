@@ -8,9 +8,9 @@ const sortByStarsBtn = document.getElementById("sortByStars");
 //import {userEmail, sidebar} from "helpers.js";
 
 
-sidebarFunction()
-userEmailFunction()
-themeFunction()
+sidebarFunction();
+userEmailFunction();
+themeFunction();
 
 function showProduct(array) {
     const divProduct = document.createElement('div');
@@ -306,7 +306,7 @@ function renderRelatedProducts() {
   const images = related_Products.querySelectorAll('img');
   images.forEach((image, index) => {
     image.addEventListener('click', () => {
-      redirectToProductInfo(filteredArray[index].id);
+      redirectToProductInfo(arrayRelated[index].id);
     });
   });
   // Redireccionar a products-info
