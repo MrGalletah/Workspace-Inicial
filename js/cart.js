@@ -79,7 +79,7 @@ function appendProductToCart(productData, productID) {
   const cartProducts = document.getElementById('cartProducts');
   
   const productItem = document.createElement("div");
-  productItem.className = "cart-item row d-flex"; 
+  productItem.className = "cart-item row d-flex align-items-center"; 
 
   const productHTML = `
     <div class="col-2 text-center"><img src="${productData.images[0]}" class="img-thumbnail mt-2" alt="${productData.name}"></div>
@@ -87,9 +87,10 @@ function appendProductToCart(productData, productID) {
     <div class="col-3 text-center">${productData.currency} ${productData.cost}</div>
     <div class="col-2 text-center">
       <input class="cart-quantity" type="number" value="1" max="999" min="1" class="text-center">
-      <button type="button" class="btn btn-danger removeItem" data-productID="${productID}">X</button>
     </div>
-    <div class="col-2 text-center fw-bold">${productData.currency} <span class="subtotal">${productData.cost}</span></div>
+    <div class="col-1 text-center fw-bold">${productData.currency} <span class="subtotal">${productData.cost}</span></div>
+    <div class="col-1"><button type="button" class="btn btn-danger removeItem" id="removeBtn" data-productID="${productID}">X</button></div>
+
   `;
 
   productItem.innerHTML = productHTML;

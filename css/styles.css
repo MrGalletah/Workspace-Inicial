@@ -409,3 +409,8 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+#removeBtn {
+  background-color: white;
+  color: red;
+}
