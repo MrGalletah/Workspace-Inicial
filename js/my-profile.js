@@ -1,0 +1,3 @@
+sidebarFunction();
+userEmailFunction();
+themeFunction();
