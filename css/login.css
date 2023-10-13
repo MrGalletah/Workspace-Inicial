@@ -172,3 +172,13 @@ transition: 1s;
    transition: 0.5s;
    transform: scale(1.1);
 }
+@media (max-width: 576px) {
+   .login {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+   body{
+      background-color: var(--main-card-background-clear);
+   }
+ }
