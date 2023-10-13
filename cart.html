@@ -33,7 +33,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link sidebar-toggle" id="user-email" href="">Tu Correo</a>
+            <a class="nav-link" id="user-email" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" >Tu Correo</a>
         </li>
         <li class="nav-item">
           <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
@@ -46,20 +46,28 @@
 </div>
 </div>
 </nav>
-<aside class="" id="sidebar">
-  <div class="sidebar-links">
-    <ul class="sidebar-list">
-      <li>
-        <a class="sidebar-list" id="" href="my-profile.html"><img class="sidebar-icon" src="/icons/profile-round-1342.png" alt=""> Mi perfil</a>
-      </li>
-      <li>
-        <a class="sidebar-list" id="" href="cart.html"><img class="sidebar-icon" id="cartIcon" src="/icons/shopping-cart.png" alt="">Carrito</a>
-      </li>
-    </ul>
-
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="sidebarEmail"></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div class="sidebar-links">
+        <ul class="sidebar-list">
+          <li>
+            <a class="sidebar-list" id="" href="my-profile.html"><img class="sidebar-icon" src="/icons/profile-round-1342.png" alt=""> Mi perfil</a>
+          </li>
+          <li>
+            <a class="sidebar-list" id="" href="cart.html"><img class="sidebar-icon" id="cartIcon" src="/icons/shopping-cart.png" alt="">Carrito</a>
+          </li>
+        </ul>
+    
+    </div>
+    <a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+    </div>
+  </div>
 </div>
-<a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
-</aside>
 
   <main>
     <h1 class="text-center fw-bold pt-3">Tu Carrito de Compras 🛒</h1>

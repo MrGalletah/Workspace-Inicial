@@ -8,7 +8,7 @@ const sortByStarsBtn = document.getElementById("sortByStars");
 //import {userEmail, sidebar} from "helpers.js";
 
 
-sidebarFunction();
+
 userEmailFunction();
 themeFunction();
 
@@ -19,7 +19,7 @@ function showProduct(array) {
     <h2 class="display2 my-4">${array.name}</h2>
   </div> 
   <div class="row">
-    <div class="col-6">
+    <div class="col-md-6 col-sm-12 mb-sm-2">
       <ul class="list-group list-group-flush border rounded">
         <li class="list-group-item list-color"><b>Precio</b><br>${array.currency} $${array.cost}</li>
         <li class="list-group-item list-color"><b>Descripción</b><br>${array.description}</li>
@@ -28,7 +28,7 @@ function showProduct(array) {
         </li>
       </ul>
     </div>
-    <div class="col-6">
+    <div class="col-md-6 col-sm-12 mb-sm-2">
       <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -151,7 +151,7 @@ const createCommentComponent = (user, score, desc, date)=>{
 <div  class="commentContainer">
 <p  class="commentUser">${user}</p>
 <p  class="commentScore">${score}</p>
-<p  class="commentDesc">${desc}</p>
+<p  class="commentDesc ">${desc}</p>
 <p  class="commentDate">${date}</p>
 </div>
 `

@@ -250,7 +250,7 @@ a.custom-card:hover {
 
 /* Estilos y animaciones para la sidebar */
 
-.sidebar-links{
+ .sidebar-links{
   color: white;
   margin-top: 30%;
   margin-right: 10%;
@@ -266,7 +266,7 @@ a.custom-card:hover {
   text-decoration: none;
 
   
-}
+} 
 
 .sidebar-list:hover{
   color: white;
@@ -287,7 +287,7 @@ a.custom-card:hover {
 
 }
 
-.sidebar-icon {
+ .sidebar-icon {
   width: 15%;
   color: white;
 }
@@ -295,7 +295,7 @@ a.custom-card:hover {
 #cartIcon {
   padding-right: 1%;
   width: 17%;
-}
+} 
 
 .sidebar-on {
   display: flex;
@@ -312,11 +312,11 @@ a.custom-card:hover {
   transform: translate(16%);
 }
 .sidebar-content {
-  padding: 16px 16px 32px 32px;
   color: red;
+ padding: 16px 16px 32px 32px;
  letter-spacing: 1px;
  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+} 
 .sidebar-content:hover{
   color: red;
 }
@@ -391,18 +391,15 @@ h3{
   width: 20%;
   margin-left: 40%;
 }
-:root:has(.dark-theme){
-  --main-background-color-clear : #242629;
-  --main-button-color-clear : #7f5af0;
-  --main-card-background-clear :#16161a;
-  --main-header-clear :#fffffe;
-  --main-text-color-clear : #a7a9be;
-  --main-secondary-color-clear : #2cb67d;
-  --main-tertiary-color-clear : #2cb67d;
-  --sidebar-background-clear: #16161a;
+.offcanvas{
+  background-color: var(--sidebar-background-clear);
 }
-
-
+.offcanvas-title{
+  color: var(--main-header-clear);
+}
+.btn-close{
+  background-color: red;
+}
 /* esconde las flechas de los input text en los nav. Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -413,4 +410,14 @@ input::-webkit-inner-spin-button {
 #removeBtn {
   background-color: white;
   color: red;
+}
+:root:has(.dark-theme){
+  --main-background-color-clear : #242629;
+  --main-button-color-clear : #7f5af0;
+  --main-card-background-clear :#16161a;
+  --main-header-clear :#fffffe;
+  --main-text-color-clear : #a7a9be;
+  --main-secondary-color-clear : #2cb67d;
+  --main-tertiary-color-clear : #2cb67d;
+  --sidebar-background-clear: #16161a;
 }
