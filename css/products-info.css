@@ -22,7 +22,7 @@
 .commentDate {
   flex-basis: 100%;
 }
-
+/*Responsive de comentarios en pantallas LG de (más) de 768px*/
 @media (width >= 768px) { 
   .commentUser {
     flex-basis: 15%;
@@ -37,6 +37,7 @@
     flex-basis: 15%;
   }
 }
+/*Responsive de comentarios en pantallas SM de (menos) de 768px*/
 @media (width < 768px) {
   .commentContainer {
     flex-direction: column;
@@ -75,4 +76,11 @@ b, h2, label{
 
 #sortIconDate, #sortIconStars {
   width: 2.5rem;
+}
+
+/*Responsive de los Productos Relacionados en pantallas SM (menos) a 768px */
+@media (width < 768px) {
+  .#relatedProducts {
+    flex-direction: column;
+  }
 }
