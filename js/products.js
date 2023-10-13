@@ -6,7 +6,6 @@ const formSearch = document.getElementById('formSearch');
 
 
 themeFunction()
-sidebarFunction()
 userEmailFunction()
 
 //Redireccionar a products-info
@@ -27,14 +26,14 @@ function mostrarProducto(dataArray) {
         const divDeProducto = document.createElement('div');
         divDeProducto.classList.add('divProducto', 'row','border', 'list-group-item','rounded', 'd-flex', 'justify-content-between', 'mt-3');
         const productHTML = `
-            <div class="col-3">
+            <div class="col-lg-3 col-sm-12 col-md-6">
                 <img src="${item.image}" class="img-thumbnail">
             </div>
-            <div class="col-6">
-                <h3>${item.name} - ${item.currency} ${item.cost}</h3>
+            <div class="col-lg-6">
+                <h3 class="pt-2">${item.name} - ${item.currency} ${item.cost}</h3>
                 <p>${item.description}</p>
             </div>
-            <div class="col-3 text-muted text-end">
+            <div class="col-lg-3 col-md-12 text-muted text-end">
                 <small>${item.soldCount} vendidos</small>
             </div>
         `;

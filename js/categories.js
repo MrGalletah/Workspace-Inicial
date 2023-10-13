@@ -7,7 +7,6 @@ let minCount = undefined;
 let maxCount = undefined;
 
 themeFunction()
-sidebarFunction()
 userEmailFunction()
 
 

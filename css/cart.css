@@ -1,0 +1,14 @@
+body{
+    background-color: var(--main-background-color-clear);
+}
+h1, h4{
+    color: var(--main-header-clear);
+}
+.cart-info{
+    color: var(--main-text-color-clear);
+    background-color: var(--main-card-background-clear);
+}
+#cartProducts{
+    color: var(--main-text-color-clear);
+    background-color: var(--main-card-background-clear);
+}

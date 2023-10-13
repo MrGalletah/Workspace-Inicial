@@ -1,4 +1,3 @@
-sidebarFunction()
 userEmailFunction()
 themeFunction()
 

@@ -8,7 +8,7 @@ const sortByStarsBtn = document.getElementById("sortByStars");
 //import {userEmail, sidebar} from "helpers.js";
 
 
-sidebarFunction();
+
 userEmailFunction();
 themeFunction();
 
@@ -151,7 +151,7 @@ const createCommentComponent = (user, score, desc, date)=>{
 <div  class="commentContainer">
 <p  class="commentUser">${user}</p>
 <p  class="commentScore">${score}</p>
-<p  class="commentDesc">${desc}</p>
+<p  class="commentDesc ">${desc}</p>
 <p  class="commentDate">${date}</p>
 </div>
 `

@@ -15,7 +15,7 @@
   margin-bottom: 1%;
   padding: 12px 24px;
 }
-/*---------------------------------------------------------------------------------*/
+
 .commentUser,
 .commentScore,
 .commentDesc,
@@ -23,7 +23,7 @@
   flex-basis: 100%;
 }
 
-@media (width >= 768px) { /* Pantallas LG y más grandes */
+@media (width >= 768px) { 
   .commentUser {
     flex-basis: 15%;
   }
@@ -37,13 +37,11 @@
     flex-basis: 15%;
   }
 }
-
-/* Pantallas SM */
 @media (width < 768px) {
   .commentContainer {
     flex-direction: column;
   }
-  
+
   .commentUser,
   .commentScore,
   .commentDesc,
@@ -51,11 +49,10 @@
     flex-basis: 100%;
   }
 }
-
-/*---------------------------------------------------------------------------------*/
 .commentUser {
-   color: var(--main-header-clear);
+  color: var(--main-header-clear);
 }
+
 label, h2{
     color: var(--main-text-color-clear);
 }
@@ -65,7 +62,7 @@ label, h2{
 }
 
 fieldset{
-    display: flex;
+  display: flex;
     align-items: center;
     flex-direction: column;
 }
