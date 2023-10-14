@@ -1,3 +1,2 @@
-sidebarFunction();
 userEmailFunction();
 themeFunction();

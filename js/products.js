@@ -6,7 +6,6 @@ const formSearch = document.getElementById('formSearch');
 
 
 themeFunction()
-sidebarFunction()
 userEmailFunction()
 
 //Redireccionar a products-info

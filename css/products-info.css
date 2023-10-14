@@ -15,30 +15,44 @@
   margin-bottom: 1%;
   padding: 12px 24px;
 }
-.commentUser {
-  /* margin: 1%;   */
-  width: 130px;
-  color: var(--main-header-clear);
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.commentDate {
-  /* margin: 1%;  */
-  flex: 1;
-}
-.commentScore{
-    /* margin: 1%;    */
-    flex: 1;
 
+.commentUser,
+.commentScore,
+.commentDesc,
+.commentDate {
+  flex-basis: 100%;
 }
-.commentDesc{
-    /* margin: 1%; */
-    width: 20px;
-    flex: 3;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+@media (width >= 768px) { 
+  .commentUser {
+    flex-basis: 15%;
+  }
+  .commentScore {
+    flex-basis: 15%;
+  }
+  .commentDesc {
+    flex-basis: 55%;
+  }
+  .commentDate {
+    flex-basis: 15%;
+  }
 }
+@media (width < 768px) {
+  .commentContainer {
+    flex-direction: column;
+  }
+
+  .commentUser,
+  .commentScore,
+  .commentDesc,
+  .commentDate {
+    flex-basis: 100%;
+  }
+}
+.commentUser {
+  color: var(--main-header-clear);
+}
+
 label, h2{
     color: var(--main-text-color-clear);
 }
@@ -48,7 +62,7 @@ label, h2{
 }
 
 fieldset{
-    display: flex;
+  display: flex;
     align-items: center;
     flex-direction: column;
 }
@@ -61,4 +75,18 @@ b, h2, label{
 
 #sortIconDate, #sortIconStars {
   width: 2.5rem;
+}
+.divProductRelated{
+  width: 240px;
+  padding: 16px;
+  margin: 32px 8px;
+  background-color: var(--main-card-background-clear);
+  color: var(--main-text-color-clear);
+  transition: 800ms;
+}
+
+@media (width <= 450px){
+  #relatedProducts{
+  padding-left: 165px;
+  }
 }
