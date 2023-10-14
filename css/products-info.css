@@ -85,8 +85,8 @@ b, h2, label{
   transition: 800ms;
 }
 
-@media (width <= 380px){
+@media (width <= 450px){
   #relatedProducts{
-  padding-left: 150px;
+  padding-left: 165px;
   }
 }
