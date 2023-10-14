@@ -22,18 +22,21 @@ cerrarSesion.addEventListener('click', function(e){
 function themeFunction() {
     let indexImg = document.getElementById("coverIndex")
     const themeButton = document.getElementById("theme-selector");
+    const darkThemeText = document.getElementById("dark-theme")
 
     themeButton.addEventListener("click", (e)=>{
         
         document.body.classList.toggle("dark-theme")
         if(document.body.classList.contains("dark-theme")){
             saveTheme()
+            darkThemeText.innerHTML = "Modo Noche 🌜"
             try{
                 indexImg.src = "img/cover_back_DARK.png"
             }
             catch (e){console.log(e)}
         } else if(!document.body.classList.contains("dark-theme")){
             deleteTheme()
+            darkThemeText.innerHTML = "Modo Dia 🌞"
             try{
                 indexImg.src = "img/cover_back.png"
 
@@ -50,12 +53,14 @@ function themeFunction() {
         if (theme){
             document.body.classList.add("dark-theme")
         themeButton.checked = true;
+        darkThemeText.innerHTML = "Modo Noche 🌜"
         try{
 
             indexImg.src = "img/cover_back_DARK.png"
         }
         catch (e){console.log(e)}
     } else {
+        darkThemeText.innerHTML = "Modo Dia 🌞"
         try{indexImg.src = "img/cover_back.png"}
         catch (e){console.log(e)}
     } 

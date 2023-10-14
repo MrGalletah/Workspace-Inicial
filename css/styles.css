@@ -395,7 +395,7 @@ h3{
   background-color: var(--sidebar-background-clear);
 }
 .offcanvas-title{
-  color: var(--main-header-clear);
+  color: white;
 }
 .btn-close{
   background-color: red;
