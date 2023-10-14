@@ -293,7 +293,7 @@ function renderRelatedProducts() {
       const productRepeat = product;
     } else {
       html += `
-        <div class="col-3 divProducto list-group-item mt-4 mx-3">
+        <div class="divProductRelated list-group-item">
           <h5 class="text-center fw-bold">${product.name}</h5>
           <img src="${product.image}" class="img-thumbnail mt-2" alt="${product.name}">
           <h4 class="text-center text-muted mt-2">${product.currency} $${product.cost}</h4>
@@ -301,7 +301,6 @@ function renderRelatedProducts() {
       `;
   }});
   related_Products.innerHTML = html;
-  related_Products.classList.add('d-flex', 'justify-content-evenly');
   // AGREGADO UN addEventListener al hacerle click a las imágenes de nuestros RelatedProducts.
   const images = related_Products.querySelectorAll('img');
   images.forEach((image, index) => {

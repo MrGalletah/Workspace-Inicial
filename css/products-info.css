@@ -76,3 +76,17 @@ b, h2, label{
 #sortIconDate, #sortIconStars {
   width: 2.5rem;
 }
+.divProductRelated{
+  width: 240px;
+  padding: 16px;
+  margin: 32px 8px;
+  background-color: var(--main-card-background-clear);
+  color: var(--main-text-color-clear);
+  transition: 800ms;
+}
+
+@media (width <= 380px){
+  #relatedProducts{
+  padding-left: 150px;
+  }
+}

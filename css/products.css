@@ -3,7 +3,13 @@
 body {
     background-color:var(--main-background-color-clear);
 }
-
+#relatedProducts{
+    display:flex;
+    flex-direction: row;
+    overflow: scroll;
+    justify-content: center;
+    /* padding-left: 150px; */
+}
 .divProducto {
     background-color: var(--main-card-background-clear);
     color: var(--main-text-color-clear);
