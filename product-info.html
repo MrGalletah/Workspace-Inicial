@@ -57,10 +57,10 @@
       <div class="sidebar-links">
         <ul class="sidebar-list">
           <li>
-            <a class="sidebar-list" id="" href="my-profile.html"><img class="sidebar-icon" src="/icons/profile-round-1342.png" alt=""> Mi perfil</a>
+            <a class="sidebar-list" id="" href="my-profile.html"><img class="sidebar-icon" src="icons/profile-round-1342.png" alt=""> Mi perfil</a>
           </li>
           <li>
-            <a class="sidebar-list" id="" href="cart.html"><img class="sidebar-icon" id="cartIcon" src="/icons/shopping-cart.png" alt="">Carrito</a>
+            <a class="sidebar-list" id="" href="cart.html"><img class="sidebar-icon" id="cartIcon" src="icons/shopping-cart.png" alt="">Carrito</a>
           </li>
         </ul>
     
@@ -75,8 +75,8 @@
       <div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <button type="button" id="addToCart" class="btn btn-primary">Agregar al carrito</button>
-          <button id="sortByDate" class="btn btn-primary me-md-2" type="button"><div class="d-flex justify-content-center"><img id="sortIconDate" src="icons/sort-down-date.png"></div></button>
-          <button id="sortByStars" class="btn btn-primary" type="button"><img id="sortIconStars" src="icons/sort-down-stars.png"></button>
+          <button id="sortByDate" title="Ordenar por fecha" class="btn btn-primary me-md-2" type="button"><div class="d-flex justify-content-center"><img id="sortIconDate" src="icons/sort-down-date.png"></div></button>
+          <button id="sortByStars" title="Ordenar por puntuación" class="btn btn-primary" type="button"><img id="sortIconStars" src="icons/sort-down-stars.png"></button>
         </div>
       </div>
       <div id="commentsSection" class="commentsContainer">
@@ -87,7 +87,7 @@
         <fieldset>
           <label for="name">Nombre:</label><input type="text" id="nameCommentUser" required>
           <label for="starSelector">Puntuación:</label>
-            <select id="starSelector">
+            <select title="Elige tu puntaje" id="starSelector">
               <option value="1">⭐</option>
               <option value="2">⭐⭐</option>
               <option value="3">⭐⭐⭐</option>
@@ -97,14 +97,15 @@
           
         
           <br>
-          <label for="description">Descripción:</label><textarea rows="10" cols="30" type="texta" id="description" required class="align-self-center"> </textarea>
+          <label for="description">Descripción:</label><textarea rows="10" cols="30" type="texta" id="description" title="Escribe aquí tu comentario" required class="align-self-center"> </textarea>
           <br>
           <input type="submit" id="btnSubmit" class="rounded border btn-lg">
         </fieldset>
       </form>
 
     </div>
-      <div id="relatedProducts" class="container"> </div>
+      <div><h2 class="text-muted text-center mt-4">↓ Productos Relacionados ↓</h2></div>
+      <div id="relatedProducts"> </div>
   </main>
   <footer class="text-muted">
     <div class="container">

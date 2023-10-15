@@ -395,7 +395,7 @@ h3{
   background-color: var(--sidebar-background-clear);
 }
 .offcanvas-title{
-  color: var(--main-header-clear);
+  color: white;
 }
 .btn-close{
   background-color: red;
@@ -408,8 +408,9 @@ input::-webkit-inner-spin-button {
 }
 
 #removeBtn {
-  background-color: white;
-  color: red;
+  background-color: red;
+  color: white;
+  transform: scale(0.5);
 }
 :root:has(.dark-theme){
   --main-background-color-clear : #242629;
