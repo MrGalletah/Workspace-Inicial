@@ -89,7 +89,7 @@ function appendProductToCart(productData, productID) {
       <input class="cart-quantity" type="number" value="1" max="999" min="1" class="text-center">
     </div>
     <div class="col-1 text-center fw-bold ps-5">${productData.currency} <span class="subtotal">${productData.cost}</span></div>
-    <div class="col-1"><button type="button" class="ms-5 btn btn-danger removeItem" id="removeBtn" data-productID="${productID}">X</button></div>
+    <div class="col-1"><button type="button" class="ms-5 btn btn-danger removeItem" title="Eliminar del carrito" id="removeBtn" data-productID="${productID}">X</button></div>
 
   `;
 

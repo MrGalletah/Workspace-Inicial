@@ -408,8 +408,9 @@ input::-webkit-inner-spin-button {
 }
 
 #removeBtn {
-  background-color: white;
-  color: red;
+  background-color: red;
+  color: white;
+  transform: scale(0.5);
 }
 :root:has(.dark-theme){
   --main-background-color-clear : #242629;

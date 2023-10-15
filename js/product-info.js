@@ -288,24 +288,24 @@ fetchData(url)
 // RENDERIZAR los productos relacionados *************
 function renderRelatedProducts() {
   let html = '';
-  arrayRelated.forEach(product => {
-    if (product.id == productID) {    
-      const productRepeat = product;
-    } else {
-      html += `
-        <div class="divProductRelated list-group-item">
-          <h5 class="text-center fw-bold">${product.name}</h5>
-          <img src="${product.image}" class="img-thumbnail mt-2" alt="${product.name}">
-          <h4 class="text-center text-muted mt-2">${product.currency} $${product.cost}</h4>
-        </div>
-      `;
-  }});
+  const filteredArray = arrayRelated.filter(product => product.id != productID);
+  filteredArray.forEach(product => {
+    html += `
+      <div class="divProductRelated list-group-item">
+        <h5 class="text-center fw-bold">${product.name}</h5>
+        <img src="${product.image}" class="img-thumbnail mt-2" alt="${product.name}">
+        <h4 class="text-center text-muted mt-2">${product.currency} $${product.cost}</h4>
+      </div>
+    `;
+  });
+
+  
   related_Products.innerHTML = html;
   // AGREGADO UN addEventListener al hacerle click a las imágenes de nuestros RelatedProducts.
   const images = related_Products.querySelectorAll('img');
   images.forEach((image, index) => {
     image.addEventListener('click', () => {
-      redirectToProductInfo(arrayRelated[index].id);
+      redirectToProductInfo(filteredArray[index].id);
     });
   });
   // Redireccionar a products-info
