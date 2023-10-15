@@ -101,3 +101,8 @@ b, h2, label{
   padding-left: 165px;
   }
 }
+@media (width >= 450px){
+  #relatedProducts::-webkit-scrollbar{
+    display: none;
+}
+}
