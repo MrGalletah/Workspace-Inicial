@@ -406,7 +406,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+#btnBuy{
+  color: white;
+}
 #removeBtn {
   background-color: red;
   color: white;
