@@ -89,22 +89,57 @@ fetchDataAndShow()
 const starRating = (userScore) =>{
   switch (Math.round(userScore)) {
     case 0:
-      return ""
+      return `
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+            `
       break;
     case 1:
-      return "⭐"
+      return `
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+            `
       break;
     case 2:
-      return "⭐⭐"
+      return `
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+            `
       break;  
     case 3:
-      return "⭐⭐⭐"
+      return `
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>`
     break;
     case 4:
-      return "⭐⭐⭐⭐"
+      return `
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star"></span>
+            `
     break;
     case 5:
-      return "⭐⭐⭐⭐⭐"
+      return `
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star checked"></span>
+            `
     break;
     default:
       return userScore
