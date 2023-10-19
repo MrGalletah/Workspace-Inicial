@@ -19,7 +19,7 @@ function showProduct(array) {
     <h2 class="display2 my-4">${array.name}</h2>
   </div> 
   <div class="row">
-    <div class="col-md-6 col-sm-12 mb-sm-2">
+    <div class="col-md-6 col-sm-12 mb-sm-3 mb-3">
       <ul class="list-group list-group-flush border rounded">
         <li class="list-group-item list-color"><b>Precio</b><br>${array.currency} $${array.cost}</li>
         <li class="list-group-item list-color"><b>Descripción</b><br>${array.description}</li>
