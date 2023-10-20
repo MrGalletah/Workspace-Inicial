@@ -100,6 +100,10 @@ b, h2, label{
   #relatedProducts{
   padding-left: 165px;
   }
+  textarea {
+    width: 250px;
+    height: 250px;
+  }
 }
 @media (width >= 450px){
   #relatedProducts::-webkit-scrollbar{
