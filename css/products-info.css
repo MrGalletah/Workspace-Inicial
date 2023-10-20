@@ -106,3 +106,13 @@ b, h2, label{
     display: none;
 }
 }
+
+@media(width >= 767px){
+  .commentUser {
+    color: var(--main-header-clear);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 300px;
+  }
+}
