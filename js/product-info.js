@@ -193,7 +193,7 @@ const createCommentComponent = (user, score, desc, date)=>{
 return commentElement
 }
 
-let clickSortDate = true;
+let clickSortDate = false;
 let clickSortStars = true;
 let commentsUpdated = [];
 const sortIconDate = document.getElementById('sortIconDate');
@@ -206,9 +206,9 @@ const getAndRenderComments = async () => {
     const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
     response = await request.json();
     console.log(response);
+    sortDateASC(response);
     commentsUpdated = commentsUpdated.concat(response);
     renderCommentsLocalStorage();
-    sortDateASC(commentsUpdated);
     showComments(commentsUpdated);
     console.log(commentsSection)
   } catch (error) {
@@ -217,19 +217,18 @@ const getAndRenderComments = async () => {
 }
 
 sortByDateBtn.addEventListener("click", ()=> {
-  if(clickSortDate) {
-    commentsSection.innerHTML = '';
-    sortDateASC(commentsUpdated);
-    showComments(commentsUpdated);
-    clickSortDate = false;
-    sortIconDate.src = "icons/sort-up-date.png"
-
-  } else {
-    commentsSection.innerHTML = '';
+  if(!clickSortDate) {
+  commentsSection.innerHTML = '';
     sortDateDES(commentsUpdated);
     showComments(commentsUpdated);
     clickSortDate = true;
-   sortIconDate.src = "icons/sort-down-date.png"
+   sortIconDate.src = "icons/sort-up-date.png"
+  } else {
+  commentsSection.innerHTML = '';
+    sortDateASC(commentsUpdated);
+    showComments(commentsUpdated);
+    clickSortDate = false;
+    sortIconDate.src = "icons/sort-down-date.png"
   }
   })
 

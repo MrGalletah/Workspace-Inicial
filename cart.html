@@ -10,8 +10,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link href="css/cart.css"  type="text/css" rel="stylesheet">
-  
+  <link href="css/cart.css" type="text/css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -33,117 +33,129 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="user-email" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" >Tu Correo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
-      
-      </li>
-    </ul>
-    <div class="form-check form-switch pt-1">
-      <input class="form-check-input" type="checkbox" role="switch" id="theme-selector">
-    </div>
-</div>
-</div>
-</nav>
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="sidebarEmail"></h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div>
-      <div class="sidebar-links">
-        <ul class="sidebar-list">
-          <li>
-            <a class="sidebar-list" id="" href="my-profile.html"><img class="sidebar-icon" src="icons/profile-round-1342.png" alt=""> Mi perfil</a>
+            <a class="nav-link" id="user-email" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+              aria-controls="offcanvasExample">Tu Correo</a>
           </li>
-          <li>
-            <a class="sidebar-list" id="" href="cart.html"><img class="sidebar-icon" id="cartIcon" src="icons/shopping-cart.png" alt="">Carrito</a>
+          <li class="nav-item">
+            <a class="nav-link inactiveLink" id="dark-theme" href="">Modo oscuro</a>
+
           </li>
         </ul>
-    
+        <div class="form-check form-switch pt-1">
+          <input class="form-check-input" type="checkbox" role="switch" id="theme-selector">
+        </div>
+      </div>
     </div>
-    <a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+  </nav>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarEmail"></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        <div class="sidebar-links">
+          <ul class="sidebar-list">
+            <li>
+              <a class="sidebar-list" id="" href="my-profile.html"><img class="sidebar-icon"
+                  src="icons/profile-round-1342.png" alt=""> Mi perfil</a>
+            </li>
+            <li>
+              <a class="sidebar-list" id="" href="cart.html"><img class="sidebar-icon" id="cartIcon"
+                  src="icons/shopping-cart.png" alt="">Carrito</a>
+            </li>
+          </ul>
+
+        </div>
+        <a class="sidebar-content text-decoration-none" id="cerrarSesion" href="login.html">Cerrar Sesión</a>
+      </div>
     </div>
   </div>
-</div>
 
   <main>
     <h1 class="text-center fw-bold pt-3">Tu Carrito de Compras 🛒</h1>
-    
-      <div class="container">
-        <h4 class="">Artículos a comprar:</h4>
-        <div class="row border list-group-item rounded d-flex justify-content-between mt-3 fw-bold cart-info">
-          <div class="col-2 text-center"></div>
-          <div class="col-3 text-center">Nombre</div>
-          <div class="col-3 text-center">Costo</div>
-          <div class="col-2 text-center">Cantidad</div>
-          <div class="col-2 text-center">Subtotal</div>
-        </div>
-        <div id="cartProducts" class="row border list-group-item rounded d-flex align-items-center justify-content-between mt-3"></div>
+
+    <div class="container">
+      <h4 class="">Artículos a comprar:</h4>
+      <div class="row border list-group-item rounded d-flex justify-content-between mt-3 fw-bold cart-info">
+        <div class="col-2 text-center"></div>
+        <div class="col-3 text-center">Nombre</div>
+        <div class="col-3 text-center">Costo</div>
+        <div class="col-2 text-center">Cantidad</div>
+        <div class="col-2 text-center">Subtotal</div>
       </div>
-      <div class="container-fluid">
-        <div class="container">
-        <h4 class="my-4">📦 Dirección de envío</h4>
+      <div id="cartProducts"
+        class="row border list-group-item rounded d-flex align-items-center justify-content-between mt-3"></div>
+    </div>
+    <div class="container-fluid">
+      <div class="container">
+        <h4 class="my-4">Dirección de envío</h4>
+        <form class="needs-validation" novalidate>
         <div class="row">
-<div class="col-5">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingInput" placeholder="Calle">
-          <label for="floatingInput">Calle</label>
-        </div>
-        </div>
-        <div class="col-2">
-        <div class="form-floating">
-          <input type="number" class="form-control" id="floatingPassword" placeholder="Numero">
-          <label for="floatingPassword">Número</label>
-        </div>
-        </div>
-        <div class="col-5">
-          <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Esquina">
-            <label for="floatingPassword">Esquina</label>
+          <div class="col-5">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="streetA" placeholder="Calle" required>
+              <label for="streetA">Calle</label>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-floating">
+              <input type="number" class="form-control" id="numberA" placeholder="Numero" required>
+              <label for="numberA">Número</label>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="cornerA" placeholder="Esquina" required>
+              <label for="cornerA">Esquina</label>
+            </div>
           </div>
         </div>
+        <div class="input-group mb-3" style="z-index: 0;">
+          <label class="input-group-text" for="selectShip">Tipo de envío</label>
+          <select class="form-select" id="selectShip" required>
+            <option disabled selected value="disabled">Elige un tipo de envío</option>
+            <option value="premium">Premium de 2 a 5 días (15%)</option>
+            <option value="express">Express de 5 a 8 días (7%)</option>
+            <option value="standard">Standard de 12 a 15 días (5%) </option>
+          </select>
+        </div>
+        <hr>
+        <h4 class="my-4">Costos</h4>
+        <div class="container">
+          <div class="list-group">
+            <div class="list-group-item">
+              <h5>Subtotal: USD<h5 id="subtotalSum"></h5>
+              </h5>
+            </div>
+            <div class="list-group-item Total">
+              <h5>Costo de envio: USD<h5 id="deliveryFee"></h5>
+              </h5>
+            </div>
+            <div class="list-group-item">
+              <h5>Total: USD<h5 id="totalPrice"></h5>
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" id="btnBuy" class="btn mt-4">Finalizar compra</button>
+        </div>
+        </form>
       </div>
-     <div class="input-group mb-3">
-      <label class="input-group-text" for="inputGroupSelect01">Tipo de envío</label>
-      <select class="form-select" id="inputGroupSelect01">
-        <option selected value="1">Premium de 2 a 5 días (15%)</option>
-        <option value="2">Express de 5 a 8 días (7%)</option>
-        <option value="3">Standard de 12 a 15 días (5%) </option>
-      </select>
     </div>
-    <hr>
-    <h4 class="my-4">💲 Costos Finales 💲</h4>
-    <div class="container">
-      <div class="list-group">
-        <div class="list-group-item">
-          <h5>Subtotal: USD<h5 id="subtotalSum"></h5></h5>
-        </div>
-        <div class="list-group-item Total">
-          <h5>Costo de envio: USD<h5 id="deliveryFee"></h5></h5>
-        </div>
-        <div class="list-group-item">
-          <h5>Total: USD<h5 id="totalPrice"></h5></h5>
-        </div>
-      </div>
-    </div>
-    <div class="text-center">
-      <button type="button" id="btnBuy" class="btn mt-4">Comprar</button>
-    </div>
-        </div>
-      </div>
+    <div id="divAlert"></div>
   </main>
-  
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
-  
+
   </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">

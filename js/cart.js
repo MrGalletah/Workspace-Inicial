@@ -22,27 +22,32 @@ function updateTotalSum() {
 }
 
 // Cambiar precio de envio en tiempo real
-const inputGroupSelect01 = document.getElementById('inputGroupSelect01');
-inputGroupSelect01.addEventListener('change', () => {
+const selectShip = document.getElementById('selectShip');
+let selectedOption = selectShip.value;
+
+selectShip.addEventListener('change', () => {
+  selectedOption = selectShip.value;
   updateDeliveryFee();
 });
 
 function updateDeliveryFee() {
-  const inputGroupSelect01 = document.getElementById('inputGroupSelect01');
-  const selectedOption = inputGroupSelect01.value;
   const subtotalSumValue = parseFloat(subtotalSum.textContent);
 
   let deliveryFeePercentage = 0;
-
+  const selectShip = document.getElementById('selectShip');
+  let selectedOption = selectShip.value;
   // Calcular precio de envio y total
   switch (selectedOption) {
-    case "1":
+    case "disabled":
+      deliveryFeePercentage = 0;
+      break;
+    case "premium":
       deliveryFeePercentage = 0.15;
       break;
-    case "2":
+    case "express":
       deliveryFeePercentage = 0.07;
       break;
-    case "3":
+    case "standard":
       deliveryFeePercentage = 0.05;
       break;
     default:
@@ -163,9 +168,97 @@ function removeProductFromCart(productID) {
 let selectedQuantity = 1;
 const arrayCartStandar = [];
 
-
-
 // Llamada a funciones
 fetchCartData();
 userEmailFunction();
 window.addEventListener('load', fetchDataAndShow);
+
+//Función para realizar las validaciones previas a la compra y aplicar estilos con bootstrap 
+(()=> {
+  'use strict'
+
+  const form = document.querySelector('.needs-validation');
+
+  form.addEventListener('submit', event => {
+    
+
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+const streetAddress = document.getElementById('streetA');
+const numberAddress = document.getElementById('numberA');
+const cornerAddress = document.getElementById('cornerA');
+//const methodPayment = document.getElementById('')
+
+if(streetAddress.value === ""){
+  event.preventDefault();
+  streetAddress.classList.remove('is-valid');
+  streetAddress.classList.add('is-invalid');
+} else {
+  streetAddress.classList.remove('is-invalid');
+  streetAddress.classList.add('is-valid');
+}
+
+if(numberAddress.value === ""){
+  event.preventDefault();
+  numberAddress.classList.remove('is-valid');
+  numberAddress.classList.add('is-invalid');
+} else {
+  numberAddress.classList.remove('is-invalid');
+  numberAddress.classList.add('is-valid');
+}
+
+if(cornerAddress.value === ""){
+  event.preventDefault();
+  cornerAddress.classList.remove('is-valid');
+  cornerAddress.classList.add('is-invalid');
+} else {
+  cornerAddress.classList.remove('is-invalid');
+  cornerAddress.classList.add('is-valid');
+}
+
+if(selectedOption === "disabled") {
+  event.preventDefault();
+  selectShip.classList.remove('is-valid');
+  selectShip.classList.add('is-invalid');
+} else {
+  selectShip.classList.remove('is-invalid');
+  selectShip.classList.add('is-valid');
+}
+
+if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled"  && selectedQuantity <= 1) {
+  form.classList.add('was-validated');
+  const divAlert = document.getElementById('divAlert');
+  divAlert.innerHTML += `
+  <div class="alert alert-success" role="alert" style="z-index: 1;">
+  ¡Has comprado con éxito!
+  </div>
+  `;
+  const successAlert = document.querySelector('.alert');
+  event.preventDefault();
+  setTimeout(()=> {
+    successAlert.style.display = "none";
+  }, 4000);
+  
+} else {
+  const divAlert = document.getElementById('divAlert');
+  divAlert.innerHTML +=`
+   <div class="alert alert-danger" role="alert" style="z-index: 1;">
+   Verifica que los datos ingresados sean correctos
+</div>
+   `;
+   const failAlert = document.querySelector('.alert');
+   setTimeout(() => {
+    failAlert.style.display = "none";
+   }, 4000);
+}
+
+  }, false)
+
+  
+
+})()
+
+
