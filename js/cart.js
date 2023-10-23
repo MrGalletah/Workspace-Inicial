@@ -262,3 +262,41 @@ if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.val
 })()
 
 
+/* 
+Validaciónes de MODAL para los métodos de PAGO
+*/
+     // VARIABLES GLOBALES
+const monthInput = document.getElementById('month');
+const yearInput = document.getElementById('year');
+
+
+// VALIDACIÓN DEL MES (1 a 12)
+monthInput.addEventListener('input', function() {
+  const inputValue = parseInt(monthInput.value);
+  if (inputValue < 1 || inputValue > 12 || isNaN(inputValue)) {
+    monthInput.value = '';
+  }
+});
+// VALIDACION DEL AÑO (HASTA 2100)
+yearInput.addEventListener('input', function(){
+  const inputValue = parseInt(yearInput.value);
+  if (inputValue > 2100 || isNaN(inputValue)){
+    yearInput.value = '';
+  }
+})
+
+// CAMBIAR IMÁGEN DE TARJETA DE CREDITO AL SELECCIONARLA
+const cardSelected = document.getElementById('cardSelected');
+const cardIcon = document.getElementById('cardIcon');
+
+cardSelected.addEventListener('change', function() {
+  const selectedOption = cardSelected.value;
+  if (selectedOption === 'Visa') {
+    cardIcon.innerHTML = '<img class="img-thumbnail img-fluid" src="/icons/visa.png" alt="Visa">';
+  } else if (selectedOption === 'Master') {
+    cardIcon.innerHTML = '<img class="img-thumbnail img-fluid" src="/icons/master.png" alt="MasterCard">';
+  } else {
+    cardIcon.innerHTML = '';
+  }
+});
+cardIcon.innerHTML = '';
