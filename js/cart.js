@@ -1,3 +1,17 @@
+// DOM CONTENT LOAD
+document.addEventListener('DOMContentLoaded', function() {
+  // Evento de clic en los botones de radio
+  cardCheck.addEventListener('click', disableFields);
+  bankCheck.addEventListener('click', disableFields);
+  
+// Llamada a funciones
+fetchCartData();
+userEmailFunction();
+});
+window.addEventListener('load', fetchDataAndShow);
+
+
+
 // Calculo del subtotal
 function calculateSubtotal(unitCost, quantity) {
   if (isNaN(quantity)) {
@@ -168,10 +182,6 @@ function removeProductFromCart(productID) {
 let selectedQuantity = 1;
 const arrayCartStandar = [];
 
-// Llamada a funciones
-fetchCartData();
-userEmailFunction();
-window.addEventListener('load', fetchDataAndShow);
 
 //Función para realizar las validaciones previas a la compra y aplicar estilos con bootstrap 
 (()=> {
@@ -268,7 +278,13 @@ Validaciónes de MODAL para los métodos de PAGO
      // VARIABLES GLOBALES
 const monthInput = document.getElementById('month');
 const yearInput = document.getElementById('year');
-
+const cardNumber = document.getElementById('cardNumber');
+const cardSelected = document.getElementById('cardSelected');
+const cvv = document.getElementById('cvv');
+const cardIcon = document.getElementById('cardIcon');
+const cardCheck = document.getElementById('cardCheck');
+const bankCheck = document.getElementById('bankCheck');
+const accountNumber = document.getElementById('accountNumber');
 
 // VALIDACIÓN DEL MES (1 a 12)
 monthInput.addEventListener('input', function() {
@@ -286,9 +302,6 @@ yearInput.addEventListener('input', function(){
 })
 
 // CAMBIAR IMÁGEN DE TARJETA DE CREDITO AL SELECCIONARLA
-const cardSelected = document.getElementById('cardSelected');
-const cardIcon = document.getElementById('cardIcon');
-
 cardSelected.addEventListener('change', function() {
   const selectedOption = cardSelected.value;
   if (selectedOption === 'Visa') {
@@ -300,3 +313,24 @@ cardSelected.addEventListener('change', function() {
   }
 });
 cardIcon.innerHTML = '';
+
+// BlOQUEAR OPCIONES (TARJETA O TRANSFERENCIA)
+// Deshabilitar campos de la opción no seleccionada
+function disableFields() {
+  if (cardCheck.checked) {
+    accountNumber.setAttribute('disabled', 'disabled');
+    cardNumber.removeAttribute('disabled');
+    cvv.removeAttribute('disabled');
+    monthInput.removeAttribute('disabled');
+    yearInput.removeAttribute('disabled');
+    cardSelected.removeAttribute('disabled');
+  } else if (bankCheck.checked) {
+    accountNumber.removeAttribute('disabled');
+    cardNumber.setAttribute('disabled', 'disabled');
+    cvv.setAttribute('disabled', 'disabled');
+    monthInput.setAttribute('disabled', 'disabled');
+    yearInput.setAttribute('disabled', 'disabled');
+    cardSelected.setAttribute('disabled', 'disabled');
+  }
+}
+
