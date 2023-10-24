@@ -170,7 +170,7 @@
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row"> <!-- ELEGIR TARJETA DE CREDITO -->
-            <div class="col-md-5"><label><input type="radio" name="payMethod" value="card"> Tarjeta de crédito</label></div>
+            <div class="col-md-5"><label><input id="cardCheck" type="radio" name="payMethod" value="card"> Tarjeta de crédito</label></div>
             <div class="col-md-2 col-3" id="cardIcon"></div>
             <div class="col-md-5 col-12">
               <div class="input-group mb-3" style="z-index: 0;">
@@ -214,7 +214,7 @@
           </div>
         <hr>
         <div class="row"> <!-- DATOS DE LA TRANSFERENCIA Y CUENTA BANCARIA -->
-          <div class="col-12"><label><input type="radio" name="payMethod" value="transfer"> Transferencia bancaria</label></div>
+          <div class="col-12"><label><input id="bankCheck" type="radio" name="payMethod" value="transfer"> Transferencia bancaria</label></div>
           <div class="col-12 mt-3">
             <div class="form-floating">
               <input type="number" class="form-control" id="accountNumber" placeholder="Número de cuenta">
