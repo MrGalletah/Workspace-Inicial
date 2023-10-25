@@ -14,11 +14,11 @@ function updateProductQuantity(value) {
 document.addEventListener('DOMContentLoaded', function () {
   setTimeout(() => {
     updateProductQuantity(1);
-  }, 1000);
+  }, 100);
 
   setTimeout(() => {
     updateProductQuantity(-1);
-  }, 1000);
+  }, 100);
 
   cardCheck.addEventListener('click', disableFields);
   bankCheck.addEventListener('click', disableFields);
