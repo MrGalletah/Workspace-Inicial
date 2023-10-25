@@ -182,96 +182,6 @@ function removeProductFromCart(productID) {
 let selectedQuantity = 1;
 const arrayCartStandar = [];
 
-
-//Función para realizar las validaciones previas a la compra y aplicar estilos con bootstrap 
-(()=> {
-  'use strict'
-
-  const form = document.querySelector('.needs-validation');
-
-  form.addEventListener('submit', event => {
-    
-
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-const streetAddress = document.getElementById('streetA');
-const numberAddress = document.getElementById('numberA');
-const cornerAddress = document.getElementById('cornerA');
-//const methodPayment = document.getElementById('')
-
-if(streetAddress.value === ""){
-  event.preventDefault();
-  streetAddress.classList.remove('is-valid');
-  streetAddress.classList.add('is-invalid');
-} else {
-  streetAddress.classList.remove('is-invalid');
-  streetAddress.classList.add('is-valid');
-}
-
-if(numberAddress.value === ""){
-  event.preventDefault();
-  numberAddress.classList.remove('is-valid');
-  numberAddress.classList.add('is-invalid');
-} else {
-  numberAddress.classList.remove('is-invalid');
-  numberAddress.classList.add('is-valid');
-}
-
-if(cornerAddress.value === ""){
-  event.preventDefault();
-  cornerAddress.classList.remove('is-valid');
-  cornerAddress.classList.add('is-invalid');
-} else {
-  cornerAddress.classList.remove('is-invalid');
-  cornerAddress.classList.add('is-valid');
-}
-
-if(selectedOption === "disabled") {
-  event.preventDefault();
-  selectShip.classList.remove('is-valid');
-  selectShip.classList.add('is-invalid');
-} else {
-  selectShip.classList.remove('is-invalid');
-  selectShip.classList.add('is-valid');
-}
-
-if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled"  && selectedQuantity <= 1) {
-  form.classList.add('was-validated');
-  const divAlert = document.getElementById('divAlert');
-  divAlert.innerHTML += `
-  <div class="alert alert-success" role="alert" style="z-index: 1;">
-  ¡Has comprado con éxito!
-  </div>
-  `;
-  const successAlert = document.querySelector('.alert');
-  event.preventDefault();
-  setTimeout(()=> {
-    successAlert.style.display = "none";
-  }, 4000);
-  
-} else {
-  const divAlert = document.getElementById('divAlert');
-  divAlert.innerHTML +=`
-   <div class="alert alert-danger" role="alert" style="z-index: 1;">
-   Verifica que los datos ingresados sean correctos
-</div>
-   `;
-   const failAlert = document.querySelector('.alert');
-   setTimeout(() => {
-    failAlert.style.display = "none";
-   }, 4000);
-}
-
-  }, false)
-
-  
-
-})()
-
-
 /* 
 Validaciónes de MODAL para los métodos de PAGO
 */
@@ -314,16 +224,21 @@ cardSelected.addEventListener('change', function() {
 });
 cardIcon.innerHTML = '';
 
+//Variable para guardar el método de pago seleccionado
+let methodPaymentSelected = undefined; 
+
 // BlOQUEAR OPCIONES (TARJETA O TRANSFERENCIA)
 // Deshabilitar campos de la opción no seleccionada
 function disableFields() {
   if (cardCheck.checked) {
     accountNumber.setAttribute('disabled', 'disabled');
+    accountNumber.value = '';
     cardNumber.removeAttribute('disabled');
     cvv.removeAttribute('disabled');
     monthInput.removeAttribute('disabled');
     yearInput.removeAttribute('disabled');
     cardSelected.removeAttribute('disabled');
+    methodPaymentSelected = 'card';
   } else if (bankCheck.checked) {
     accountNumber.removeAttribute('disabled');
     cardNumber.setAttribute('disabled', 'disabled');
@@ -331,6 +246,126 @@ function disableFields() {
     monthInput.setAttribute('disabled', 'disabled');
     yearInput.setAttribute('disabled', 'disabled');
     cardSelected.setAttribute('disabled', 'disabled');
+    methodPaymentSelected = 'bank';
+    cardNumber.value = '';
+    monthInput.value = '';
+    cvv.value = '';
+    yearInput.value = '';
+    cardSelected.value = 'disabled';
   }
 }
+//Función para remover las alertas
+function removeAlert() {
+  let successAlert = document.getElementById('successAlert');
+  let failAlert = document.getElementById('failAlert');
+  if(successAlert) {
+    setTimeout(() => {
+        successAlert.style.display= 'none';
+    }, 4000);
+  } else {
+    setTimeout(() => {
+      failAlert.style.display= 'none';
+  }, 4000);
+  }
+};
+
+
+function validateMethodPayment(methodSelected){
+  if (methodSelected === 'card'){
+   if(monthInput.value !== '' && yearInput.value !== '' && cardNumber.value !== '' && cvv.value !== '' && cardSelected.value !== 'disabled') {
+    return true;
+   } else {
+    return false;
+   }
+  } else if(methodSelected === 'bank'){
+    if(accountNumber.value !== ''){
+      return true;
+    } else {
+      return false;
+    }
+  }
+};
+
+const divAlert = document.getElementById('divAlert');
+
+
+//Función para realizar las validaciones previas a la compra y aplicar estilos con bootstrap 
+(()=> {
+  'use strict'
+
+  const form = document.querySelector('.needs-validation');
+
+  form.addEventListener('submit', event => {
+    
+
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+const streetAddress = document.getElementById('streetA');
+const numberAddress = document.getElementById('numberA');
+const cornerAddress = document.getElementById('cornerA');
+
+if(streetAddress.value === ""){
+  event.preventDefault();
+  streetAddress.classList.remove('is-valid');
+  streetAddress.classList.add('is-invalid');
+} else {
+  streetAddress.classList.remove('is-invalid');
+  streetAddress.classList.add('is-valid');
+}
+
+if(numberAddress.value === ""){
+  event.preventDefault();
+  numberAddress.classList.remove('is-valid');
+  numberAddress.classList.add('is-invalid');
+} else {
+  numberAddress.classList.remove('is-invalid');
+  numberAddress.classList.add('is-valid');
+}
+
+if(cornerAddress.value === ""){
+  event.preventDefault();
+  cornerAddress.classList.remove('is-valid');
+  cornerAddress.classList.add('is-invalid');
+} else {
+  cornerAddress.classList.remove('is-invalid');
+  cornerAddress.classList.add('is-valid');
+}
+
+if(selectedOption === "disabled") {
+  event.preventDefault();
+  selectShip.classList.remove('is-valid');
+  selectShip.classList.add('is-invalid');
+} else {
+  selectShip.classList.remove('is-invalid');
+  selectShip.classList.add('is-valid');
+}
+
+if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled"  && selectedQuantity <= 1 && validateMethodPayment(methodPaymentSelected)) {
+  form.classList.add('was-validated');
+  
+  divAlert.innerHTML += `
+  <div id="successAlert" class="alert alert-success" role="alert" style="z-index: 1;">
+  ¡Has comprado con éxito!
+  </div>
+  `;
+  event.preventDefault()
+} else {
+  
+  divAlert.innerHTML +=`
+   <div id="failAlert" class="alert alert-danger" role="alert" style="z-index: 1;">
+   Verifica que los datos ingresados sean correctos
+</div>
+   `;  
+   event.preventDefault()
+}
+
+removeAlert()
+
+  }, false)
+  
+
+})()
 
