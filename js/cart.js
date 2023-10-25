@@ -197,7 +197,7 @@ const bankCheck = document.getElementById('bankCheck');
 const accountNumber = document.getElementById('accountNumber');
 
 // VALIDACIÓN DEL MES (1 a 12)
-monthInput.addEventListener('input', function() {
+/*monthInput.addEventListener('input', function() {
   const inputValue = parseInt(monthInput.value);
   if (inputValue < 1 || inputValue > 12 || isNaN(inputValue)) {
     monthInput.value = '';
@@ -209,7 +209,7 @@ yearInput.addEventListener('input', function(){
   if (inputValue > 2100 || isNaN(inputValue)){
     yearInput.value = '';
   }
-})
+})*/
 
 // CAMBIAR IMÁGEN DE TARJETA DE CREDITO AL SELECCIONARLA
 cardSelected.addEventListener('change', function() {
@@ -269,7 +269,7 @@ function removeAlert() {
   }
 };
 
-
+//Función que válida que los campos del modal no esten vacíos en consecuencia del método de pago selecionado.
 function validateMethodPayment(methodSelected){
   if (methodSelected === 'card'){
    if(monthInput.value !== '' && yearInput.value !== '' && cardNumber.value !== '' && cvv.value !== '' && cardSelected.value !== 'disabled') {
@@ -342,6 +342,8 @@ if(selectedOption === "disabled") {
   selectShip.classList.remove('is-invalid');
   selectShip.classList.add('is-valid');
 }
+
+if(validateMethodPayment())
 
 if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled"  && selectedQuantity <= 1 && validateMethodPayment(methodPaymentSelected)) {
   form.classList.add('was-validated');
