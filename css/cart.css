@@ -12,3 +12,15 @@ h1, h4{
     color: var(--main-text-color-clear);
     background-color: var(--main-card-background-clear);
 }
+
+#staticBackdropLabel{
+    color: black;
+}
+
+#cancelPay , #aceptBtn{
+    border-radius: 5px;
+    transform: scale(1.2);
+}
+#aceptBtn{
+    margin-left: 2rem;
+}

@@ -379,7 +379,7 @@ h3{
 }
 .btn{
   background-color: var(--main-button-color-clear);
-   color: var(--main-header-clear);
+   color: white;
 }
 .btn:hover{
   background-color: var(--main-button-color-clear);

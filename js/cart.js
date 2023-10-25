@@ -225,6 +225,8 @@ const cardIcon = document.getElementById('cardIcon');
 const cardCheck = document.getElementById('cardCheck');
 const bankCheck = document.getElementById('bankCheck');
 const accountNumber = document.getElementById('accountNumber');
+const btnSelectPay = document.getElementById('btnSelectPay');
+const cancelPay = document.getElementById('cancelPay');
 
 // VALIDACIÓN DEL MES (1 a 12)
 /*monthInput.addEventListener('input', function() {
@@ -257,8 +259,47 @@ cardIcon.innerHTML = '';
 //Variable para guardar el método de pago seleccionado
 let methodPaymentSelected = undefined; 
 
-// BlOQUEAR OPCIONES (TARJETA O TRANSFERENCIA)
-// Deshabilitar campos de la opción no seleccionada
+// BlOQUEAR OPCIONES (TARJETA O TRANSFERENCIA) al ingresar al botón "Seleccionar"
+btnSelectPay.addEventListener('click', function () {
+  if (cardCheck.checked) {
+    accountNumber.setAttribute('disabled', 'disabled');
+    accountNumber.value = '';
+    cardNumber.removeAttribute('disabled');
+    cvv.removeAttribute('disabled');
+    monthInput.removeAttribute('disabled');
+    yearInput.removeAttribute('disabled');
+    cardSelected.removeAttribute('disabled');
+    methodPaymentSelected = 'card';
+  } else if (bankCheck.checked) {
+    accountNumber.removeAttribute('disabled');
+    cardNumber.setAttribute('disabled', 'disabled');
+    cvv.setAttribute('disabled', 'disabled');
+    monthInput.setAttribute('disabled', 'disabled');
+    yearInput.setAttribute('disabled', 'disabled');
+    cardSelected.setAttribute('disabled', 'disabled');
+    methodPaymentSelected = 'bank';
+    cardNumber.value = '';
+    monthInput.value = '';
+    cvv.value = '';
+    yearInput.value = '';
+    cardSelected.value = 'disabled';
+  } else {
+    accountNumber.setAttribute('disabled', 'disabled');
+    cardNumber.setAttribute('disabled', 'disabled');
+    cvv.setAttribute('disabled', 'disabled');
+    monthInput.setAttribute('disabled', 'disabled');
+    yearInput.setAttribute('disabled', 'disabled');
+    cardSelected.setAttribute('disabled', 'disabled');
+    methodPaymentSelected = undefined;
+    accountNumber.value = '';
+    cardNumber.value = '';
+    cvv.value = '';
+    monthInput.value = '';
+    yearInput.value = '';
+    cardSelected.value = 'disabled';
+  }
+});
+// Deshabilitar campos de la opción no seleccionada ALTERNANDO
 function disableFields() {
   if (cardCheck.checked) {
     accountNumber.setAttribute('disabled', 'disabled');
@@ -284,6 +325,18 @@ function disableFields() {
     cardSelected.value = 'disabled';
   }
 }
+
+// FUNCION PARA ELIMINAR DATOS AL BOTON CANCELAR del modal
+cancelPay.addEventListener('click' , function(){
+  accountNumber.value = '';
+  cardNumber.value = '';
+  monthInput.value = '';
+  cvv.value = '';
+  yearInput.value = '';
+  bankCheck.checked = false;
+  cardCheck.checked = false;
+})
+
 //Función para remover las alertas
 function removeAlert() {
   let successAlert = document.getElementById('successAlert');
