@@ -50,6 +50,7 @@ function updateDeliveryFee() {
   let deliveryFeePercentage = 0;
   const selectShip = document.getElementById('selectShip');
   let selectedOption = selectShip.value;
+  
   // Calcular precio de envio y total
   switch (selectedOption) {
     case "disabled":
@@ -116,14 +117,13 @@ async function fetchDataAndShow() {
     }
   }
 
-  // Update the total sum after fetching and showing local storage products
   updateTotalSum();
 }
 
-// Agregar producto al carro
-function appendProductToCart(productData, productID, cartProducts) {
+// Agregar productos al carro
+  function appendProductToCart(productData, productID, cartProducts) {
   const productItem = document.createElement("div");
-  productItem.className = "cart-item row d-flex align-items-center"; 
+  productItem.className = "cart-item row d-flex align-items-center";
 
   let price = productData.cost;
   if (productData.currency === 'UYU') {
@@ -145,6 +145,13 @@ function appendProductToCart(productData, productID, cartProducts) {
   cartProducts.appendChild(productItem);
 
   const quantityInput = productItem.querySelector('.cart-quantity');
+  
+  // Leer cantidades de localstorage
+  const storedQuantity = localStorage.getItem(`quantity_${productID}`);
+  if (storedQuantity) {
+    quantityInput.value = storedQuantity;
+  }
+
   quantityInput.addEventListener('input', function () {
     const selectedQuantity = parseInt(quantityInput.value);
     const subtotalElement = productItem.querySelector('.subtotal');
@@ -158,9 +165,11 @@ function appendProductToCart(productData, productID, cartProducts) {
     subtotalElement.textContent = ` ${newSubtotal.toFixed(2)}`;
     updateTotalSum();
     updateDeliveryFee();
+
+    localStorage.setItem(`quantity_${productID}`, selectedQuantity);
   });
 
-  // Remover producto del carrito
+  // Remover productos del carro
   const removeButton = productItem.querySelector('.removeItem');
   removeButton.addEventListener('click', function () {
     const productIDToRemove = removeButton.getAttribute("data-productID");
@@ -170,6 +179,7 @@ function appendProductToCart(productData, productID, cartProducts) {
     updateDeliveryFee();
   });
 }
+
 
 //Funcion para remover el producto del carrito en el localStorage
 function removeProductFromCart(productID) {
