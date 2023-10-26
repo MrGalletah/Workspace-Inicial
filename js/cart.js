@@ -317,18 +317,11 @@ cancelPay.addEventListener('click' , function(){
 })
 
 //Función para remover las alertas
+const divAlert = document.getElementById('divAlert');
 function removeAlert() {
-  let successAlert = document.getElementById('successAlert');
-  let failAlert = document.getElementById('failAlert');
-  if(successAlert) {
     setTimeout(() => {
         divAlert.innerHTML = '';
     }, 4000);
-  } else {
-    setTimeout(() => {
-      divAlert.innerHTML= '';
-  }, 4000);
-  }
 };
 
 //Función que válida que los campos del modal no esten vacíos en consecuencia del método de pago selecionado.
@@ -348,8 +341,7 @@ function validateMethodPayment(methodSelected){
   }
 };
 
-const divAlert = document.getElementById('divAlert');
-
+//Función para validar la fecha de vencimiento de la tarjeta ingresada comparandola con la fecha local
 function validateCardExpiration(cardExpiration){
   const newDate = new Date();
   const currentDate = newDate.toLocaleString('sv-SE', {year:'numeric', month:'2-digit'});
