@@ -153,12 +153,14 @@
 
 
           <div class="my-4" id="selectMethodPayment"> <!-- FORMA DE PAGO MODAL -->
-            <h4>Forma de Pago
+            <h4 id="text">Forma de Pago
             <!-- Button trigger modal "SELECCIONAR METODO DE PAGO" -->
-            <button type="button" id="btnSelectPay" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" id="btnSelectPay" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" required>
               <span class="small">Seleccionar</span>
+            
             </button>
-            <div class="invalid-feedback"></div></h4>
+            <div id="text-feedback" class="invalid-feedback">Selecciona una forma de pago</div>
+            </h4>
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
               aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -234,13 +236,13 @@
                 </div> <!-- modal content -->
               </div> <!-- modal dialog -->
             </div> <!-- finish modal -->
-
+         </div>
 
             <!-- FINALIZAR COMPRA -->
             <div class="text-center">
               <button type="submit" id="btnBuy" class="btn mt-4">Finalizar compra</button>
             </div>
-          
+         
         </form>
       </div>
     </div>

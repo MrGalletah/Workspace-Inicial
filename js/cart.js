@@ -1,34 +1,14 @@
-// Sumar y restar 1 de las cantidades
-function updateProductQuantity(value) {
-  const quantityInputs = document.querySelectorAll('.cart-quantity');
-  quantityInputs.forEach((input) => {
-    const currentQuantity = parseInt(input.value);
-    if (!isNaN(currentQuantity)) {
-      input.value = currentQuantity + value;
-      const event = new Event('input', { bubbles: true });
-      input.dispatchEvent(event);
-    }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(() => {
-    updateProductQuantity(1);
-  }, 100);
-
-  setTimeout(() => {
-    updateProductQuantity(-1);
-  }, 100);
-
+// DOM CONTENT LOAD
+document.addEventListener('DOMContentLoaded', function() {
+  // Evento de clic en los botones de radio
   cardCheck.addEventListener('click', disableFields);
   bankCheck.addEventListener('click', disableFields);
-  fetchCartData();
-  userEmailFunction();
+  
+// Llamada a funciones
+fetchCartData();
+userEmailFunction();
 });
-
 window.addEventListener('load', fetchDataAndShow);
-
-
 
 
 
@@ -70,7 +50,6 @@ function updateDeliveryFee() {
   let deliveryFeePercentage = 0;
   const selectShip = document.getElementById('selectShip');
   let selectedOption = selectShip.value;
-  
   // Calcular precio de envio y total
   switch (selectedOption) {
     case "disabled":
@@ -389,6 +368,7 @@ const divAlert = document.getElementById('divAlert');
 const streetAddress = document.getElementById('streetA');
 const numberAddress = document.getElementById('numberA');
 const cornerAddress = document.getElementById('cornerA');
+const selectMethodPayment = document.getElementById('selectMethodPayment');
 
 if(streetAddress.value === ""){
   event.preventDefault();
@@ -426,7 +406,18 @@ if(selectedOption === "disabled") {
   selectShip.classList.add('is-valid');
 }
 
-if(validateMethodPayment())
+if(validateMethodPayment(methodPaymentSelected)) {
+  event.preventDefault();
+  btnSelectPay.classList.remove('is-invalid');
+  btnSelectPay.classList.add('is-valid');
+  selectMethodPayment.classList.add('is-valid-custom');
+  selectMethodPayment.classList.remove('is-invalid-custom');
+} else {
+ btnSelectPay.classList.remove('is-valid');
+  btnSelectPay.classList.add('is-invalid');
+  selectMethodPayment.classList.add('is-invalid-custom');
+  selectMethodPayment.classList.remove('is-valid-custom');
+}
 
 if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled"  && selectedQuantity <= 1 && validateMethodPayment(methodPaymentSelected)) {
   form.classList.add('was-validated');
@@ -450,6 +441,7 @@ if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.val
 removeAlert()
 
   }, false)
+
   
 
 })()
