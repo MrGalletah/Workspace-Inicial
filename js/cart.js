@@ -196,7 +196,6 @@ Validaciónes de MODAL para los métodos de PAGO
 */
      // VARIABLES GLOBALES
 const monthInput = document.getElementById('month');
-const yearInput = document.getElementById('year');
 const cardNumber = document.getElementById('cardNumber');
 const cardSelected = document.getElementById('cardSelected');
 const cvv = document.getElementById('cvv');
@@ -246,7 +245,6 @@ btnSelectPay.addEventListener('click', function () {
     cardNumber.removeAttribute('disabled');
     cvv.removeAttribute('disabled');
     monthInput.removeAttribute('disabled');
-    yearInput.removeAttribute('disabled');
     cardSelected.removeAttribute('disabled');
     methodPaymentSelected = 'card';
   } else if (bankCheck.checked) {
@@ -254,27 +252,25 @@ btnSelectPay.addEventListener('click', function () {
     cardNumber.setAttribute('disabled', 'disabled');
     cvv.setAttribute('disabled', 'disabled');
     monthInput.setAttribute('disabled', 'disabled');
-    yearInput.setAttribute('disabled', 'disabled');
     cardSelected.setAttribute('disabled', 'disabled');
     methodPaymentSelected = 'bank';
     cardNumber.value = '';
     monthInput.value = '';
     cvv.value = '';
-    yearInput.value = '';
+    
     cardSelected.value = 'disabled';
   } else {
     accountNumber.setAttribute('disabled', 'disabled');
     cardNumber.setAttribute('disabled', 'disabled');
     cvv.setAttribute('disabled', 'disabled');
     monthInput.setAttribute('disabled', 'disabled');
-    yearInput.setAttribute('disabled', 'disabled');
     cardSelected.setAttribute('disabled', 'disabled');
     methodPaymentSelected = undefined;
     accountNumber.value = '';
     cardNumber.value = '';
     cvv.value = '';
     monthInput.value = '';
-    yearInput.value = '';
+    
     cardSelected.value = 'disabled';
   }
 });
@@ -286,22 +282,27 @@ function disableFields() {
     cardNumber.removeAttribute('disabled');
     cvv.removeAttribute('disabled');
     monthInput.removeAttribute('disabled');
-    yearInput.removeAttribute('disabled');
     cardSelected.removeAttribute('disabled');
     methodPaymentSelected = 'card';
+    accountNumber.classList.remove('is-invalid');
+    accountNumber.classList.remove('is-valid');
   } else if (bankCheck.checked) {
     accountNumber.removeAttribute('disabled');
     cardNumber.setAttribute('disabled', 'disabled');
     cvv.setAttribute('disabled', 'disabled');
     monthInput.setAttribute('disabled', 'disabled');
-    yearInput.setAttribute('disabled', 'disabled');
     cardSelected.setAttribute('disabled', 'disabled');
     methodPaymentSelected = 'bank';
     cardNumber.value = '';
     monthInput.value = '';
     cvv.value = '';
-    yearInput.value = '';
     cardSelected.value = 'disabled';
+    cardNumber.classList.remove('is-valid');
+    cardNumber.classList.remove('is-invalid');
+    monthInput.classList.remove('is-valid');
+    monthInput.classList.remove('is-invalid');
+    cvv.classList.remove('is-valid');
+    cvv.classList.remove('is-invalid');
   }
 }
 
@@ -311,7 +312,6 @@ cancelPay.addEventListener('click' , function(){
   cardNumber.value = '';
   monthInput.value = '';
   cvv.value = '';
-  yearInput.value = '';
   bankCheck.checked = false;
   cardCheck.checked = false;
 })
@@ -322,11 +322,11 @@ function removeAlert() {
   let failAlert = document.getElementById('failAlert');
   if(successAlert) {
     setTimeout(() => {
-        successAlert.style.display= 'none';
+        divAlert.innerHTML = '';
     }, 4000);
   } else {
     setTimeout(() => {
-      failAlert.style.display= 'none';
+      divAlert.innerHTML= '';
   }, 4000);
   }
 };
@@ -334,7 +334,7 @@ function removeAlert() {
 //Función que válida que los campos del modal no esten vacíos en consecuencia del método de pago selecionado.
 function validateMethodPayment(methodSelected){
   if (methodSelected === 'card'){
-   if(monthInput.value !== '' && yearInput.value !== '' && cardNumber.value !== '' && cvv.value !== '' && cardSelected.value !== 'disabled') {
+   if(monthInput.value !== '' && validateCardExpiration(monthInput.value) && cardNumber.value !== '' && cvv.value !== '' && cardSelected.value !== 'disabled') {
     return true;
    } else {
     return false;
@@ -350,6 +350,16 @@ function validateMethodPayment(methodSelected){
 
 const divAlert = document.getElementById('divAlert');
 
+function validateCardExpiration(cardExpiration){
+  const newDate = new Date();
+  const currentDate = newDate.toLocaleString('sv-SE', {year:'numeric', month:'2-digit'});
+  const currentDateString = currentDate.toString();
+  if(cardExpiration > currentDateString){
+    return true;
+  } else {
+    return false
+  };
+};
 
 //Función para realizar las validaciones previas a la compra y aplicar estilos con bootstrap 
 (()=> {
@@ -408,20 +418,63 @@ if(selectedOption === "disabled") {
 
 if(validateMethodPayment(methodPaymentSelected)) {
   event.preventDefault();
-  btnSelectPay.classList.remove('is-invalid');
+  btnSelectPay.classList.remove('is-invalid', 'custom');
   btnSelectPay.classList.add('is-valid');
-  selectMethodPayment.classList.add('is-valid-custom');
-  selectMethodPayment.classList.remove('is-invalid-custom');
+  selectMethodPayment.classList.add('is-valid');
+  selectMethodPayment.classList.remove('is-invalid');
 } else {
  btnSelectPay.classList.remove('is-valid');
-  btnSelectPay.classList.add('is-invalid');
-  selectMethodPayment.classList.add('is-invalid-custom');
-  selectMethodPayment.classList.remove('is-valid-custom');
+  btnSelectPay.classList.add('is-invalid', 'custom');
+  selectMethodPayment.classList.add('is-invalid');
+  selectMethodPayment.classList.remove('is-valid');
+}
+
+if(methodPaymentSelected === 'card'){
+  
+  if(monthInput.value === '' || !validateCardExpiration(monthInput.value)) {
+    monthInput.classList.add('is-invalid');
+    monthInput.classList.remove('is-valid');
+  } else {
+    monthInput.classList.add('is-valid');
+    monthInput.classList.remove('is-invalid');
+  }
+
+  if(cvv.value === '') {
+  cvv.classList.add('is-invalid');
+  cvv.classList.remove('is-valid');
+  } else {
+  cvv.classList.add('is-valid');
+  cvv.classList.remove('is-invalid');
+  }
+
+  if(cardNumber.value === '') {
+  cardNumber.classList.add('is-invalid');
+  cardNumber.classList.remove('is-valid');
+  } else {
+  cardNumber.classList.add('is-valid');
+  cardNumber.classList.remove('is-invalid');
+  }
+
+  if(cardSelected.value == 'disabled') {
+  cardSelected.classList.add('is-invalid');
+  cardSelected.classList.remove('is-valid');
+  } else {
+  cardSelected.classList.add('is-valid');
+  cardSelected.classList.remove('is-invalid');
+  }
+
+} else if(methodPaymentSelected === 'bank'){
+if(accountNumber.value === ''){
+  accountNumber.classList.add('is-invalid');
+  accountNumber.classList.remove('is-valid');
+  } else {
+  accountNumber.classList.add('is-valid');
+  accountNumber.classList.remove('is-invalid');
+}
 }
 
 if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled"  && selectedQuantity <= 1 && validateMethodPayment(methodPaymentSelected)) {
   form.classList.add('was-validated');
-  
   divAlert.innerHTML += `
   <div id="successAlert" class="alert alert-success" role="alert" style="z-index: 1;">
   ¡Has comprado con éxito!
@@ -429,17 +482,15 @@ if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.val
   `;
   event.preventDefault()
 } else {
-  
   divAlert.innerHTML +=`
    <div id="failAlert" class="alert alert-danger" role="alert" style="z-index: 1;">
    Verifica que los datos ingresados sean correctos
 </div>
    `;  
    event.preventDefault()
+   form.classList.remove('was-validated');
 }
-
 removeAlert()
-
   }, false)
 
   
