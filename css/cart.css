@@ -24,3 +24,12 @@ h1, h4{
 #aceptBtn{
     margin-left: 2rem;
 }
+
+#text-feedback {
+    font-size: .6em;
+}
+
+#btnSelectPay.custom {
+    border: rgb(255, 68, 68) 1px solid;
+    color: rgb(255, 68, 68);
+}
