@@ -225,8 +225,6 @@ const accountNumber = document.getElementById('accountNumber');
 const btnSelectPay = document.getElementById('btnSelectPay');
 const cancelPay = document.getElementById('cancelPay');
 
-
-
 // CAMBIAR IMÁGEN DE TARJETA DE CREDITO AL SELECCIONARLA
 cardSelected.addEventListener('change', function() {
   const selectedOption = cardSelected.value;
@@ -239,9 +237,6 @@ cardSelected.addEventListener('change', function() {
   }
 });
 cardIcon.innerHTML = '';
-
-//Variable para guardar el método de pago seleccionado
-let methodPaymentSelected = undefined; 
 
 // ************  DECLARACION DE FUNCIONES: DE DISABLED, ENABLED, CLEAR **************************
 function disableFields(inputs) {
@@ -262,6 +257,8 @@ function clearFields(inputs) {
   });
 }
 /* ********************************************************************************************** */
+//Variable para guardar el método de pago seleccionado
+let methodPaymentSelected = undefined; 
 
 // BlOQUEAR OPCIONES (TARJETA O TRANSFERENCIA) al ingresar al botón "Seleccionar"
 btnSelectPay.addEventListener('click', function () {
@@ -298,14 +295,13 @@ function alternatePayment() {
     clearFields([cardNumber, cvv, monthInput, cardSelected]);
   }
 }
-
-
 // FUNCION PARA ELIMINAR DATOS AL BOTON CANCELAR del modal
 cancelPay.addEventListener('click' , function(){
   clearFields([accountNumber, cardNumber, monthInput, cvv]);
   bankCheck.checked = false;
   cardCheck.checked = false;
 })
+//******************************************************************************************* */
 
 //Función para remover las alertas
 const divAlert = document.getElementById('divAlert');
