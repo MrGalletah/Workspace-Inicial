@@ -33,3 +33,7 @@ h1, h4{
     border: rgb(255, 68, 68) 1px solid;
     color: rgb(255, 68, 68);
 }
+
+.product-image {
+    width: 6rem;
+}

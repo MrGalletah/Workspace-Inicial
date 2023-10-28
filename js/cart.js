@@ -1,25 +1,6 @@
-// Sumar y restar 1 de las cantidades
-function updateProductQuantity(value) {
-  const quantityInputs = document.querySelectorAll('.cart-quantity');
-  quantityInputs.forEach((input) => {
-    const currentQuantity = parseInt(input.value);
-    if (!isNaN(currentQuantity)) {
-      input.value = currentQuantity + value;
-      const event = new Event('input', { bubbles: true });
-      input.dispatchEvent(event);
-    }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(() => {
-    updateProductQuantity(1);
-  }, 100);
-
-  setTimeout(() => {
-    updateProductQuantity(-1);
-  }, 100);
-
+// DOM CONTENT LOAD
+document.addEventListener('DOMContentLoaded', function() {
+  // Evento de clic en los botones de radio
   cardCheck.addEventListener('click', disableFields);
   bankCheck.addEventListener('click', disableFields);
   
@@ -141,7 +122,7 @@ async function fetchDataAndShow() {
 // Agregar productos al carro
   function appendProductToCart(productData, productID, cartProducts) {
   const productItem = document.createElement("div");
-  productItem.className = "cart-item row d-flex align-items-center";
+  productItem.className = "cart-item row ms-1 align-items-center p-0";
 
   let price = productData.cost;
   if (productData.currency === 'UYU') {
@@ -149,14 +130,16 @@ async function fetchDataAndShow() {
   }
 
   const productHTML = `
-    <div class="col-2 text-center"><img src="${productData.images[0]}" class="img-thumbnail mt-2" alt="${productData.name}"></div>
-    <div class="col-3 text-center ps-3">${productData.name}</div>
-    <div class="col-3 text-center ps-4">USD ${price.toFixed(2)}</div>
-    <div class="col-2 text-center ps-5">
+    <div class="col-2 text-center p-0"><img src="../img/productspng/${productID}.png" class="py-2 product-image" alt="${productData.name}"></div>
+    <div class="col-3 text-center p-0">${productData.name}</div>
+    <div class="col-2 text-center p-0">USD ${price.toFixed(2)}</div>
+    <div class="col-2 text-center p-0">
       <input class="cart-quantity" type="number" value="1" max="999" min="1" class="text-center">
     </div>
-    <div class="col-1 text-center fw-bold ps-5">USD <span class="subtotal">${price.toFixed(2)}</span></div>
-    <div class="col-1"><button type="button" class="ms-5 btn btn-danger removeItem" title="Eliminar del carrito" id="removeBtn" data-productID="${productID}">X</button></div>
+    <div class="col-2 text-center fw-bold p-0">USD <span class="subtotal">${price.toFixed(2)}</span></div>
+    <div class="col-1 text-center p-0"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="red" class="bi bi-trash3 removeItem" viewBox="0 0 16 16">
+    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+  </svg></div>
   `;
 
   productItem.innerHTML = productHTML;
@@ -196,8 +179,24 @@ async function fetchDataAndShow() {
     updateTotalSum();
     updateDeliveryFee();
   });
+
+  //Obtener los productID correspondientes a cada imagen para redirigir a la página del producto
+  const images = cartProducts.querySelectorAll('img');
+  const productIDs = JSON.parse(localStorage.getItem('cartProducts')) || [];
+  images.forEach((image, index)=> {
+    image.addEventListener('click', () => {
+      console.log(productIDs[index]);
+      redirectToProductInfo(productIDs[index]);
+    })
+  });
+
 }
 
+//Función reutilizada de products.js para redirigir a products-info.js
+function redirectToProductInfo(productId) {
+    localStorage.setItem('productID', productId);
+    window.location.assign('product-info.html');
+}
 
 //Funcion para remover el producto del carrito en el localStorage
 function removeProductFromCart(productID) {
