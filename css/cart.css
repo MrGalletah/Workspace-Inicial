@@ -37,3 +37,11 @@ h1, h4{
 .product-image {
     width: 6rem;
 }
+
+#trash:hover{
+cursor: pointer;
+}
+
+#trash{
+    transform: scale(0.8);
+}
