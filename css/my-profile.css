@@ -1,5 +1,9 @@
 body{
     background-color: var(--main-background-color-clear);
+    
+}
+body::-webkit-scrollbar{
+    display: none;
 }
 h1{
     margin-top: 16px;
