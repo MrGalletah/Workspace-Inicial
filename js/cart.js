@@ -1,8 +1,27 @@
-// DOM CONTENT LOAD
-document.addEventListener('DOMContentLoaded', function() {
-  // Evento de clic en los botones de radio
-  cardCheck.addEventListener('click', disableFields);
-  bankCheck.addEventListener('click', disableFields);
+// Sumar y restar 1 de las cantidades
+function updateProductQuantity(value) {
+  const quantityInputs = document.querySelectorAll('.cart-quantity');
+  quantityInputs.forEach((input) => {
+    const currentQuantity = parseInt(input.value);
+    if (!isNaN(currentQuantity)) {
+      input.value = currentQuantity + value;
+      const event = new Event('input', { bubbles: true });
+      input.dispatchEvent(event);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(() => {
+    updateProductQuantity(1);
+  }, 100);
+
+  setTimeout(() => {
+    updateProductQuantity(-1);
+  }, 100);
+
+  cardCheck.addEventListener('click', alternatePayment);
+  bankCheck.addEventListener('click', alternatePayment);
   
 // Llamada a funciones
 fetchCartData();
