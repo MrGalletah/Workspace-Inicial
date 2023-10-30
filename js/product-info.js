@@ -1,16 +1,28 @@
+//Llamadas a funciones cuando se inicializa la pagina,tanto el tema visual como mostrar el email del user en la navbar
+
+userEmailFunction();
+themeFunction();
+
+//Variables globales
+
+const catID = localStorage.getItem('catID');
+const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 const container = document.getElementById("container");
 const commentsSection = document.getElementById("commentsSection");
 const userCommentSection = document.getElementById("userCommentsSection");
 const productID = localStorage.productID;
 const sortByDateBtn = document.getElementById("sortByDate");
 const sortByStarsBtn = document.getElementById("sortByStars");
+const sortIconDate = document.getElementById('sortIconDate');
+const sortIconStars = document.getElementById('sortIconStars');
+const related_Products = document.getElementById('relatedProducts');
+let clickSortDate = false;
+let clickSortStars = true;
+const arrayRelated = [];
+let commentsUpdated = [];
 
-//import {userEmail, sidebar} from "helpers.js";
 
-
-
-userEmailFunction();
-themeFunction();
+//funcion para mostrar el producto impreso en pantalla, con sus caracteristicas
 
 function showProduct(array) {
     const divProduct = document.createElement('div');
@@ -63,10 +75,10 @@ function showProduct(array) {
         `;
 
     divProduct.innerHTML = product;
-  //  container.appendChild(divProduct);
     container.insertBefore(divProduct, container.firstChild)
 }
 
+//fetch del producto
 
 async function fetchDataAndShow() {
     const productID = localStorage.productID;
@@ -80,9 +92,7 @@ catch(error) {
   throw new Error(`HTTP error! Status: ${error}`);
 }   
 }
-
 fetchDataAndShow()
-
 
 // Star rating based in UserScore
 
@@ -193,11 +203,7 @@ const createCommentComponent = (user, score, desc, date)=>{
 return commentElement
 }
 
-let clickSortDate = false;
-let clickSortStars = true;
-let commentsUpdated = [];
-const sortIconDate = document.getElementById('sortIconDate');
-const sortIconStars = document.getElementById('sortIconStars');
+
 
 // Fetch comments
 const getAndRenderComments = async () => {
@@ -301,10 +307,7 @@ const renderCommentsLocalStorage = ()=>{
   }
 }
                                                           
-const related_Products = document.getElementById('relatedProducts');
-const catID = localStorage.getItem('catID');
-const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
-const arrayRelated = [];
+
 
 async function fetchData(url) {
   try {
@@ -320,6 +323,7 @@ async function fetchData(url) {
 fetchData(url)
 
 // RENDERIZAR los productos relacionados *************
+
 function renderRelatedProducts() {
   let html = '';
   const filteredArray = arrayRelated.filter(product => product.id != productID);
@@ -335,6 +339,7 @@ function renderRelatedProducts() {
 
   
   related_Products.innerHTML = html;
+
   // AGREGADO UN addEventListener al hacerle click a las imágenes de nuestros RelatedProducts.
   const images = related_Products.querySelectorAll('img');
   images.forEach((image, index) => {
@@ -342,7 +347,9 @@ function renderRelatedProducts() {
       redirectToProductInfo(filteredArray[index].id);
     });
   });
+  
   // Redireccionar a products-info
+
   function redirectToProductInfo(productId) {
     try {
       localStorage.setItem('productID', productId);
@@ -354,15 +361,13 @@ function renderRelatedProducts() {
 }
 
 //funcionalidad agregar al carrito
+
 const addToCartBtn = document.getElementById('addToCart');
-
 let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
-
 addToCartBtn.addEventListener("click", function(e) {
  e.target.closest("#addToCart");
     if (!cartProducts.includes(productID)) {
       cartProducts.push(productID);
-
       localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
       alert('Agregado al carrito!')
     } else {
