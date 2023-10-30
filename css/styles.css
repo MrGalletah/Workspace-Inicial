@@ -313,7 +313,6 @@ a.custom-card:hover {
 }
 .sidebar-content {
   color: red;
- padding: 16px 16px 32px 32px;
  letter-spacing: 1px;
  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 } 
@@ -353,7 +352,9 @@ aside{
 }
 
 #cerrarSesion {
+  margin-left: 32px;
   cursor: pointer;
+
 }
 
 
@@ -413,6 +414,11 @@ input::-webkit-inner-spin-button {
   background-color: red;
   color: white;
   transform: scale(0.5);
+}
+svg{
+  height: 36px;
+  width: 36px;
+  padding-right: 8px;
 }
 :root:has(.dark-theme){
   --main-background-color-clear : #242629;
