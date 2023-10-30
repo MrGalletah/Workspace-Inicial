@@ -1,3 +1,25 @@
 body{
     background-color: var(--main-background-color-clear);
 }
+h1{
+    margin-top: 16px;
+    color: var(--main-header-clear);
+    display: flex;
+    justify-content: center;
+}
+label{
+    color: var(--main-text-color-clear);
+}
+img {
+  display: block;
+  max-width:230px !important; 
+  max-height:95px !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 50%;
+}
+
+.img-input{
+    margin-top: 16px;
+    width: 130px;
+}
