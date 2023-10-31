@@ -23,7 +23,12 @@ img {
   border-radius: 50%;
 }
 
-.img-input{
+.img-Input{
     margin-top: 16px;
-    width: 130px;
+    width: 160px;
 }
+
+.btn {
+    margin-top: 12px;
+}
+
