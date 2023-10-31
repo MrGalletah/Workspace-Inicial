@@ -17,6 +17,8 @@ emailInput.value = userEmail;
 //Cargar foto si existe
 if (localStorage.getItem('image')) {
     displayImage.src = localStorage.getItem('image');
+    deleteImage.classList.remove('d-none')
+
 }
 
 // Guardar foto de perfil en localStorage
