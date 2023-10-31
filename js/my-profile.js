@@ -33,6 +33,7 @@ imageInput.addEventListener('change', (event) => {
     if (image) {
         reader.readAsDataURL(image);
     }
+    deleteImage.classList.remove('d-none')
 });
 
 // Borrar foto de perfil
@@ -41,6 +42,7 @@ deleteImage.addEventListener('click', () => {
 
    if (confirmation) {
        localStorage.removeItem('image');
+       deleteImage.classList.add('d-none')
        window.location.reload();
    }
 });
