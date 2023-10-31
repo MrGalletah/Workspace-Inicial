@@ -199,29 +199,30 @@ async function fetchDataAndShow() {
     updateTotalSum();
     updateDeliveryFee();
   });
+  
 
+//Obtener todas las categorias con sus nombres e IDs
 let categoriesData;
-
-
 fetch('https://japceibal.github.io/emercado-api/cats/cat.json')
 .then(res => res.json())
 .then(data => {
    categoriesData = data;
 });
 
+//Función que devuelve la categoria según su nombre
 function getProductCat(categories, categoryName){
 const cat = categories.find(category => category.name === categoryName);
 return cat;
 };
 
-//Función obtiene el nombre 
+//Función que obtiene el nombre e id de la categoria del producto para reedirigir a product-info 
 function redirectAndSetCatID(productId){
   fetch(`https://japceibal.github.io/emercado-api/products/${productId}.json`)
   .then(response => response.json())
   .then(product => {
     const productCategoryName = product.category;
     const cat = getProductCat(categoriesData, productCategoryName);
-    const catID = cat.id
+    const catID = cat.id;
     redirectToProductInfo(productId, catID);
   })
   .catch(error => {
