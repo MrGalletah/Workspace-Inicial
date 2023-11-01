@@ -407,7 +407,8 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-#btnBuy{
+
+#btnBuy, #btnSelectPay, #btnSaveData{
   color: white;
 }
 #removeBtn {
@@ -429,4 +430,13 @@ svg{
   --main-secondary-color-clear : #2cb67d;
   --main-tertiary-color-clear : #2cb67d;
   --sidebar-background-clear: #16161a;
+}
+
+#theme-selector:hover{
+  cursor: pointer;
+  background-color: #7f5af0;
+}
+
+#deleteImage:hover , #trash:hover , .py-2:hover {
+  cursor: pointer;
 }
