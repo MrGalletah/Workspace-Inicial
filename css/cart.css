@@ -35,5 +35,17 @@ h1, h4{
 }
 
 .product-image {
+<<<<<<< Updated upstream
     width: 6rem;
+=======
+    width: 8rem;
+}
+
+#trash:hover{
+cursor: pointer;
+}
+
+#trash{
+    transform: scale(0.8);
+>>>>>>> Stashed changes
 }
