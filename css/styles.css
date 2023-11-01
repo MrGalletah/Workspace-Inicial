@@ -431,12 +431,13 @@ svg{
   --main-tertiary-color-clear : #2cb67d;
   --sidebar-background-clear: #16161a;
 }
+#theme-selector:hover{cursor: pointer; background-color: #7f5af0;}
 
-#theme-selector:hover{
-  cursor: pointer;
-  background-color: #7f5af0;
-}
+#deleteImage:hover , #trash:hover{cursor: pointer;}
 
-#deleteImage:hover , #trash:hover , .py-2:hover {
+.product-image{transition: 500ms;}
+.product-image:hover{
   cursor: pointer;
+  transform: scale(1.18);
+  transition: 700ms;
 }
