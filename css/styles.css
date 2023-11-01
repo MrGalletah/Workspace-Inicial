@@ -414,10 +414,6 @@ input::-webkit-inner-spin-button {
   color: white;
   transform: scale(0.5);
 }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 :root:has(.dark-theme){
   --main-background-color-clear : #242629;
   --main-button-color-clear : #7f5af0;
