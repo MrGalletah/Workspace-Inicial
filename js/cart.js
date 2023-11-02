@@ -150,7 +150,7 @@ async function fetchDataAndShow() {
   }
 
   const productHTML = `
-    <div class="d-none d-sm-block col-sm-2 text-center p-0"><img src="../img/productspng/${productID}.png" title="Ver producto" class="py-2 product-image" alt="${productData.name}"></div>
+    <div class="d-none d-sm-block col-sm-2 text-center p-0"><img src="../img/productspng/${productID}.png" title="${productData.name}" class="py-2 product-image" alt="${productData.name}"></div>
     <div class="col-3 col-sm-3 text-center p-0">${productData.name}</div>
     <div class="d-none d-sm-block col-sm-2 text-center p-0">USD ${price.toFixed(2)}</div>
     <div class="col-1 col-sm-2 text-center p-0">
