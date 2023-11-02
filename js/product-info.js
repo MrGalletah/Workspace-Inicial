@@ -351,6 +351,11 @@ function renderRelatedProducts() {
 
 //funcionalidad agregar al carrito
 addToCartBtn.addEventListener("click", function(e) {
+  e.preventDefault;
+  addToCartBtn.classList.add("animate");
+  setTimeout(() => {
+    addToCartBtn.classList.remove("animate");
+  }, 600);
  e.target.closest("#addToCart");
     if (!cartProducts.includes(productID)) {
       cartProducts.push(productID);
