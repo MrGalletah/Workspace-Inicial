@@ -89,10 +89,10 @@ function updateDeliveryFee() {
 
   const deliveryFeeValue = subtotalSumValue * deliveryFeePercentage;
 
-  deliveryFee.textContent = '$ '+ deliveryFeeValue.toFixed(2);
+  deliveryFee.textContent = deliveryFeeValue.toFixed(2);
 
   const totalPriceValue = subtotalSumValue + deliveryFeeValue;
-  totalPrice.textContent = '$ '+ totalPriceValue.toFixed(2);
+  totalPrice.textContent = totalPriceValue.toFixed(2);
 }
 
 
