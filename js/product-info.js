@@ -70,7 +70,7 @@ function showProduct(array) {
 
 async function fetchDataAndShow() {
     const productID = localStorage.productID;
-    urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`
+    urlProduct = `http://localhost:3000/products-info/${productID}`
 try {
    const response = await fetch(urlProduct);
    const data = await response.json();
@@ -201,7 +201,7 @@ const sortIconStars = document.getElementById('sortIconStars');
 const getAndRenderComments = async () => {
   const productID = localStorage.productID;
   try {
-    const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
+    const request = await fetch(`http://localhost:3000/products-comments/${productID}`);
     response = await request.json();
     console.log(response);
     sortDateASC(response);

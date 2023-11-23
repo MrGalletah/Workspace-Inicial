@@ -53,7 +53,7 @@ let productsArray = [];
 // Fetch de los productos
 async function fetchDataAndShow() {
     const idCat = localStorage.catID;
-    const modifiedURL = `https://japceibal.github.io/emercado-api/cats_products/${idCat}.json`;
+    const modifiedURL = `http://localhost:3000/products/${idCat}`;
 
     const response = await fetch(modifiedURL);
     if (!response.ok) {
