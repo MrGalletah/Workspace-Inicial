@@ -154,7 +154,7 @@ async function fetchDataAndShow() {
     <div class="col-3 col-sm-3 text-center p-0">${productData.name}</div>
     <div class="d-none d-sm-block col-sm-2 text-center p-0">USD ${price.toFixed(2)}</div>
     <div class="col-1 col-sm-2 text-center p-0">
-      <input class="cart-quantity" type="number" value="1" max="999" min="1" class="text-center">
+      <input class="cart-quantity text-end" type="number" value="1" max="999" maxlength="3" min="1">
     </div>
     <div class="col-6 col-sm-2 text-end text-sm-center fw-bold p-0">USD <span class="subtotal">${price.toFixed(2)}</span></div>
     <div class="col-1 col-sm-1 p-0 text-center p-0 removeItem" id="trash" title="Eliminar del carrito" data-productID="${productID}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3" viewBox="0 0 22 22">
