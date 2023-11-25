@@ -1,4 +1,4 @@
-import { CART_URL } from "./init";
+
 
 // Sumar y restar 1 de las cantidades
 function updateProductQuantity(value) {
@@ -98,23 +98,6 @@ function updateDeliveryFee() {
 }
 
 
-
-// Fetch carrito de compras
-async function fetchCartData() {
-  try {
-    const response = await fetch('https://japceibal.github.io/emercado-api/user_cart/25801.json');
-    const data = await response.json();
-    arrayCartStandar.push(...data.articles);
-    console.log(arrayCartStandar);
-
-    const selectedItem = arrayCartStandar[0];
-    updateCartUI(selectedItem);
-    updateTotalSum();
-  } catch (error) {
-    console.log('Error al obtener los datos:', error);
-  }
-}
-
 // Fetch productos de localStorage
 async function fetchDataAndShow() {
   const productIDs = JSON.parse(localStorage.getItem('cartProducts')) || [];
@@ -126,7 +109,7 @@ async function fetchDataAndShow() {
   const cartProducts = document.getElementById('cartProducts');
 
   for (const productID of productIDs) {
-    const urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`;
+    const urlProduct = PRODUCT_INFO_URL + productID;
 
     try {
       const response = await fetch(urlProduct);
@@ -222,7 +205,7 @@ function appendProductToCart(productData, productID, cartProducts) {
 
   //Obtener todas las categorias con sus nombres e IDs
   let categoriesData;
-  fetch('https://japceibal.github.io/emercado-api/cats/cat.json')
+  fetch(CATEGORIES_URL)
     .then(res => res.json())
     .then(data => {
       categoriesData = data;
@@ -236,7 +219,7 @@ function appendProductToCart(productData, productID, cartProducts) {
 
   //Función que obtiene el nombre e id de la categoria del producto para reedirigir a product-info 
   function redirectAndSetCatID(productId) {
-    fetch(`https://japceibal.github.io/emercado-api/products/${productId}.json`)
+    fetch(PRODUCT_INFO_URL + productId)
       .then(response => response.json())
       .then(product => {
         const productCategoryName = product.category;

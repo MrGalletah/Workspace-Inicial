@@ -299,7 +299,7 @@ const renderCommentsLocalStorage = ()=>{
                                                           
 const related_Products = document.getElementById('relatedProducts');
 const catID = localStorage.getItem('catID');
-const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
+const url = PRODUCTS_URL + catID;
 const arrayRelated = [];
 
 async function fetchData(url) {

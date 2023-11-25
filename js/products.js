@@ -53,7 +53,7 @@ let productsArray = [];
 // Fetch de los productos
 async function fetchDataAndShow() {
     const idCat = localStorage.catID;
-    const modifiedURL = `http://localhost:3000/products/${idCat}`;
+    const modifiedURL = PRODUCTS_URL + idCat;
 
     const response = await fetch(modifiedURL);
     if (!response.ok) {
