@@ -1,3 +1,5 @@
+import { CART_URL } from "./init";
+
 // Sumar y restar 1 de las cantidades
 function updateProductQuantity(value) {
   const quantityInputs = document.querySelectorAll('.cart-quantity');
@@ -22,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   cardCheck.addEventListener('click', alternatePayment);
   bankCheck.addEventListener('click', alternatePayment);
-  
-// Llamada a funciones
-fetchCartData();
-userEmailFunction();
+
+  // Llamada a funciones
+  fetchCartData();
+  userEmailFunction();
 });
 window.addEventListener('load', fetchDataAndShow);
 
@@ -130,7 +132,7 @@ async function fetchDataAndShow() {
       const response = await fetch(urlProduct);
       const data = await response.json();
       appendProductToCart(data, productID, cartProducts);
-    
+
     } catch (error) {
       console.error(`Error fetching product with ID ${productID}: ${error}`);
     }
@@ -139,8 +141,21 @@ async function fetchDataAndShow() {
   updateTotalSum();
 }
 
+async function addProduct(id) {
+  try {
+    console.log("addProduct",id)
+   await fetch({method:"POST",url:"http://localhost:3000/cart",body:{productIDs:[id]}});
+
+  } catch (error) {
+    console.log('Error add product:', error);
+  }
+}
+
+
 // Agregar productos al carro
-  function appendProductToCart(productData, productID, cartProducts) {
+function appendProductToCart(productData, productID, cartProducts) {
+  console.log("hola")
+  addProduct(productID)
   const productItem = document.createElement("div");
   productItem.className = "cart-item row ms-1 align-items-center p-0";
 
@@ -148,6 +163,8 @@ async function fetchDataAndShow() {
   if (productData.currency === 'UYU') {
     price /= 40;
   }
+
+
 
   const productHTML = `
     <div class="d-none d-sm-block col-sm-2 text-center p-0"><img src="../img/productspng/${productID}.png" title="${productData.name}" class="py-2 product-image" alt="${productData.name}"></div>
@@ -165,8 +182,10 @@ async function fetchDataAndShow() {
   productItem.innerHTML = productHTML;
   cartProducts.appendChild(productItem);
 
+
+
   const quantityInput = productItem.querySelector('.cart-quantity');
-  
+
   // Leer cantidades de localstorage
   const storedQuantity = localStorage.getItem(`quantity_${productID}`);
   if (storedQuantity) {
@@ -199,52 +218,52 @@ async function fetchDataAndShow() {
     updateTotalSum();
     updateDeliveryFee();
   });
-  
 
-//Obtener todas las categorias con sus nombres e IDs
-let categoriesData;
-fetch('https://japceibal.github.io/emercado-api/cats/cat.json')
-.then(res => res.json())
-.then(data => {
-   categoriesData = data;
-});
 
-//Función que devuelve la categoria según su nombre
-function getProductCat(categories, categoryName){
-const cat = categories.find(category => category.name === categoryName);
-return cat;
-};
+  //Obtener todas las categorias con sus nombres e IDs
+  let categoriesData;
+  fetch('https://japceibal.github.io/emercado-api/cats/cat.json')
+    .then(res => res.json())
+    .then(data => {
+      categoriesData = data;
+    });
 
-//Función que obtiene el nombre e id de la categoria del producto para reedirigir a product-info 
-function redirectAndSetCatID(productId){
-  fetch(`https://japceibal.github.io/emercado-api/products/${productId}.json`)
-  .then(response => response.json())
-  .then(product => {
-    const productCategoryName = product.category;
-    const cat = getProductCat(categoriesData, productCategoryName);
-    const catID = cat.id;
-    redirectToProductInfo(productId, catID);
-  })
-  .catch(error => {
-    console.error(error);
-  });
-}
+  //Función que devuelve la categoria según su nombre
+  function getProductCat(categories, categoryName) {
+    const cat = categories.find(category => category.name === categoryName);
+    return cat;
+  };
 
-//Función reutilizada de products.js para redirigir a products-info.js
-function redirectToProductInfo(productId, catId) {
+  //Función que obtiene el nombre e id de la categoria del producto para reedirigir a product-info 
+  function redirectAndSetCatID(productId) {
+    fetch(`https://japceibal.github.io/emercado-api/products/${productId}.json`)
+      .then(response => response.json())
+      .then(product => {
+        const productCategoryName = product.category;
+        const cat = getProductCat(categoriesData, productCategoryName);
+        const catID = cat.id;
+        redirectToProductInfo(productId, catID);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  //Función reutilizada de products.js para redirigir a products-info.js
+  function redirectToProductInfo(productId, catId) {
     localStorage.setItem('catID', catId);
     localStorage.setItem('productID', productId);
     window.location.assign('product-info.html');
-}
+  }
 
   //Obtener los productID correspondientes a cada imagen para redirigir a la página del producto
   const images = cartProducts.querySelectorAll('img');
   const productIDs = JSON.parse(localStorage.getItem('cartProducts')) || [];
-  images.forEach((image, index)=> {
+  images.forEach((image, index) => {
     image.addEventListener('click', () => {
-    redirectAndSetCatID(productIDs[index]);
-      });
+      redirectAndSetCatID(productIDs[index]);
     });
+  });
 }
 
 
@@ -262,7 +281,7 @@ const arrayCartStandar = [];
 /* 
 Validaciónes de MODAL para los métodos de PAGO
 */
-     // VARIABLES GLOBALES
+// VARIABLES GLOBALES
 const monthInput = document.getElementById('month');
 const cardNumber = document.getElementById('cardNumber');
 const cardSelected = document.getElementById('cardSelected');
@@ -275,7 +294,7 @@ const btnSelectPay = document.getElementById('btnSelectPay');
 const cancelPay = document.getElementById('cancelPay');
 
 // CAMBIAR IMÁGEN DE TARJETA DE CREDITO AL SELECCIONARLA
-cardSelected.addEventListener('change', function() {
+cardSelected.addEventListener('change', function () {
   const selectedOption = cardSelected.value;
   if (selectedOption === 'Visa') {
     cardIcon.innerHTML = '<img class="img-thumbnail img-fluid" src="/icons/visa.png" alt="Visa">';
@@ -307,7 +326,7 @@ function clearFields(inputs) {
 }
 /* ********************************************************************************************** */
 //Variable para guardar el método de pago seleccionado
-let methodPaymentSelected = undefined; 
+let methodPaymentSelected = undefined;
 
 // BlOQUEAR OPCIONES (TARJETA O TRANSFERENCIA) al ingresar al botón "Seleccionar"
 btnSelectPay.addEventListener('click', function () {
@@ -323,7 +342,7 @@ btnSelectPay.addEventListener('click', function () {
     methodPaymentSelected = 'bank';
     cardSelected.value = 'disabled';
   } else {
-    disableFields([accountNumber,cardNumber,cvv,monthInput,cardSelected]);
+    disableFields([accountNumber, cardNumber, cvv, monthInput, cardSelected]);
     clearFields([accountNumber, cardNumber, cvv, monthInput]);
     methodPaymentSelected = undefined;
     cardSelected.value = 'disabled';
@@ -345,7 +364,7 @@ function alternatePayment() {
   }
 }
 // FUNCION PARA ELIMINAR DATOS AL BOTON CANCELAR del modal
-cancelPay.addEventListener('click' , function(){
+cancelPay.addEventListener('click', function () {
   clearFields([accountNumber, cardNumber, monthInput, cvv]);
   bankCheck.checked = false;
   cardCheck.checked = false;
@@ -355,21 +374,21 @@ cancelPay.addEventListener('click' , function(){
 //Función para remover las alertas
 const divAlert = document.getElementById('divAlert');
 function removeAlert() {
-    setTimeout(() => {
-        divAlert.innerHTML = '';
-    }, 4000);
+  setTimeout(() => {
+    divAlert.innerHTML = '';
+  }, 4000);
 };
 
 //Función que válida que los campos del modal no esten vacíos en consecuencia del método de pago selecionado.
-function validateMethodPayment(methodSelected){
-  if (methodSelected === 'card'){
-   if(monthInput.value !== '' && validateCardExpiration(monthInput.value) && cardNumber.value !== '' && cvv.value !== '' && cardSelected.value !== 'disabled') {
-    return true;
-   } else {
-    return false;
-   }
-  } else if(methodSelected === 'bank'){
-    if(accountNumber.value !== ''){
+function validateMethodPayment(methodSelected) {
+  if (methodSelected === 'card') {
+    if (monthInput.value !== '' && validateCardExpiration(monthInput.value) && cardNumber.value !== '' && cvv.value !== '' && cardSelected.value !== 'disabled') {
+      return true;
+    } else {
+      return false;
+    }
+  } else if (methodSelected === 'bank') {
+    if (accountNumber.value !== '') {
       return true;
     } else {
       return false;
@@ -378,11 +397,11 @@ function validateMethodPayment(methodSelected){
 };
 
 //Función para validar la fecha de vencimiento de la tarjeta ingresada comparandola con la fecha local
-function validateCardExpiration(cardExpiration){
+function validateCardExpiration(cardExpiration) {
   const newDate = new Date();
-  const currentDate = newDate.toLocaleString('sv-SE', {year:'numeric', month:'2-digit'});
+  const currentDate = newDate.toLocaleString('sv-SE', { year: 'numeric', month: '2-digit' });
   const currentDateString = currentDate.toString();
-  if(cardExpiration > currentDateString){
+  if (cardExpiration > currentDateString) {
     return true;
   } else {
     return false
@@ -390,137 +409,137 @@ function validateCardExpiration(cardExpiration){
 };
 
 //Función para realizar las validaciones previas a la compra y aplicar estilos con bootstrap 
-(()=> {
+(() => {
   'use strict'
 
   const form = document.querySelector('.needs-validation');
 
   form.addEventListener('submit', event => {
-    
+
 
     if (!form.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();
     }
 
-const streetAddress = document.getElementById('streetA');
-const numberAddress = document.getElementById('numberA');
-const cornerAddress = document.getElementById('cornerA');
-const selectMethodPayment = document.getElementById('selectMethodPayment');
+    const streetAddress = document.getElementById('streetA');
+    const numberAddress = document.getElementById('numberA');
+    const cornerAddress = document.getElementById('cornerA');
+    const selectMethodPayment = document.getElementById('selectMethodPayment');
 
-if(streetAddress.value === ""){
-  event.preventDefault();
-  streetAddress.classList.remove('is-valid');
-  streetAddress.classList.add('is-invalid');
-} else {
-  streetAddress.classList.remove('is-invalid');
-  streetAddress.classList.add('is-valid');
-}
+    if (streetAddress.value === "") {
+      event.preventDefault();
+      streetAddress.classList.remove('is-valid');
+      streetAddress.classList.add('is-invalid');
+    } else {
+      streetAddress.classList.remove('is-invalid');
+      streetAddress.classList.add('is-valid');
+    }
 
-if(numberAddress.value === ""){
-  event.preventDefault();
-  numberAddress.classList.remove('is-valid');
-  numberAddress.classList.add('is-invalid');
-} else {
-  numberAddress.classList.remove('is-invalid');
-  numberAddress.classList.add('is-valid');
-}
+    if (numberAddress.value === "") {
+      event.preventDefault();
+      numberAddress.classList.remove('is-valid');
+      numberAddress.classList.add('is-invalid');
+    } else {
+      numberAddress.classList.remove('is-invalid');
+      numberAddress.classList.add('is-valid');
+    }
 
-if(cornerAddress.value === ""){
-  event.preventDefault();
-  cornerAddress.classList.remove('is-valid');
-  cornerAddress.classList.add('is-invalid');
-} else {
-  cornerAddress.classList.remove('is-invalid');
-  cornerAddress.classList.add('is-valid');
-}
+    if (cornerAddress.value === "") {
+      event.preventDefault();
+      cornerAddress.classList.remove('is-valid');
+      cornerAddress.classList.add('is-invalid');
+    } else {
+      cornerAddress.classList.remove('is-invalid');
+      cornerAddress.classList.add('is-valid');
+    }
 
-if(selectedOption === "disabled") {
-  event.preventDefault();
-  selectShip.classList.remove('is-valid');
-  selectShip.classList.add('is-invalid');
-} else {
-  selectShip.classList.remove('is-invalid');
-  selectShip.classList.add('is-valid');
-}
+    if (selectedOption === "disabled") {
+      event.preventDefault();
+      selectShip.classList.remove('is-valid');
+      selectShip.classList.add('is-invalid');
+    } else {
+      selectShip.classList.remove('is-invalid');
+      selectShip.classList.add('is-valid');
+    }
 
-if(validateMethodPayment(methodPaymentSelected)) {
-  event.preventDefault();
-  btnSelectPay.classList.remove('is-invalid', 'custom');
-  btnSelectPay.classList.add('is-valid');
-  selectMethodPayment.classList.add('is-valid');
-  selectMethodPayment.classList.remove('is-invalid');
-} else {
- btnSelectPay.classList.remove('is-valid');
-  btnSelectPay.classList.add('is-invalid', 'custom');
-  selectMethodPayment.classList.add('is-invalid');
-  selectMethodPayment.classList.remove('is-valid');
-}
+    if (validateMethodPayment(methodPaymentSelected)) {
+      event.preventDefault();
+      btnSelectPay.classList.remove('is-invalid', 'custom');
+      btnSelectPay.classList.add('is-valid');
+      selectMethodPayment.classList.add('is-valid');
+      selectMethodPayment.classList.remove('is-invalid');
+    } else {
+      btnSelectPay.classList.remove('is-valid');
+      btnSelectPay.classList.add('is-invalid', 'custom');
+      selectMethodPayment.classList.add('is-invalid');
+      selectMethodPayment.classList.remove('is-valid');
+    }
 
-if(methodPaymentSelected === 'card'){
-  
-  if(monthInput.value === '' || !validateCardExpiration(monthInput.value)) {
-    monthInput.classList.add('is-invalid');
-    monthInput.classList.remove('is-valid');
-  } else {
-    monthInput.classList.add('is-valid');
-    monthInput.classList.remove('is-invalid');
-  }
+    if (methodPaymentSelected === 'card') {
 
-  if(cvv.value === '') {
-  cvv.classList.add('is-invalid');
-  cvv.classList.remove('is-valid');
-  } else {
-  cvv.classList.add('is-valid');
-  cvv.classList.remove('is-invalid');
-  }
+      if (monthInput.value === '' || !validateCardExpiration(monthInput.value)) {
+        monthInput.classList.add('is-invalid');
+        monthInput.classList.remove('is-valid');
+      } else {
+        monthInput.classList.add('is-valid');
+        monthInput.classList.remove('is-invalid');
+      }
 
-  if(cardNumber.value === '') {
-  cardNumber.classList.add('is-invalid');
-  cardNumber.classList.remove('is-valid');
-  } else {
-  cardNumber.classList.add('is-valid');
-  cardNumber.classList.remove('is-invalid');
-  }
+      if (cvv.value === '') {
+        cvv.classList.add('is-invalid');
+        cvv.classList.remove('is-valid');
+      } else {
+        cvv.classList.add('is-valid');
+        cvv.classList.remove('is-invalid');
+      }
 
-  if(cardSelected.value == 'disabled') {
-  cardSelected.classList.add('is-invalid');
-  cardSelected.classList.remove('is-valid');
-  } else {
-  cardSelected.classList.add('is-valid');
-  cardSelected.classList.remove('is-invalid');
-  }
+      if (cardNumber.value === '') {
+        cardNumber.classList.add('is-invalid');
+        cardNumber.classList.remove('is-valid');
+      } else {
+        cardNumber.classList.add('is-valid');
+        cardNumber.classList.remove('is-invalid');
+      }
 
-} else if(methodPaymentSelected === 'bank'){
-if(accountNumber.value === ''){
-  accountNumber.classList.add('is-invalid');
-  accountNumber.classList.remove('is-valid');
-  } else {
-  accountNumber.classList.add('is-valid');
-  accountNumber.classList.remove('is-invalid');
-}
-}
+      if (cardSelected.value == 'disabled') {
+        cardSelected.classList.add('is-invalid');
+        cardSelected.classList.remove('is-valid');
+      } else {
+        cardSelected.classList.add('is-valid');
+        cardSelected.classList.remove('is-invalid');
+      }
 
-if(streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled"  && selectedQuantity <= 1 && validateMethodPayment(methodPaymentSelected)) {
-  form.classList.add('was-validated');
-  divAlert.innerHTML += `
+    } else if (methodPaymentSelected === 'bank') {
+      if (accountNumber.value === '') {
+        accountNumber.classList.add('is-invalid');
+        accountNumber.classList.remove('is-valid');
+      } else {
+        accountNumber.classList.add('is-valid');
+        accountNumber.classList.remove('is-invalid');
+      }
+    }
+
+    if (streetAddress.value !== '' && numberAddress.value !== '' && cornerAddress.value !== '' && selectedOption !== "disabled" && selectedQuantity <= 1 && validateMethodPayment(methodPaymentSelected)) {
+      form.classList.add('was-validated');
+      divAlert.innerHTML += `
   <div id="successAlert" class="alert alert-success" role="alert" style="z-index: 1;">
   ¡Has comprado con éxito!
   </div>
   `;
-  event.preventDefault()
-} else {
-  divAlert.innerHTML +=`
+      event.preventDefault()
+    } else {
+      divAlert.innerHTML += `
    <div id="failAlert" class="alert alert-danger" role="alert" style="z-index: 1;">
    Verifica que los datos ingresados sean correctos
 </div>
-   `;  
-   event.preventDefault()
-   form.classList.remove('was-validated');
-}
-removeAlert()
+   `;
+      event.preventDefault()
+      form.classList.remove('was-validated');
+    }
+    removeAlert()
   }, false)
 
-  
+
 
 })()

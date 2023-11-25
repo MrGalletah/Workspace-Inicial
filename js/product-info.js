@@ -348,12 +348,29 @@ function renderRelatedProducts() {
     }
   }
 }
+async function addProduct(id) {
+  try {
+    console.log("addProduct cambio",id)
+    await fetch("http://localhost:3000/cart", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({productIDs:[id]}),
+    });
+   
+   console.log("added puto")
 
+  } catch (error) {
+    console.log('Error add product:', error);
+  }
+}
 //funcionalidad agregar al carrito
 addToCartBtn.addEventListener("click", function(e) {
  e.target.closest("#addToCart");
     if (!cartProducts.includes(productID)) {
       cartProducts.push(productID);
+      addProduct(productID)
 
       localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
       const alertProductAdded = `<div class="alert alert-success text-center" role="alert" style="z-index: 1;">
