@@ -118,3 +118,15 @@ if(lastNameInput.value === ''){
    }, 4000);
 
 });
+
+// Cargar datos del usuario a los inputs desde el LocalStorage
+const userData = JSON.parse(localStorage.getItem('user-data'));
+
+if (userData) {
+  // Cargamos los valores a los campos de entrada, y si no hay datos guardados asignamos campo vacío '';
+  nameInput.value = userData.name || '';
+  secondNameInput.value = userData.second_name || '';
+  lastNameInput.value = userData.last_name || '';
+  secondLastNameInput.value = userData.second_last_name || '';
+  phoneNumberInput.value = userData.phone_number || '';
+}

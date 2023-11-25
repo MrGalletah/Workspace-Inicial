@@ -70,7 +70,7 @@ function showProduct(array) {
 
 async function fetchDataAndShow() {
     const productID = localStorage.productID;
-    urlProduct = `https://japceibal.github.io/emercado-api/products/${productID}.json`
+    urlProduct = `http://localhost:3000/products-info/${productID}`
 try {
    const response = await fetch(urlProduct);
    const data = await response.json();
@@ -201,7 +201,7 @@ const sortIconStars = document.getElementById('sortIconStars');
 const getAndRenderComments = async () => {
   const productID = localStorage.productID;
   try {
-    const request = await fetch(`${PRODUCT_INFO_COMMENTS_URL}${productID}.json`);
+    const request = await fetch(`http://localhost:3000/products-comments/${productID}`);
     response = await request.json();
     console.log(response);
     sortDateASC(response);
@@ -299,7 +299,7 @@ const renderCommentsLocalStorage = ()=>{
                                                           
 const related_Products = document.getElementById('relatedProducts');
 const catID = localStorage.getItem('catID');
-const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
+const url = PRODUCTS_URL + catID;
 const arrayRelated = [];
 
 async function fetchData(url) {
@@ -348,12 +348,29 @@ function renderRelatedProducts() {
     }
   }
 }
+async function addProduct(id) {
+  try {
+    console.log("addProduct cambio",id)
+    await fetch("http://localhost:3000/cart", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({productIDs:[id]}),
+    });
+   
+   console.log("added puto")
 
+  } catch (error) {
+    console.log('Error add product:', error);
+  }
+}
 //funcionalidad agregar al carrito
 addToCartBtn.addEventListener("click", function(e) {
  e.target.closest("#addToCart");
     if (!cartProducts.includes(productID)) {
       cartProducts.push(productID);
+      addProduct(productID)
 
       localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
       const alertProductAdded = `<div class="alert alert-success text-center" role="alert" style="z-index: 1;">
