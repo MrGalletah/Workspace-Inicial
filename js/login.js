@@ -1,9 +1,10 @@
 
+    
 document.addEventListener('DOMContentLoaded', function(){
     const botonIngresar = document.getElementById('regBtn');
-    const loggeado = localStorage.getItem('loggedIn');
+    const loggeado = localStorage.getItem('token');
     botonIngresar.disabled = true;
-    const email = document.getElementById("email");
+ 
     if (loggeado) {
         window.location.href = 'index.html';
     } else {
@@ -11,49 +12,59 @@ document.addEventListener('DOMContentLoaded', function(){
             if (verificarCampos()) {
                 const dataVerified = {
                     "user": "userVerified",
-                    "password": "passwordVerified"
-                };
+                     "password": "passwordVerified"
+                 }
                 fetch('http://localhost:3000/login', {
-                    method: "POST",
-                    body: JSON.stringify(dataVerified)
+                    method: 'POST',
+                    body: JSON.stringify(dataVerified),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
                 .then(res => res.json())
                 .then(data => {
-                    if(data){
                 localStorage.setItem('loggedIn', 'true');
                 localStorage.setItem('email', email.value);
-                    }
+                localStorage.setItem('token', JSON.stringify(data.token));
+                window.location.href = 'index.html';
                 })
             } else {
                 const incorrectData = {
                     "user": "userIncorrect",
                     "password": "passwordIncorrect"
                 }
-                evento.preventDefault();
                 fetch('http://localhost:3000/login', {
                     method: "POST",
-                    body: JSON.stringify(incorrectData)
+                    body: JSON.stringify(incorrectData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
                 .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
             }
+            evento.preventDefault();
         });
     }
 
-    
-    const emailInput = document.querySelector('.login input[type="email"]');
-    const passwordInput = document.querySelector('.login input[type="password"]');
+   const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-    function verificarCampos(){
+        function verificarCampos(){ 
         //funcion para ver si los campos se completan correctamente, devuelve true or false
         const valorEmail = emailInput.value;
         const valorPassword = passwordInput.value;
 
         const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valorEmail);
-
-        return valorEmail !== '' && emailValido && valorPassword.length >= 6;
+        if(valorEmail !== '' && emailValido && valorPassword.length >= 6){
+           return true; 
+        } else {
+            return false;
+        }
     }
-    
-    
+
     function actualizarBotonIngreso(){
         //funcion para agregar o quitar el atributo disabled en el boton Ingresar
         const formularioValido = verificarCampos();
