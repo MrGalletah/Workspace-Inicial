@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function(){
     const botonIngresar = document.getElementById('regBtn');
     const loggeado = localStorage.getItem('loggedIn');
@@ -8,13 +9,37 @@ document.addEventListener('DOMContentLoaded', function(){
     } else {
         botonIngresar.addEventListener('click', function(evento){
             if (verificarCampos()) {
+                const dataVerified = {
+                    "user": "userVerified",
+                    "password": "passwordVerified"
+                };
+                fetch('http://localhost:3000/login', {
+                    method: "POST",
+                    body: JSON.stringify(dataVerified)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data){
                 localStorage.setItem('loggedIn', 'true');
                 localStorage.setItem('email', email.value);
+                    }
+                })
             } else {
+                const incorrectData = {
+                    "user": "userIncorrect",
+                    "password": "passwordIncorrect"
+                }
                 evento.preventDefault();
+                fetch('http://localhost:3000/login', {
+                    method: "POST",
+                    body: JSON.stringify(incorrectData)
+                })
+                .then(res => res.json())
             }
         });
     }
+
+    
     const emailInput = document.querySelector('.login input[type="email"]');
     const passwordInput = document.querySelector('.login input[type="password"]');
 
@@ -74,11 +99,7 @@ document.addEventListener('DOMContentLoaded', function(){
         passButton.classList.remove("active");
       }, 200);
     });
-
-
-
-
-
-
 });
 loginTheme()
+
+

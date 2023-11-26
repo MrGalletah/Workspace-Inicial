@@ -54,6 +54,7 @@ deleteImage.addEventListener('click', () => {
    }
 });
 
+// Almacenar información del usuario
 function createUserDataObj(name, secondName, lastName, secondLastName, email, phoneNumber) {
 const userDataObj = {
     name: name,
@@ -64,8 +65,9 @@ const userDataObj = {
     phone_number: phoneNumber,
 }
  return userDataObj;
-}
+};
 
+// Al guardar los datos, se verifica que los campos obligatorios esten llenos, se le devuelve un feedback al usuario y se guardan en LS
 dataUserForm.addEventListener('submit', event => {
 if(nameInput.value === '' || lastNameInput.value === '' || emailInput.value === '') {
 event.preventDefault();

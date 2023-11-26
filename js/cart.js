@@ -29,8 +29,6 @@ userEmailFunction();
 });
 window.addEventListener('load', fetchDataAndShow);
 
-
-
 // Calculo del subtotal
 function calculateSubtotal(unitCost, quantity) {
   if (isNaN(quantity)) {
@@ -95,8 +93,6 @@ function updateDeliveryFee() {
   totalPrice.textContent = totalPriceValue.toFixed(2);
 }
 
-
-
 // Fetch carrito de compras
 async function fetchCartData() {
   try {
@@ -135,7 +131,6 @@ async function fetchDataAndShow() {
       console.error(`Error fetching product with ID ${productID}: ${error}`);
     }
   }
-
   updateTotalSum();
 }
 
@@ -246,8 +241,6 @@ function redirectToProductInfo(productId, catId) {
       });
     });
 }
-
-
 //Funcion para remover el producto del carrito en el localStorage
 function removeProductFromCart(productID) {
   const productIDs = JSON.parse(localStorage.getItem('cartProducts')) || [];
@@ -256,12 +249,8 @@ function removeProductFromCart(productID) {
   updateTotalSum();
 }
 
-const arrayCartStandar = [];
-
-/* 
-Validaciónes de MODAL para los métodos de PAGO
-*/
-     // VARIABLES GLOBALES
+// Validaciónes de MODAL para los métodos de PAGO
+// VARIABLES GLOBALES
 const monthInput = document.getElementById('month');
 const cardNumber = document.getElementById('cardNumber');
 const cardSelected = document.getElementById('cardSelected');
@@ -388,6 +377,7 @@ function validateCardExpiration(cardExpiration){
   };
 };
 
+//Validación de la cantidad de productos en el carrito
 function checkProductQuantity(){
   const productQuantityInputs = document.querySelectorAll('.cart-quantity');
   console.log(productQuantityInputs);
