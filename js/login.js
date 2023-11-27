@@ -8,13 +8,45 @@ document.addEventListener('DOMContentLoaded', function(){
     } else {
         botonIngresar.addEventListener('click', function(evento){
             if (verificarCampos()) {
+                const dataVerified = {
+                    "user": "userVerified",
+                     "password": "passwordVerified"
+                 }
+                fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    body: JSON.stringify(dataVerified),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
                 localStorage.setItem('loggedIn', 'true');
                 localStorage.setItem('email', email.value);
+                localStorage.setItem('token', JSON.stringify(data.token));
+                window.location.href = 'index.html';
+                })
             } else {
-                evento.preventDefault();
+                const incorrectData = {
+                    "user": "userIncorrect",
+                    "password": "passwordIncorrect"
+                }
+                fetch('http://localhost:3000/login', {
+                    method: "POST",
+                    body: JSON.stringify(incorrectData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
             }
+            evento.preventDefault();
         });
     }
+    
     const emailInput = document.querySelector('.login input[type="email"]');
     const passwordInput = document.querySelector('.login input[type="password"]');
 

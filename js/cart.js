@@ -126,8 +126,10 @@ async function fetchDataAndShow() {
 
 async function addProduct(id) {
   try {
+    const token = localStorage.getItem('token');
+    console.log(token);
     console.log("addProduct",id)
-   await fetch({method:"POST",url:"http://localhost:3000/cart",body:{productIDs:[id]}});
+   await fetch({method:"POST",url:"http://localhost:3000/cart",body:{productIDs:[id]}, headers:{authorization: token}});
 
   } catch (error) {
     console.log('Error add product:', error);

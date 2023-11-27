@@ -351,10 +351,14 @@ function renderRelatedProducts() {
 async function addProduct(id) {
   try {
     console.log("addProduct cambio",id)
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log(token);
     await fetch("http://localhost:3000/cart", {
       method: "POST", // or 'PUT'
+      mode: "no-cors",
       headers: {
-        "Content-Type": "application/json",
+        'authorization': token,
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({productIDs:[id]}),
     });
